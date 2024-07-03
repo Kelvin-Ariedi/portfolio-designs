@@ -22,8 +22,21 @@ body{
    color:#00192D;
 }
 .info-sidenav {
-      display: inline-block;
       background-color: #fff;
+      padding: 30px;
+}
+
+.info-sidenav {
+    text-align: center; /* Center align text and inline elements */
+}
+
+.sidenav-profile-img {
+    display: inline-block; /* Make the image an inline block element */
+    margin: 20px auto; /* Center align block elements if necessary */
+}
+
+.sidenav-headline{
+   margin: auto;
 }
 .pipe {
       color: #0009DB;
@@ -65,13 +78,47 @@ body{
       background-color: #0009DB;
       color: #fff;
       padding: 5px;
-      border-radius: 5px;
+      border-radius: 2px;
       font-size: 1em;
+      margin-bottom: 0.8em;
     }
 
     .badge-info {
       font-size: 1em;
+      margin-bottom: 0.8em;
     }
+    
+
+    .extra-skills .flex{
+      justify-content: flex-start;
+      margin-bottom: 1.4em;
+    }
+
+    .extra-skills .flex img{
+      margin-right: 10px;
+    }
+
+ #downloadcv-button{
+   width: 200px;
+   
+   background: #0009DB;
+   color: #fff;
+   font-size: 1.5em;
+   text-align:center;
+   border-radius: 4px;
+   padding: 0.4em;
+   font-weight: 500;
+   text-transform: uppercase;
+   cursor:pointer;
+   box-shadow: 2px 2px 6px  #00192D;
+   margin: auto;
+   
+}
+ #downloadcv-button:hover{
+   background:#0009DB;
+   color: #FFFFFF;
+   box-shadow: 4px 4px 8px  #00192D;
+ }
 
 
   </style>
@@ -81,9 +128,9 @@ body{
  
   <div class="container-fluid">
     <div class="col-md-3 info-sidenav">
-       <img src="Profile.png" class="img-sidenav"/>
+       <img src="Profile.png" class="sidenav-profile-img"/>
        
-       <p>AWS Certified Cloud Practitioner <span class="pipe">|</span> UI/UX Designer <span class="pipe">|</span> Front-End Developer <span class="pipe">|</span> Innovator in Web Design & Programming <span class="pipe">|</span> Android Developer</p>
+       <p class="sidenav-headline">AWS Certified Cloud Practitioner <span class="pipe">|</span> UI/UX Designer <span class="pipe">|</span> Front-End Developer <span class="pipe">|</span> Innovator in Web Design & Programming <span class="pipe">|</span> Android Developer</p>
 
        <div class="social-media-icons">
           <a href="#"><i class="fab fa-twitter"></i></a>
@@ -100,6 +147,78 @@ body{
          <div class="flex"><span class="badge">Address:</span> <div class="badge-info ">Limuru,Kenya</div></div>
        </div>
        
+       <hr>
+
+       <h4>Languages</h4>
+
+       <div class="flex"> <div>English (Speaking & Writing)</div><div>100%</div></div>
+
+       <div class="progress" style="height: 6px; margin-top: 8px; outline: 1px solid #0009DB; padding: 2px;">
+        <div class="progress-bar" role="progressbar" style=" width: 100%; background-color: #0009DB;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+       </div>
+
+       <div class="flex"> <div>Swahili (Kuongea & Kuandika)</div><div>100%</div></div>
+
+       <div class="progress" style="height: 6px; margin-top: 8px; outline: 1px solid #0009DB; padding: 2px;">
+        <div class="progress-bar" role="progressbar" style=" width: 100%; background-color: #0009DB;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+       </div>
+
+       <hr>
+
+       <h4>Technical Skills</h4>
+
+       <div class="flex"> <div>Android</div><div>100%</div></div>
+
+       <div class="progress" style="height: 6px; margin-top: 8px; outline: 1px solid #0009DB; padding: 2px;">
+        <div class="progress-bar" role="progressbar" style=" width: 100%; background-color: #0009DB;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+       </div>
+
+       <div class="flex"> <div>Js</div><div>100%</div></div>
+
+       <div class="progress" style="height: 6px; margin-top: 8px; outline: 1px solid #0009DB; padding: 2px;">
+        <div class="progress-bar" role="progressbar" style=" width: 100%; background-color: #0009DB;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+       </div>
+
+       <div class="flex"> <div>Js</div><div>100%</div></div>
+
+       <div class="progress" style="height: 6px; margin-top: 8px; outline: 1px solid #0009DB; padding: 2px;">
+        <div class="progress-bar" role="progressbar" style=" width: 100%; background-color: #0009DB;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+       </div>
+
+       <div class="flex"> <div>Js</div><div>100%</div></div>
+
+       <div class="progress" style="height: 6px; margin-top: 8px; outline: 1px solid #0009DB; padding: 2px;">
+        <div class="progress-bar" role="progressbar" style=" width: 100%; background-color: #0009DB;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+       </div>
+
+       <div class="flex"> <div>Js</div><div>100%</div></div>
+
+       <div class="progress" style="height: 6px; margin-top: 8px; outline: 1px solid #0009DB; padding: 2px;">
+        <div class="progress-bar" role="progressbar" style=" width: 100%; background-color: #0009DB;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+       </div>
+       <div class="flex"> <div>Js</div><div>100%</div></div>
+
+       <div class="progress" style="height: 6px; margin-top: 8px; outline: 1px solid #0009DB; padding: 2px;">
+        <div class="progress-bar" role="progressbar" style=" width: 100%; background-color: #0009DB;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+       </div>
+
+       <hr>
+
+       <h4>Extra Skills</h4>
+
+          <div class="extra-skills">
+
+              <div class="flex"> <img src="Icons.png" alt="icon"><div>Bootstrap, Tailwind</div></div>
+
+              <div class="flex"> <img src="Icons.png" alt="icon"><div>Bootstrap, Tailwind</div></div>
+
+              <div class="flex"> <img src="Icons.png" alt="icon"><div>Bootstrap, Tailwind</div></div>
+
+              <div class="flex"> <img src="Icons.png" alt="icon"><div>Bootstrap, Tailwind</div></div>
+
+          </div>
+
+          <div id="downloadcv-button" > Download cv <img src="download-icon.png" alt="download icon"/></div>
 
     </div>
 
