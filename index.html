@@ -98,36 +98,116 @@ body{
       margin-right: 10px;
     }
 
- #downloadcv-button{
-   width: 200px;
-   
+    .btn{
    background: #0009DB;
    color: #fff;
    font-size: 1.5em;
    text-align:center;
    border-radius: 4px;
-   padding: 0.4em;
+   padding: 0.3em;
    font-weight: 500;
    text-transform: uppercase;
    cursor:pointer;
    box-shadow: 2px 2px 6px  #00192D;
+    }
+
+ #downloadcv-button{
+   
    margin: auto;
    
 }
- #downloadcv-button:hover{
+
+
+  .btn:hover{
    background:#0009DB;
    color: #FFFFFF;
    box-shadow: 4px 4px 8px  #00192D;
  }
-
+.section-headline{
+   text-align: center;
+   width: 40%;
+   margin: 40px  auto;
+}
  .main-section{
    padding: 30px;
    background-color: #fff;
    color:#00192D;
-   min-height: 80vh;
    width: 100%;
    border-radius: 10px;
    display: block;
+ }
+
+ .main-section-img{
+   min-height: 80%;
+   margin-bottom: -30px;
+   padding: 0;
+ }
+
+ 
+ .service-card{
+   padding: 30px;
+   background: #FFFFFF;
+   text-align: center;
+   margin: 20px auto;
+   border-radius: 8px;
+ }
+
+ .service-card:hover{
+   box-shadow: 2px 2px 8px #0009DB;
+ }
+
+ .service-card img{
+  display: inline-block; /* Make the image an inline block element */
+  margin: 20px auto;
+  height: 3em;
+ }
+
+ .education-card{
+    width: 100%;
+    padding: 30px;
+    margin: 10px auto;
+    text-align: center;
+    background: #FFFFFF;
+    border-radius: 8px;
+ }
+
+ .experience-card{
+    width: 100%;
+    padding: 30px;
+    margin: 10px auto;
+    text-align: center;
+    background: #FFFFFF;
+    border-radius: 8px;
+ }
+
+ .portfolio-card{
+    width: 100%;
+    margin: 20px auto;
+    box-shadow: 1px 2px 5px #000;
+ }
+
+ .contact-card{
+   background: #FFFFFF;
+   padding: 30px;
+   border-radius: 8px;
+   text-align: center;
+ }
+ .contact-card input, textarea{
+    width: 70%;
+    background-color: #F0F0F6;
+    border: none;
+    margin: 20px auto;
+    border-radius: 4px;
+ }
+ .contact-card input{
+   padding: 6px;
+ }
+
+ .contact-card input[type=submit]{
+   padding: 6px;
+   background: #0009DB;
+   color: #FFFFFF;
+   max-width: 300px;
  }
   </style>
   
@@ -135,6 +215,7 @@ body{
 <body>
  
   <div class="container-fluid">
+
     <div class="col-md-3 info-sidenav">
        <img src="Profile.png" class="sidenav-profile-img"/>
        
@@ -226,21 +307,306 @@ body{
 
           </div>
 
-          <div id="downloadcv-button" > Download cv <img src="download-icon.png" alt="download icon"/></div>
+          <div class="btn" id="downloadcv-button" > Download cv <img src="download-icon.png" alt="download icon"/></div>
 
     </div>
       
-    <div class="col-md-7 ">
-      <div class="main-section">
+    <div class="col-md-8 ">
+
+
+      <div class="main-section" id="home">
+        <div class="row">
+        <div class="col-md-6">
+          <br>
+          <br>
           <h1>Hi, I’m Kelvin Ariedi</h1>
           <p>Hi, I'm Kelvin Otieno, an AWS Cloud Practitioner and UI/UX Designer with a passion for innovation and excellence in web development. With extensive experience in front-end development, I have honed my skills in HTML, CSS, JavaScript, PHP, and MySQL. My journey has taken me from leading frontend design projects at Corium Connect to teaching programming and UI/UX design at Corium Code Academy. I thrive in collaborative environments and am dedicated to delivering high-quality, responsive websites that provide seamless user experiences. Let's create something amazing together!</p>
-          <div id="downloadcv-button" > Download cv <img src="download-icon.png" alt="download icon"/></div>
+          <div class="btn" id="hireme-button" > hire me <img src="hire-icon.png" alt="download icon"/></div>
+        </div>
+          <div class="col-md-6">
+            <img class="main-section-img" src="Your Image 1.png" alt="my photo">
+          </div>
+        </div>
       </div>
+
+      <div class="services-section" id="services" >
+
+        <div class="section-headline">
+          <h1>My Services</h1>
+          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+        </div>
+
+          
+
+      <div class="row">
+        <div class="col-md-4">
+         <div class="service-card">
+              <img src="coding.png" alt="coding-illustration">
+              <h3>Web Development</h3>
+              <p>blog, e-commerce</p>
+         </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="service-card">
+              <img src="illustration.png" alt="coding-illustration">
+              <h3>UI/UX design</h3>
+              <p>Mobile app, website design</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card">
+              <img src="illustration.png" alt="coding-illustration">
+              <h3>UI/UX design</h3>
+              <p>Mobile app, website design</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+         <div class="service-card">
+              <img src="coding.png" alt="coding-illustration">
+              <h3>Web Development</h3>
+              <p>blog, e-commerce</p>
+         </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="service-card">
+              <img src="illustration.png" alt="coding-illustration">
+              <h3>UI/UX design</h3>
+              <p>Mobile app, website design</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-card">
+              <img src="illustration.png" alt="coding-illustration">
+              <h3>UI/UX design</h3>
+              <p>Mobile app, website design</p>
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+      <div class="education-section" id="education" >
+
+        <div class="section-headline">
+          <h1>Education</h1>
+          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+        </div>
+
+        <div class="education-card">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h3>University of Naiorobi</h3>
+              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+            </div>
+            
+            <div class="col-md-8">
+              <h2>University of Naiorobi</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="education-card">
+          
+          <div class="row">
+            <div class="col-md-4">
+              <h3>University of Naiorobi</h3>
+              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+            </div>
+            
+            <div class="col-md-8">
+              <h2>University of Naiorobi</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="education-card">
+          
+          <div class="row">
+            <div class="col-md-4">
+              <h3>University of Naiorobi</h3>
+              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+            </div>
+            
+            <div class="col-md-8">
+              <h2>University of Naiorobi</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="education-card">
+          
+          <div class="row">
+            <div class="col-md-4">
+              <h3>University of Naiorobi</h3>
+              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+            </div>
+            
+            <div class="col-md-8">
+              <h2>University of Naiorobi</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            </div>
+          </div>
+        
+        </div>
+
+      </div>
+
+      <div class="experience-section" id="experience" >
+
+        <div class="section-headline">
+          <h1>Work History</h1>
+          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+        </div>
+
+        <div class="experience-card">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Bata Shoe Company Kenya</h3>
+              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">3 yrs</div></div>
+            </div>
+            
+            <div class="col-md-8">
+              <h2>FrontEnd Developer</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="experience-card">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Bata Shoe Company Kenya</h3>
+              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+            </div>
+            
+            <div class="col-md-8">
+              <h2>University of Naiorobi</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="experience-card">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Bata Shoe Company Kenya</h3>
+              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+            </div>
+            
+            <div class="col-md-8">
+              <h2>University of Naiorobi</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            </div>
+          </div>
+        
+        </div>
+
+      </div>
+
+      <div class="portfolio-section" id="portfolio" >
+
+        <div class="section-headline">
+          <h1>Portfolio</h1>
+          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="portfolio-card">
+              <img src="Image.png">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="portfolio-card">
+              <img src="Image.png">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="portfolio-card">
+              <img src="Image.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="portfolio-card">
+              <img src="Image.png">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="portfolio-card">
+              <img src="Image.png">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="portfolio-card">
+              <img src="Image.png">
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="portfolio-section" id="portfolio" >
+
+        <div class="section-headline">
+          <h1>Portfolio</h1>
+          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 contact-card">
+            <h4>Send Me A Message</h4>
+            <form action="#">
+              <input type="text" name="Name" id="fullname" required>
+              <input type="email" name="Email" id="email" required>
+              <input type="text" name="Subject" id="subject">
+              <textarea name="Message" id="message" cols="30" rows="10"></textarea>
+              <input type="submit" value="Send">
+            </form>
+          </div>
+
+          <div class="col-md-4 contact-card">
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-1">
       
     </div>
+
+
   </div>
 
 </body>
