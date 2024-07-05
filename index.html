@@ -22,13 +22,12 @@ body{
    color:#00192D;
 }
 .info-sidenav {
+      min-height: 100vh;
       background-color: #fff;
       padding: 30px;
+      text-align: center;
 }
 
-.info-sidenav {
-    text-align: center; /* Center align text and inline elements */
-}
 
 .sidenav-profile-img {
     display: inline-block; /* Make the image an inline block element */
@@ -128,6 +127,10 @@ body{
    width: 40%;
    margin: 40px  auto;
 }
+
+.scroll{
+    position: relative;
+}
  .main-section{
    padding: 30px;
    background-color: #fff;
@@ -182,8 +185,9 @@ body{
 
  .portfolio-card{
     width: 100%;
-    margin: 20px auto;
+    margin: 20px 20px;
     box-shadow: 1px 2px 5px #000;
+    
  }
 
  .contact-card{
@@ -209,6 +213,33 @@ body{
    color: #FFFFFF;
    max-width: 300px;
  }
+
+.footer{
+   text-align: center;
+   background: #0009DB;
+   color: #FFFFFF;
+   padding: 20px;
+   margin-top: 20px ;
+}
+nav{
+   min-height: 100vh;
+   background: #FFFFFF;
+   padding: 10px;
+   text-align: center;
+   position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+}
+nav ul{
+   list-style: none;
+   align-items: center;
+}
+
+nav li a{
+   color: #00192D;
+   font-size: 1.2em;
+   text-decoration: none;
+}
   </style>
   
 </head>
@@ -223,7 +254,7 @@ body{
 
        <div class="social-media-icons">
           <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
           <a href="#"><i class="fab fa-github"></i></a>
        </div>
       
@@ -311,7 +342,7 @@ body{
 
     </div>
       
-    <div class="col-md-8 ">
+    <div class="col-md-8 scroll" data-bs-spy="scroll" data-bs-target=".navigation-menu" data-bs-offset="50">
 
 
       <div class="main-section" id="home">
@@ -569,10 +600,10 @@ body{
 
       </div>
 
-      <div class="portfolio-section" id="portfolio" >
+      <div class="contact-section" id="contact" >
 
         <div class="section-headline">
-          <h1>Portfolio</h1>
+          <h1>Contact Me</h1>
           <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
         </div>
 
@@ -589,21 +620,32 @@ body{
           </div>
 
           <div class="col-md-4 contact-card">
-
+            <h4>Get In Touch</h4>
           </div>
         </div>
-
 
       </div>
 
 
-
-
+      <div class="row footer">
+        <p>2024 All Rights Reserved. Kelvin Ariedi</p>
+      </div>
 
     </div>
 
-    <div class="col-md-1">
-      
+
+    <div class="col-md-1 navigation-menu">
+      <nav class="">
+
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+      </nav>
     </div>
 
 
