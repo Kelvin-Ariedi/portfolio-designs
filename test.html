@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.37/dist/vue.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.8/ejs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/knockout@3.5.1/build/output/knockout-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sql.js@0.5.0/js/sql.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://assets.codepen.io/16327/SplitText3.min.js"></script>
+  <script src="https://assets.codepen.io/16327/ScrambleTextPlugin3.min.js"></script>
+  <script src="https://assets.codepen.io/16327/PhysicsPropsPlugin3.min.js"></script>
+  <script src="https://assets.codepen.io/16327/Physics2DPlugin3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tslib@2.6.3/tslib.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/debug@4.3.5/src/browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ansi-styles@6.2.1/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ansi-styles@6.2.1/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/semver@7.6.2/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/supports-color@9.4.0/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chalk@5.3.0/source/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-is@18.3.1/umd/react-is.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  
+  
+  
+  
+  <style>
+    
+@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+*{
+   margin:0;
+   padding:0;
+}
+
+body{
+   background-color: #f7f7f7;
+   color:#00192D;
+   cursor: none;
+}
+
+.navbar {
+   height: 60px;
+   margin-bottom: 2em;
+}
+.navbar img{
+    height: 50px;
+    width: 50px;
+	top:0;
+}
+
+.navbar ul li{
+    margin:auto;
+    color:#00192D;
+    font-family:"K2D";
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+}
+
+.navbar ul li a:hover{
+
+    color:#ffffff;
+    background:#00192D;
+}
+
+li a{ 
+    text-decoration: none;
+    color:#00192D;
+	padding:15px;
+}
+.navbar-toggle{
+    background:#00192D;
+}
+
+.icon-bar{
+	background:#fff;
+}
+.globe_spin{
+    width:100%;
+}
+.globe_spin img{
+    width:84%;
+	overflow: hidden;
+	
+}
+.globe_spin img {
+  -webkit-animation: spin 12s normal linear infinite;
+  animation: spin 12s normal linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  25% {
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+  50% {
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+  75% {
+    -webkit-transform: rotate3d(0, 0, 1, 270deg);
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+.typewrite > .wrap {
+  border-right: 0.08em solid #000;
+  font-size: 1em;
+  display: inline-block;
+  
+}
+
+#welcome{
+   font-family: "K2D";
+   margin-top: 0.8em;
+   color:#00192D;
+}
+
+#welcome-text{
+   font-family: "K2D";
+   font-size: 1.25em;
+   margin-top: 0.8em;
+}
+
+#welcome-button{
+   width: 200px;
+   margin-top: 1.4em;
+   background: #FFFFFF;
+   color: #00192D;
+   border: 2px solid #00192D;
+   font-family: "K2D";
+   font-size: 1.5em;
+   text-align:center;
+   border-radius: 4px;
+   padding: 0.4em;
+   font-weight: bold;
+   cursor:pointer;
+   transition: background 0.9s ease-out;
+   box-shadow: 2px 2px 6px  #00192D;
+}
+ #welcome-button:hover{
+   background:#00192D;
+   color: #FFFFFF;
+   box-shadow: 4px 4px 8px  #00192D;
+ }
+ 
+ 
+ .column {
+	margin: 15px 15px 0;
+	padding: 0;
+}
+.column::after {
+	content: '';
+	clear: both;
+	display: block;
+}
+.column div {
+	position: relative;
+	float: left;
+	width: 300px;
+	height: 200px;
+	margin: 0 0 0 25px;
+	padding: 0;
+}
+.column div:first-child {
+	margin-left: 0;
+}
+.column div span {
+	position: absolute;
+	bottom: -20px;
+	left: 0;
+	z-index: -1;
+	display: block;
+	width: 300px;
+	margin: 0;
+	padding: 0;
+	color: #444;
+	font-size: 18px;
+	text-decoration: none;
+	text-align: center;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+	opacity: 0;
+}
+figure {
+	width: 300px;
+	height: 200px;
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	overflow: hidden;
+}
+figure:hover+span {
+	bottom: -36px;
+	opacity: 1;
+}
+ 
+ /* Opacity #2 */
+.hover12 figure {
+	background: #1abc9c;
+}
+.hover12 figure img {
+	opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover12 figure:hover img {
+	opacity: .5;
+}
+
+
+
+.bubble {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(to bottom right, #070630 0%, #060454 100%);
+  min-height: 100vh;
+}
+
+.animation-container {
+  display: block;
+  position: relative;
+  width: 800px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.animation-container .lightning-container {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  transform: translateY(-50%);
+}
+.animation-container .lightning-container .lightning {
+  position: absolute;
+  display: block;
+  height: 12px;
+  width: 12px;
+  border-radius: 12px;
+  transform-origin: 6px 6px;
+  -webkit-animation-name: woosh;
+          animation-name: woosh;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+          animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+.animation-container .lightning-container .lightning.white {
+  background-color: green;
+  box-shadow: 0px 50px 50px 0px rgba(255, 255, 255, 0.3);
+}
+.animation-container .lightning-container .lightning.red {
+  background-color: #fc7171;
+  box-shadow: 0px 50px 50px 0px rgba(252, 113, 113, 0.3);
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+.animation-container .boom-container {
+  position: absolute;
+  display: flex;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  align-items: center;
+  transform: translateY(-50%);
+  left: 200px;
+  top: -145px;
+}
+.animation-container .boom-container .shape {
+  display: inline-block;
+  position: relative;
+  opacity: 0;
+  transform-origin: center center;
+}
+.animation-container .boom-container .shape.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  transform-origin: 50% 80%;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  margin-left: -15px;
+  border-width: 0 2.5px 5px 2.5px;
+  border-color: transparent transparent #42e599 transparent;
+  -webkit-animation-name: boom-triangle;
+          animation-name: boom-triangle;
+}
+.animation-container .boom-container .shape.triangle.big {
+  margin-left: -25px;
+  border-width: 0 5px 10px 5px;
+  border-color: transparent transparent #fade28 transparent;
+  -webkit-animation-name: boom-triangle-big;
+          animation-name: boom-triangle-big;
+}
+.animation-container .boom-container .shape.disc {
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  background-color: #d15ff4;
+  -webkit-animation-name: boom-disc;
+          animation-name: boom-disc;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.animation-container .boom-container .shape.circle {
+  width: 20px;
+  height: 20px;
+  -webkit-animation-name: boom-circle;
+          animation-name: boom-circle;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  border-radius: 100%;
+  margin-left: -30px;
+}
+.animation-container .boom-container .shape.circle.white {
+  border: 1px solid green;
+}
+.animation-container .boom-container .shape.circle.big {
+  width: 40px;
+  height: 40px;
+  margin-left: 0px;
+}
+.animation-container .boom-container .shape.circle.big.white {
+  border: 2px solid green;
+}
+.animation-container .boom-container .shape:after {
+  background-color: rgba(178, 215, 232, 0.2);
+}
+.animation-container .boom-container .shape.triangle, .animation-container .boom-container .shape.circle, .animation-container .boom-container .shape.circle.big, .animation-container .boom-container .shape.disc {
+  -webkit-animation-delay: 0.38s;
+          animation-delay: 0.38s;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+}
+.animation-container .boom-container .shape.circle {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+.animation-container .boom-container.second {
+  left: 485px;
+  top: 155px;
+}
+.animation-container .boom-container.second .shape.triangle, .animation-container .boom-container.second .shape.circle, .animation-container .boom-container.second .shape.circle.big, .animation-container .boom-container.second .shape.disc {
+  -webkit-animation-delay: 1.9s;
+          animation-delay: 1.9s;
+}
+.animation-container .boom-container.second .shape.circle {
+  -webkit-animation-delay: 2.15s;
+          animation-delay: 2.15s;
+}
+
+@-webkit-keyframes woosh {
+  0% {
+    width: 12px;
+    transform: translate(0px, 0px) rotate(-35deg);
+  }
+  15% {
+    width: 50px;
+  }
+  30% {
+    width: 12px;
+    transform: translate(214px, -150px) rotate(-35deg);
+  }
+  30.1% {
+    transform: translate(214px, -150px) rotate(46deg);
+  }
+  50% {
+    width: 110px;
+  }
+  70% {
+    width: 12px;
+    transform: translate(500px, 150px) rotate(46deg);
+  }
+  70.1% {
+    transform: translate(500px, 150px) rotate(-37deg);
+  }
+  85% {
+    width: 50px;
+  }
+  100% {
+    width: 12px;
+    transform: translate(700px, 0) rotate(-37deg);
+  }
+}
+
+@keyframes woosh {
+  0% {
+    width: 12px;
+    transform: translate(0px, 0px) rotate(-35deg);
+  }
+  15% {
+    width: 50px;
+  }
+  30% {
+    width: 12px;
+    transform: translate(214px, -150px) rotate(-35deg);
+  }
+  30.1% {
+    transform: translate(214px, -150px) rotate(46deg);
+  }
+  50% {
+    width: 110px;
+  }
+  70% {
+    width: 12px;
+    transform: translate(500px, 150px) rotate(46deg);
+  }
+  70.1% {
+    transform: translate(500px, 150px) rotate(-37deg);
+  }
+  85% {
+    width: 50px;
+  }
+  100% {
+    width: 12px;
+    transform: translate(700px, 0) rotate(-37deg);
+  }
+}
+@-webkit-keyframes boom-circle {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+@keyframes boom-circle {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+@-webkit-keyframes boom-triangle-big {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+    transform: scale(2.5) translate(50px, -50px) rotate(360deg);
+  }
+}
+@keyframes boom-triangle-big {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+    transform: scale(2.5) translate(50px, -50px) rotate(360deg);
+  }
+}
+@-webkit-keyframes boom-triangle {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+    transform: scale(3) translate(20px, 40px) rotate(360deg);
+  }
+}
+@keyframes boom-triangle {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+    transform: scale(3) translate(20px, 40px) rotate(360deg);
+  }
+}
+@-webkit-keyframes boom-disc {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+    transform: scale(2) translate(-70px, -30px);
+  }
+}
+@keyframes boom-disc {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+    transform: scale(2) translate(-70px, -30px);
+  }
+}
+
+
+
+
+body .cursor {
+  pointer-events: none;
+}
+body .cursor__ball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  mix-blend-mode: difference;
+  z-index: 1000;
+}
+body .cursor__ball circle {
+  fill: #f7f8fa;
+}
+  
+  </style>
+  
+</head>
+<body>
+
+
+
+<div class="cursor">
+  <div class="cursor__ball cursor__ball--big ">
+    <svg height="30" width="30">
+      <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
+    </svg>
+  </div>
+  
+  <div class="cursor__ball cursor__ball--small">
+    <svg height="10" width="10">
+      <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
+    </svg>
+  </div>
+</div>
+
+
+<div class="container">
+
+
+
+<nav class="navbar">
+  
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a href="#"><img src="corium_connect.png"/></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/" >Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Products & Services</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/foundation">Foundation</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+ 
+</nav>
+</div>
+
+  
+<div class="container row">
+  <div class="col-md-6">
+  <h1 id ="welcome">Welcome to Corium Connect</h1>
+  
+  <h3>
+  <a href="" class="typewrite" data-period="2000" data-type='[ "Innovate.", "Educate.", "Connect." ]'>
+    <span class="wrap"></span>
+  </a>
+</h3>
+
+  
+  <p id="welcome-text">Welcome to Corium Connect, your gateway to innovation and excellence in technology education. Our website offers a comprehensive overview of our diverse range of services, including the prestigious Corium Code Academy. Whether you're here to explore cutting-edge projects, 
+  enroll in our programming courses, or connect with like-minded tech enthusiasts, Corium Connect is your ultimate destination.</p>
+  
+  <div id="welcome-button"> Get In Touch</div>
+  
+  </div>
+  
+  
+  
+  <div class="col-md-6"><div class="globe_spin"> <img src="corium_globe.png"/> </div> </div>
+</div>
+
+<div class="hover12 column">
+  <div>
+    <figure><img src="https://picsum.photos/300/200?image=244" /></figure>
+    <span>Hover</span>
+  </div>
+
+  <div class="animation-container">
+	<div class="lightning-container">
+		<div class="lightning white"></div>
+		<div class="lightning red"></div>
+	</div>
+	<div class="boom-container">
+		<div class="shape circle big white"></div>
+		<div class="shape circle white"></div>
+		<div class="shape triangle big yellow"></div>
+		<div class="shape disc white"></div>
+		<div class="shape triangle blue"></div>
+	</div>
+	<div class="boom-container second">
+		<div class="shape circle big white"></div>
+		<div class="shape circle white"></div>
+		<div class="shape disc white"></div>
+		<div class="shape triangle blue"></div>
+	</div>
+</div>
+
+
+<script>
+
+class Typewriter {
+  constructor(el, toRotate, period, colors) {
+    this.toRotate = toRotate;
+    this.el = el;
+    this.loopNum = 0;
+    this.period = parseInt(period, 10) || 2000;
+    this.txt = '';
+    this.colors = colors;
+    this.tick();
+    this.isDeleting = false;
+  }
+
+  tick() {
+    const i = this.loopNum % this.toRotate.length;
+    const fullTxt = this.toRotate[i];
+
+    if (this.isDeleting) {
+      this.txt = fullTxt.substring(0, this.txt.length - 1);
+    } else {
+      this.txt = fullTxt.substring(0, this.txt.length + 1);
+    }
+
+    this.el.innerHTML = '<span class="wrap" style="color:' + this.colors[i] + ';">' + this.txt + '</span>';
+
+    const that = this;
+    let delta = 200 - Math.random() * 100;
+
+    if (this.isDeleting) { delta /= 2; }
+
+    if (!this.isDeleting && this.txt === fullTxt) {
+      delta = this.period;
+      this.isDeleting = true;
+    } else if (this.isDeleting && this.txt === '') {
+      this.isDeleting = false;
+      this.loopNum++;
+      delta = 500;
+    }
+
+    setTimeout(function() {
+      that.tick();
+    }, delta);
+  }
+}
+
+window.onload = function() {
+  const elements = document.getElementsByClassName('typewrite');
+  for (let i = 0; i < elements.length; i++) {
+    const toRotate = elements[i].getAttribute('data-type');
+    const period = elements[i].getAttribute('data-period');
+    const colors = ['#A01926', '#0095B7', '#BA5C02']; // Array of colors for each text
+
+    if (toRotate) {
+      new Typewriter(elements[i], JSON.parse(toRotate), period, colors);
+    }
+  }
+};
+
+//cursor effects
+const $bigBall = document.querySelector('.cursor__ball--big');
+const $smallBall = document.querySelector('.cursor__ball--small');
+const $hoverables = document.querySelectorAll('.hoverable');
+
+// Listeners
+document.body.addEventListener('mousemove', onMouseMove);
+for (let i = 0; i < $hoverables.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+  $hoverables[i].addEventListener('mouseenter', onMouseHover);
+  $hoverables[i].addEventListener('mouseleave', onMouseHoverOut);
+}
+
+// Move the cursor
+window.CP.exitedLoop(0);function onMouseMove(e) {
+  TweenMax.to($bigBall, .4, {
+    x: e.pageX - 15,
+    y: e.pageY - 15 });
+
+  TweenMax.to($smallBall, .1, {
+    x: e.pageX - 5,
+    y: e.pageY - 7 });
+
+}
+
+// Hover an element
+function onMouseHover() {
+  TweenMax.to($bigBall, .3, {
+    scale: 4 });
+
+}
+function onMouseHoverOut() {
+  TweenMax.to($bigBall, .3, {
+    scale: 1 });
+
+}
+
+</script>
+</body>
+</html>
