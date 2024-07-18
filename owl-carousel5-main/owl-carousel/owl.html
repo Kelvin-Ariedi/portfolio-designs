@@ -40,7 +40,9 @@
             align-items: center;
             z-index: 1;
             transform: translateY(100px);
-            background: #858585; /* Adjust background color as needed */
+            background: url(img/logos.png);
+            background-size: cover;
+            background-repeat: no-repeat;
             border-radius: 10px 10px 0 0; /* Rounded top corners */
         }
 
@@ -50,12 +52,14 @@
             border-radius: 10px 10px 0 0; /* Maintain rounded top corners on hover */
         }
 
-        .container .card .face.face1 .content {
-            opacity: 0.2;
+       
+
+        .container .card .face.face1 .content img {
+            opacity: 0;
             transition: 0.5s;
         }
 
-        .container .card:hover .face.face1 .content {
+        .container .card:hover .face.face1 .content img {
             opacity: 1;
         }
 
@@ -69,6 +73,7 @@
             color: #fff;
             text-align: center;
             font-size: 1.5em;
+            background: #0009DB;
         }
 
         .container .card .face.face2 {
