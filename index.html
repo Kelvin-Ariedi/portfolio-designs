@@ -291,10 +291,33 @@ body{
             align-items: center;
             z-index: 1;
             transform: translateY(100px);
-            background: url(img/logos.png);
             background-size: cover;
             background-repeat: no-repeat;
             border-radius: 10px 10px 0 0; /* Rounded top corners */
+        }
+
+        .first .face.face1 {
+            background: url(img/logos.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .second .face.face1 {
+            background: url(img/websites.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .third .face.face1 {
+            background: url(img/mobile-apps.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .fourth .face.face1 {
+            background: url(img/bussiness-card.png);
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .portfolio-card:hover .face.face1 {
@@ -317,12 +340,21 @@ body{
         }
 
          .portfolio-card .face.face1 .content h3 {
-            margin: 10px 0 0;
+            margin: 10px auto;
             padding: 0;
-            color: #fff;
+            color: #333;
             text-align: center;
-            font-size: 1.5em;
-            background: #0009DB;
+            font-size: 2em;
+            font-weight: 500;
+            background: #F0F0F6;
+            z-index: 1;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+            transition: 0.5s;
+        }
+        .portfolio-card:hover .face.face1 .content h3 {
+           font-size: 1.4em;
+           color: #fff;
+           background: none;
         }
 
         .portfolio-card .face.face2 {
@@ -365,28 +397,51 @@ body{
             color: #fff;
         }
 
- .contact-card{
+ .contact-form{
    background: #FFFFFF;
    padding: 30px;
    border-radius: 8px;
    text-align: center;
+   width: 100%;
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
  }
- .contact-card input, textarea{
+ .contact-form input, textarea{
     width: 70%;
-    background-color: #F0F0F6;
+    background-color: #dbdbdd;
     border: none;
     margin: 20px auto;
     border-radius: 4px;
  }
- .contact-card input{
+ .contact-form input{
    padding: 6px;
  }
- .contact-card input[type=submit]{
+ .contact-form input[type=submit]{
    padding: 6px;
    background: #0009DB;
    color: #FFFFFF;
    max-width: 300px;
  }
+ .contact {
+   height: match-parent;
+ }
+ .contact-card{
+   background: #0009DB;
+   color: #FFFFFF;
+   padding: 30px;
+   border-radius: 8px;
+   text-align: center;
+   width: 88%;
+   height: 18em; 
+   margin: .4em;
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+ }
+
+ .contact-card i{
+   font-size: 40px;
+   margin-bottom: 10px;
+ }
+
+
 .footer{
    text-align: center;
    background: #0009DB;
@@ -834,11 +889,11 @@ nav li a:hover .nav-icon {
         <div class="container row">
           <div class="owl-carousel slider_carousel container">
                         
-            <div class="portfolio-card">
+            <div class="portfolio-card first">
                 <div class="face face1">
                     <div class="content">
                         <img src="img/logos.png">
-                        <h3>Design</h3>
+                        <h3>Logos</h3>
                     </div>
                 </div>
                 <div class="face face2">
@@ -849,11 +904,11 @@ nav li a:hover .nav-icon {
                 </div>
             </div>
 
-            <div class="portfolio-card">
+            <div class="portfolio-card second">
                 <div class="face face1">
                     <div class="content">
-                        <img src="https://github.com/Jhonierpc/WebDevelopment/blob/master/CSS%20Card%20Hover%20Effects/img/code_128.png?raw=true">
-                        <h3>Code</h3>
+                      <img src="img/websites.png">
+                      <h3>Websites</h3>
                     </div>
                 </div>
                 <div class="face face2">
@@ -864,11 +919,11 @@ nav li a:hover .nav-icon {
                 </div>
             </div>
 
-            <div class="portfolio-card">
+            <div class="portfolio-card third">
                 <div class="face face1">
                     <div class="content">
-                        <img src="https://github.com/Jhonierpc/WebDevelopment/blob/master/CSS%20Card%20Hover%20Effects/img/launch_128.png?raw=true">
-                        <h3>Launch</h3>
+                        <img src="img/mobile-apps.png">
+                        <h3>Mobile Apps</h3>
                     </div>
                 </div>
                 <div class="face face2">
@@ -878,6 +933,21 @@ nav li a:hover .nav-icon {
                     </div>
                 </div>
             </div>
+
+            <div class="portfolio-card fourth">
+              <div class="face face1">
+                  <div class="content">
+                      <img src="img/bussiness-card.png">
+                      <h3>Bussinedd Cards</h3>
+                  </div>
+              </div>
+              <div class="face face2">
+                  <div class="content">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                          <a href="#">Read More</a>
+                  </div>
+              </div>
+          </div>
 
         </div>
         </div>
@@ -890,7 +960,7 @@ nav li a:hover .nav-icon {
           <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
         </div>
         <div class="row">
-          <div class="col-md-8 contact-card">
+          <div class="col-md-8 contact-form">
             <h4>Send Me A Message</h4>
             <form action="#">
               <input type="text" name="Name" id="fullname" required>
@@ -900,13 +970,31 @@ nav li a:hover .nav-icon {
               <input type="submit" value="Send">
             </form>
           </div>
-          <div class="col-md-4 contact-card">
+          <div class="col-md-4 contact">
+            <div class="row">
+              <div class="contact-card" style="margin-top: 0%;">
+                <i class="fa-solid fa-at fa-beat"></i>
+                <h4>johnsonkelvin022@gmail.com</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="contact-card">
+                <i class="fa-solid fa-phone-flip fa-shake"></i>
+                <h4>+254 718813308</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="contact-card" style="margin-bottom: 0%;">
+                <i class="fa-brands fa-linkedin-in fa-bounce"></i>
+                <h4>johnsonkelvin022@gmail.com</h4>
+              </div>
+            </div>
           </div>
         </div>
 
       </section>
 
-      <div class="footer">
+      <div class=" container-fluid row footer">
         <p>&copy; 2024 Kelvin Ariedi. All rights reserved.</p>
       </div>
     </div>
