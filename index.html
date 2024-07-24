@@ -345,9 +345,9 @@ body{
             padding: 0;
             color: #333;
             text-align: center;
-            font-size: 2em;
+            -webkit-text-stroke: 0.4px #F0F0F6;
+            font-size: 3em;
             font-weight: 500;
-            background: #F0F0F6;
             z-index: 1;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
             transition: 0.5s;
@@ -355,7 +355,7 @@ body{
         .portfolio-card:hover .face.face1 .content h3 {
            font-size: 1.4em;
            color: #fff;
-           background: none;
+           -webkit-text-stroke: 0;
         }
 
         .portfolio-card .face.face2 {
@@ -407,7 +407,7 @@ body{
    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
  }
  .contact-form input, textarea{
-    width: 70%;
+    width: 100%;
     background-color: #dbdbdd;
     border: none;
     margin: 20px auto;
@@ -426,25 +426,20 @@ body{
  .contact-form input:focus, textarea:focus{
    padding: 6px;
    border: 1px solid #0009DB;
-   outline: 2.6px solid #0066db83;
+   outline: 2.6px solid #0007db79;
    background-color: #F0F0F6;
  }
 
- .contact-card{
-   background: #0009DB;
-   color: #FFFFFF;
-   padding: 20px;
-   border-radius: 8px;
-   text-align: center;
-   width: 100%;
-   height: 18em; 
-   margin: .4em;
-   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
- }
 
- .contact-card i{
+
+.left i{
    font-size: 40px;
    margin-bottom: 10px;
+ }
+
+ .left .contact{
+   margin: 40px auto;
+   width: 100%;
  }
 
 
@@ -490,6 +485,80 @@ nav li a:hover .nav-icon {
   color: #0009DB;
   transform: scale(1.3);
 }
+
+  </style>
+
+  <style>
+    .form-area {
+    padding-top: 7%;
+}
+.row.single-form {
+    box-shadow: 0 2px 20px -5px hsla(0, 0%, 0%, 0.5);
+}
+.left {
+    background: #0009DB;
+    min-width: 100%;
+    min-height: 100%;
+    color: #F0F0F6;
+    padding: 70px 100px;
+    text-align: center;
+    margin: auto;
+}
+
+
+.right {
+    padding: 70px 100px;
+    position: relative;
+}
+.right i {
+    position: absolute;
+    font-size: 80px;
+    left: -27px;
+    top: 40%;
+    color: hsl(0, 0%, 100%);
+}
+
+
+
+/*responsive*/
+
+@media (min-width:768px) and (max-width:991px){
+    .right i {
+    top: -52px;
+    transform: rotate(90deg);
+    left: 50%;
+}
+}
+
+@media (max-width:767px){
+    .left {
+  padding: 90px 15px;
+  text-align: center;
+}
+.left i{
+   font-size:25px;
+   margin-bottom: 10px;
+ }
+
+ .left .contact{
+   margin: 15px auto;
+   width: 100%;
+ }
+.right {
+  padding: 25px;
+}
+.right i {
+  top: -52px;
+  transform: rotate(90deg);
+  left: 46%;
+}
+    .right button {
+    width: 150px;
+    padding: 12px 0;
+}
+    
+}
+
 
   </style>
   
@@ -966,36 +1035,56 @@ nav li a:hover .nav-icon {
           <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
         </div>
         <div class="row">
-          <div class="col-md-8 contact-form">
-            <h4>Send Me A Message</h4>
-            <form action="#">
-              <input type="text" name="Name" id="name" required placeholder="Name">
-              <input type="email" name="Email" id="email" required placeholder="Email">
-              <textarea name="Message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-              <input type="submit" value="Send">
-            </form>
+              <!-- CONTACT FORM SECTION START -->
+    <section class="mb-5">
+      <div class="form-area">
+          <div class="container">
+              <div class="row single-form g-0">
+                  <div class="col-sm-12 col-lg-6" style="background: #0009DB;box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); border-radius: 8px;">
+                      <div class="left">
+                        
+                          <div class="contact">
+                            <i class="fa-solid fa-at fa-beat"></i>
+                            <h4>johnsonkelvin022@gmail.com</h4>
+                          </div>
+                        
+                        
+                          <div class="contact">
+                            <i class="fa-solid fa-phone-flip fa-shake"></i>
+                            <h4>+254 718813308</h4>
+                          </div>
+                        
+                        
+                          <div class="contact" >
+                            <i class="fa-brands fa-linkedin-in fa-bounce"></i>
+                            <h4>johnsonkelvin022@gmail.com</h4>
+                          </div>
+                        
+                      </div>
+                  </div>
+                  <div class="col-sm-12 col-lg-6 contact-form">
+                      <div class="right">
+                      <i class="fa fa-caret-left"></i>
+                      
+                        <h4>Send Me A Message</h4>
+                        <form action="#">
+                          <input type="text" name="Name" id="name" required placeholder="Name">
+                          <input type="email" name="Email" id="email" required placeholder="Email">
+                          <textarea name="Message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                          <input type="submit" value="Send">
+                        </form>
+                      
+                          
+                      
+                  </div>
+              </div>
           </div>
-          <div class="col-md-4 contact">
-            <div class="row">
-              <div class="contact-card" style="margin-top: 0%;">
-                <i class="fa-solid fa-at fa-beat"></i>
-                <h4>johnsonkelvin022@gmail.com</h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="contact-card">
-                <i class="fa-solid fa-phone-flip fa-shake"></i>
-                <h4>+254 718813308</h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="contact-card" style="margin-bottom: 0%;">
-                <i class="fa-brands fa-linkedin-in fa-bounce"></i>
-                <h4>johnsonkelvin022@gmail.com</h4>
-              </div>
-            </div>
-          </div>
+      </div>
+  </section>
+  <!-- CONTACT FORM SECTION CLOSE -->
+
         </div>
+        
 
       </section>
 
