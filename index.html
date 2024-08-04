@@ -155,6 +155,58 @@ body{
    margin-bottom: -30px;
    padding: 0;
  }
+.circles-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    
+  }
+
+  .animation-container {
+    position: relative;
+    width: 50vh;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animation-circle {
+    position: absolute;
+    border: 2px dotted #0009DB;
+    border-radius: 50%;
+    opacity: 0;
+    animation: none;
+}
+
+.start-animation .animation-circle {
+    animation: grow-animation 2s linear forwards;
+}
+
+.animation-circle:nth-child(1) { width: 5%; height: 5%; animation-delay: 0s; }
+.animation-circle:nth-child(2) { width: 10%; height: 10%; animation-delay: 0.2s; }
+.animation-circle:nth-child(3) { width: 15%; height: 15%; animation-delay: 0.4s; }
+.animation-circle:nth-child(4) { width: 20%; height: 20%; animation-delay: 0.6s; }
+.animation-circle:nth-child(5) { width: 25%; height: 25%; animation-delay: 0.8s; }
+.animation-circle:nth-child(6) { width: 30%; height: 30%; animation-delay: 1s; }
+.animation-circle:nth-child(7) { width: 35%; height: 35%; animation-delay: 1.2s; }
+.animation-circle:nth-child(8) { width: 40%; height: 40%; animation-delay: 1.4s; }
+.animation-circle:nth-child(9) { width: 45%; height: 45%; animation-delay: 1.6s; }
+.animation-circle:nth-child(10) { width: 50%; height: 50%; animation-delay: 1.8s; }
+
+@keyframes grow-animation {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+
+  #hireme-button {
+    position: absolute;
+    z-index: 10; /* Ensures button is on top of the circles */
+    padding: 10px 20px;
+  }
+ /* main home section ends her */
  
  .service-card {
       padding: 30px;
@@ -203,11 +255,10 @@ body{
       border: 2px solid transparent;
       box-sizing: border-box;
       z-index: -1;
-      animation: borderGlow 4s linear infinite;
     }
     .service-card:hover #service-icon {
       height: 4em;
-      margin-top: 10px;
+      margin-top: 0px;
     }
 
     .service-card svg path {
@@ -215,7 +266,8 @@ body{
 }
 
 .service-card:hover svg path {
-    filter: drop-shadow(0 0 10px #0009DB);
+    filter: drop-shadow(0 0 2px #0009DB);
+    fill: #0009DB;
 }
     .service-card:hover h3 {
       transform: translateY(-20px);
@@ -226,39 +278,209 @@ body{
     .service-card:hover .p {
       opacity: 1;
       transform: translateX(-50%) translateY(-20px);
+      transition-delay: 300ms;
     }
+ /* work process secion starts here */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  position: relative;
+}
+.timeline__event {
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  margin: 20px 0;
+  border-radius: 6px;
+  align-self: center;
+  width: 50vw;
+}
+.timeline__event:nth-child(2n+1) {
+  flex-direction: row-reverse;
+}
+.timeline__event:nth-child(2n+1) .timeline__event__date {
+  border-radius: 0 6px 6px 0;
+}
+.timeline__event:nth-child(2n+1) .timeline__event__content {
+  border-radius: 6px 0 0 6px;
+}
+.timeline__event:nth-child(2n+1) .timeline__event__icon:before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background: #0009DB;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  right: auto;
+  z-index: -1;
+  transform: translateX(-50%);
+  -webkit-animation: fillTop 2s forwards 4s ease-in-out;
+          animation: fillTop 2s forwards 4s ease-in-out;
+}
+.timeline__event:nth-child(2n+1) .timeline__event__icon:after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: #0009DB;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  top: 50%;
+  left: auto;
+  transform: translateY(-50%);
+  -webkit-animation: fillLeft 2s forwards 4s ease-in-out;
+          animation: fillLeft 2s forwards 4s ease-in-out;
+}
+.timeline__event__title {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #9251ac;
+  letter-spacing: 1.5px;
+}
+.timeline__event__content {
+  padding: 10px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  background: #fff;
+  text-align: center;
+  width: calc(40vw - 84px);
+  border-radius: 0 6px 6px 0;
+}
+.timeline__event__date {
+  color: #fff;
+  font-size: 4rem;
+  font-weight: 600;
+  background: #0009DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0 20px;
+  border-radius: 6px 0 0 6px;
+}
+.timeline__event__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9251ac;
+  padding: 20px;
+  align-self: center;
+  margin: 0 20px;
+  background: #fff;
+  border: 2px solid #0009DB;
+  border-radius: 100%;
+  width: 40px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  padding: 40px;
+  height: 40px;
+  position: relative;
+}
+.timeline__event__icon img {
+  width: 46px;
+}
+.timeline__event__icon:before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background: #0009DB;
+  position: absolute;
+  top: 0%;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-animation: fillTop 2s forwards 4s ease-in-out;
+          animation: fillTop 2s forwards 4s ease-in-out;
+}
+.timeline__event__icon:after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: #0009DB;
+  position: absolute;
+  left: 0%;
+  z-index: -1;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-animation: fillLeftOdd 2s forwards 4s ease-in-out;
+          animation: fillLeftOdd 2s forwards 4s ease-in-out;
+}
+.timeline__event__description {
+  flex-basis: 60%;
+}
 
-    @keyframes borderGlow {
-      0% {
-        border-color: rgba(0, 0, 255, 0.5);
-        box-shadow: 0 0 0 rgba(0, 0, 255, 0.5);
-      }
-      25% {
-        border-color: rgba(0, 0, 255, 0.5);
-        box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
-      }
-      50% {
-        border-color: rgba(0, 0, 255, 0.5);
-        box-shadow: 0 0 20px rgba(0, 0, 255, 0.5);
-      }
-      75% {
-        border-color: rgba(0, 0, 255, 0.5);
-        box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
-      }
-      100% {
-        border-color: rgba(0, 0, 255, 0.5);
-        box-shadow: 0 0 0 rgba(0, 0, 255, 0.5);
-      }
-    }
+.timeline__event:last-child .timeline__event__icon:before {
+  content: none;
+}
 
- .education-card{
+@media (max-width: 786px) {
+  .timeline__event {
+    flex-direction: column;
+    align-self: center;
+  }
+  .timeline__event__content {
     width: 100%;
-    padding: 30px;
-    margin: 10px auto;
-    text-align: center;
-    background: #FFFFFF;
-    border-radius: 8px;
- }
+  }
+  .timeline__event__icon {
+    border-radius: 6px 6px 0 0;
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+  .timeline__event__icon:before, .timeline__event__icon:after {
+    display: none;
+  }
+  .timeline__event__date {
+    border-radius: 0;
+    padding: 20px;
+  }
+  .timeline__event:nth-child(2n+1) {
+    flex-direction: column;
+    align-self: center;
+  }
+  .timeline__event:nth-child(2n+1) .timeline__event__date {
+    border-radius: 0;
+    padding: 20px;
+  }
+  .timeline__event:nth-child(2n+1) .timeline__event__icon {
+    border-radius: 6px 6px 0 0;
+    margin: 0;
+  }
+}
+@-webkit-keyframes fillLeft {
+  100% {
+    right: 100%;
+  }
+}
+@keyframes fillLeft {
+  100% {
+    right: 100%;
+  }
+}
+@-webkit-keyframes fillTop {
+  100% {
+    top: 100%;
+  }
+}
+@keyframes fillTop {
+  100% {
+    top: 100%;
+  }
+}
+@-webkit-keyframes fillLeftOdd {
+  100% {
+    left: 100%;
+  }
+}
+@keyframes fillLeftOdd {
+  100% {
+    left: 100%;
+  }
+}
+/* work process section ends here */
+
  .experience-card{
     width: 100%;
     padding: 30px;
@@ -667,7 +889,22 @@ nav li a:hover .nav-icon {
             <br>
             <h1>Hi, I’m Kelvin Ariedi</h1>
             <p>Hi, I'm Kelvin Otieno, an AWS Cloud Practitioner and UI/UX Designer with a passion for innovation and excellence in web development. With extensive experience in front-end development, I have honed my skills in HTML, CSS, JavaScript, PHP, and MySQL. My journey has taken me from leading frontend design projects at Corium Connect to teaching programming and UI/UX design at Corium Code Academy. I thrive in collaborative environments and am dedicated to delivering high-quality, responsive websites that provide seamless user experiences. Let's create something amazing together!</p>
-            <div class="btn" id="hireme-button" > hire me <i class="fa-solid fa-handshake-angle"></i></div>
+            <div class="circle-body">
+              <div class="animation-container">
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="animation-circle"></div>
+                <div class="btn" id="hireme-button" > hire me <i class="fa-solid fa-handshake-angle"></i></div>
+              </div>
+            </div>
+            
           </div>
           <div class="col-md-6">
             <img class="main-section-img" src="Your Image 1.png" alt="my photo">
@@ -750,7 +987,7 @@ nav li a:hover .nav-icon {
                 <path d="M190.97 670.294C185.211 676.054 187.636 685.451 195.669 688.331C202.337 690.604 312.979 690.604 319.648 688.331C327.68 685.451 330.105 676.054 324.346 670.294C321.466 667.415 319.344 667.263 257.658 667.263C195.972 667.263 193.85 667.415 190.97 670.294Z" fill="#0009DB"/>
               </svg>
                 
-                <h3>Android App Development</h3>
+                <h3> Mobile App Development</h3>
                 <div class="p">
                   <p>Mobile app design, development & deployment</p>
                 </div>
@@ -827,7 +1064,7 @@ nav li a:hover .nav-icon {
                 <path d="M366 493.626C359.333 500.159 364 511.626 373.333 511.626C378.8 511.626 384 506.426 384 500.959C384 495.493 378.8 490.293 373.333 490.293C370.8 490.293 368 491.493 366 493.626Z" fill="#0009DB"/>
               </svg>
                 
-                <h3>SEO & Digital Marketing Services</h3>
+                <h3>SEO & Digital Marketing</h3>
                 <div class="p">
                   <p>On-page and off-page search engine optimization</p>
                   <p>Keyword research and content optimization</p>
@@ -844,61 +1081,109 @@ nav li a:hover .nav-icon {
           <h1>Education</h1>
           <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
         </div>
-        <div class="education-card">
-          <div class="row">
-            <div class="col-md-4">
-              <h3>University of Naiorobi</h3>
-              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+        <div class="timeline"> 
+          <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
+            <div class="timeline__event__icon">
+              <img src="data.svg">
+        
             </div>
-            
-            <div class="col-md-8">
-              <h2>University of Naiorobi</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            <div class="timeline__event__date">
+              1
+            </div>
+            <div class="timeline__event__content">
+              <div class="timeline__event__title">
+                Lunch
+              </div>
+              <div class="timeline__event__description">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+              </div>
             </div>
           </div>
+          <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
+            <div class="timeline__event__icon">
+              <img src="data.svg">
         
-        </div>
-        <div class="education-card">
-          
-          <div class="row">
-            <div class="col-md-4">
-              <h3>University of Naiorobi</h3>
-              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
             </div>
-            
-            <div class="col-md-8">
-              <h2>University of Naiorobi</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            <div class="timeline__event__date">
+              2
+            </div>
+            <div class="timeline__event__content">
+              <div class="timeline__event__title">
+                Lunch
+              </div>
+              <div class="timeline__event__description">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+              </div>
             </div>
           </div>
+          <div class="timeline__event animated fadeInUp delay-1s timeline__event--type3">
+            <div class="timeline__event__icon">
+              <img src="data.svg">
         
-        </div>
-        <div class="education-card">
-          
-          <div class="row">
-            <div class="col-md-4">
-              <h3>University of Naiorobi</h3>
-              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
             </div>
-            
-            <div class="col-md-8">
-              <h2>University of Naiorobi</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            <div class="timeline__event__date">
+              3
+            </div>
+            <div class="timeline__event__content">
+              <div class="timeline__event__title">
+                Lunch
+              </div>
+              <div class="timeline__event__description">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+              </div>
             </div>
           </div>
+          <div class="timeline__event animated fadeInUp timeline__event--type1">
+            <div class="timeline__event__icon">
+              <img src="data.svg">
         
-        </div>
-        <div class="education-card">
-          
-          <div class="row">
-            <div class="col-md-4">
-              <h3>University of Naiorobi</h3>
-              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
             </div>
-            
-            <div class="col-md-8">
-              <h2>University of Naiorobi</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+            <div class="timeline__event__date">
+              4
+            </div>
+            <div class="timeline__event__content">
+              <div class="timeline__event__title">
+                Lunch
+              </div>
+              <div class="timeline__event__description">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
+            <div class="timeline__event__icon">
+              <img src="data.svg">
+        
+            </div>
+            <div class="timeline__event__date">
+              5
+            </div>
+            <div class="timeline__event__content">
+              <div class="timeline__event__title">
+                Lunch
+              </div>
+              <div class="timeline__event__description">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
+            <div class="timeline__event__icon">
+              <img src="data.svg">
+        
+            </div>
+            <div class="timeline__event__date">
+              6
+            </div>
+            <div class="timeline__event__content">
+              <div class="timeline__event__title">
+                Lunch
+              </div>
+              <div class="timeline__event__description">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+              </div>
             </div>
           </div>
         
@@ -1111,6 +1396,22 @@ nav li a:hover .nav-icon {
 
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/owl.carousel.min.js"></script>
+
+  <script>
+    // Growing circles animation
+    const animationContainer = document.querySelector('.animation-container');
+
+    function startAnimation() {
+        animationContainer.classList.add('start-animation');
+        setTimeout(() => {
+            animationContainer.classList.remove('start-animation');
+            setTimeout(startAnimation, 5000); // Wait for 15 seconds before restarting the animation
+        }, 3800); // Total animation time (2s + 1.8s)
+    }
+
+    startAnimation(); // Initial start
+  </script>
+
   <script>
     // portfolio carousel.js
       $(document).ready(function(){
