@@ -1,765 +1,995 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.37/dist/vue.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.8/ejs.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/knockout@3.5.1/build/output/knockout-latest.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sql.js@0.5.0/js/sql.min.js"></script>
-  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://assets.codepen.io/16327/SplitText3.min.js"></script>
-  <script src="https://assets.codepen.io/16327/ScrambleTextPlugin3.min.js"></script>
-  <script src="https://assets.codepen.io/16327/PhysicsPropsPlugin3.min.js"></script>
-  <script src="https://assets.codepen.io/16327/Physics2DPlugin3.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tslib@2.6.3/tslib.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/debug@4.3.5/src/browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ansi-styles@6.2.1/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ansi-styles@6.2.1/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/semver@7.6.2/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/supports-color@9.4.0/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chalk@5.3.0/source/index.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-is@18.3.1/umd/react-is.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-  
-  
-  
-  
-  <style>
-    
-@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-*{
-   margin:0;
-   padding:0;
-}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modern Contact Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://unpkg.com/libphonenumber-js@1.11.17/bundle/libphonenumber-max.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-   background-color: #f7f7f7;
-   color:#00192D;
-   cursor: none;
+  font-family:"Inter",sans-serif;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at top left,#6f7cff 0%,transparent 28%),
+    radial-gradient(circle at bottom right,#8ea0ff 0%,transparent 30%),
+    linear-gradient(135deg,#f5f7ff 0%,#eef1ff 100%);
 }
 
-.navbar {
-   height: 60px;
-   margin-bottom: 2em;
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;z-index:-1;animation:float 10s infinite alternate ease-in-out;}
+.blob1{width:220px;height:220px;background:#0009DB;top:-70px;left:-70px;}
+.blob2{width:180px;height:180px;background:#5E72FF;bottom:-50px;right:-50px;}
+@keyframes float{from{transform:translateY(0px);}to{transform:translateY(25px);}}
+
+.contact-card{
+  width:100%;max-width:740px;display:flex;overflow:hidden;
+  border-radius:20px;background:rgba(255,255,255,0.78);
+  backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.4);
+  box-shadow:0 12px 40px rgba(0,9,219,.12);animation:fadeUp .8s ease;
 }
-.navbar img{
-    height: 50px;
-    width: 50px;
-	top:0;
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+/* LEFT SIDE */
+.social-side{
+  flex:1;min-width:210px;position:relative;padding:32px 24px;color:white;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  background:linear-gradient(135deg,#0009DB 0%,#2435ff 55%,#5568ff 100%);
+  animation:gradientShift 8s ease-in-out infinite;background-size:200% 200%;
+}
+@keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+@keyframes floatCircle{0%{transform:translateY(0px) scale(1);opacity:.8;}50%{transform:translateY(-20px) scale(1.05);opacity:.6;}100%{transform:translateY(0px) scale(1);opacity:.8;}}
+@keyframes iconFloat{0%{transform:translateY(0px);}50%{transform:translateY(-8px);}100%{transform:translateY(0px);}}
+
+.social-side::before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.08);top:-90px;right:-90px;animation:floatCircle 6s ease-in-out infinite;}
+.social-side::after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1px solid rgba(255,255,255,.1);bottom:30px;left:-50px;animation:floatCircle 8s ease-in-out infinite reverse;}
+.social-side h1{font-size:24px;margin-bottom:10px;z-index:2;}
+.social-side p{font-size:12px;line-height:1.8;opacity:.92;margin-bottom:24px;z-index:2;}
+
+.social-icons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;z-index:2;}
+.social-icons a{width:38px;height:38px;border-radius:50%;display:flex;justify-content:center;align-items:center;text-decoration:none;color:white;font-size:15px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);transition:.35s;animation:iconFloat 3s ease-in-out infinite;position:relative;}
+.social-icons a:nth-child(1){animation-delay:0s;}
+.social-icons a:nth-child(2){animation-delay:.15s;}
+.social-icons a:nth-child(3){animation-delay:.3s;}
+.social-icons a:nth-child(4){animation-delay:.45s;}
+.social-icons a:nth-child(5){animation-delay:.6s;}
+.social-icons a::before{content:attr(data-tooltip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(-10px);background:white;color:#0009DB;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;z-index:10;}
+.social-icons a::after{content:"";position:absolute;bottom:calc(100% - 4px);left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid white;opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:10;}
+.social-icons a:hover::before,.social-icons a:hover::after{opacity:1;}
+.social-icons a:hover::before{transform:translateX(-50%) translateY(-15px);}
+.social-icons a:hover{transform:translateY(-5px) scale(1.06);background:rgba(255,255,255,.22);box-shadow:0 10px 25px rgba(255,255,255,.18);animation:none;border:white solid 1px;}
+
+/* RIGHT SIDE */
+.form-side{flex:1.3;position:relative;padding:30px 28px;background:rgba(255,255,255,.35);}
+.form-side::before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,#dbe1ff 0%,transparent 70%);top:-50px;right:-50px;}
+.form-side h2{font-size:22px;color:#0009DB;margin-bottom:6px;position:relative;z-index:2;}
+.subtitle{color:#5d647a;font-size:13px;line-height:1.6;margin-bottom:18px;position:relative;z-index:2;}
+
+form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
+
+/* INPUTS */
+.input-container{position:relative;}
+
+.input-container input,
+.input-container textarea{
+  width:100%;padding:12px 14px;border-radius:11px;
+  border:1.5px solid rgba(0,9,219,.08);background:rgba(255,255,255,.88);
+  font-family:inherit;font-size:13px;outline:none;transition:.3s;
+  box-shadow:0 3px 8px rgba(0,9,219,.03);
+}
+.input-container textarea{min-height:88px;resize:none;}
+
+.input-container label{
+  position:absolute;top:50%;left:14px;transform:translateY(-50%);
+  background:white;padding:0 5px;color:#666;pointer-events:none;transition:.3s;font-size:13px;
+}
+.input-container textarea + label{top:20px;}
+
+.input-container input:focus,
+.input-container textarea:focus{border-color:#5568ff;box-shadow:0 0 0 4px rgba(85,104,255,.12);}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label,
+.input-container textarea:focus + label,
+.input-container textarea:not(:placeholder-shown) + label{top:-1px;left:12px;font-size:11px;color:#0009DB;}
+
+/* VALIDATION STATES */
+.input-container input.input-error,
+.input-container textarea.input-error{
+  border-color:#ef4444 !important;
+  box-shadow:0 0 0 4px rgba(239,68,68,.1) !important;
+}
+.input-container input.input-success,
+.input-container textarea.input-success{
+  border-color:#10b981 !important;
+  box-shadow:0 0 0 4px rgba(16,185,129,.08) !important;
 }
 
-.navbar ul li{
-    margin:auto;
-    color:#00192D;
-    font-family:"K2D";
-	font-weight: 600;
-	display: flex;
-	align-items: center;
+/* FIELD ERROR MESSAGE */
+.field-error{
+  display:block;
+  font-size:11.5px;
+  font-weight:500;
+  color:#ef4444;
+  margin-top:6px;
+  padding:4px 10px;
+  background:#fff1f1;
+  border:1px solid #fecaca;
+  border-radius:7px;
+  animation:slideDown .2s ease;
 }
+.field-success{
+  display:block;
+  font-size:11.5px;
+  font-weight:500;
+  color:#10b981;
+  margin-top:6px;
+  padding:4px 10px;
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
+  border-radius:7px;
+  animation:slideDown .2s ease;
+}
+@keyframes slideDown{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
 
-.navbar ul li a:hover{
+/* CHARACTER COUNTER */
+.char-counter{
+  position:absolute;
+  bottom:10px;
+  right:14px;
+  font-size:11px;
+  color:#aaa;
+  pointer-events:none;
+  transition:.2s;
+}
+.char-counter.warn{color:#f59e0b;}
+.char-counter.over{color:#ef4444;font-weight:600;}
 
-    color:#ffffff;
-    background:#00192D;
-}
+/* PHONE INPUT */
+.phone-container{position:relative;}
+.country-select{position:absolute;top:7px;left:7px;width:122px;z-index:5;}
+.country-toggle{width:100%;height:34px;border:none;border-radius:8px;background:#eef1ff;padding:0 10px;display:flex;justify-content:space-between;align-items:center;font-family:inherit;font-size:12px;cursor:pointer;color:#0009DB;transition:.3s;}
+.country-toggle:hover{background:#e2e7ff;}
+.country-selected{display:flex;gap:6px;align-items:center;perspective:1000px;}
+.country-flag{width:18px;height:12px;object-fit:cover;border-radius:2px;transform-style:preserve-3d;}
+.country-choice{display:flex;align-items:center;gap:8px;}
+.country-dropdown{top:44px;left:0;width:260px;background:white;border-radius:14px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.1);}
+.country-dropdown[hidden]{display:none;}
+.country-search{width:100%;padding:12px;border:none;border-bottom:1px solid #eee;outline:none;font-family:inherit;font-size:13px;}
+.country-list{list-style:none;max-height:200px;overflow:auto;}
+.country-list li{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:.2s;font-size:13px;}
+.country-list li:hover{background:#f4f6ff;}
+.country-list li strong{font-weight:600;color:#0009DB;}
+.country-code{color:#0009DB;font-weight:600;}
+.phone-container input[type="tel"]{padding-left:138px;}
+.phone-container label{left:144px;}
+.phone-container input[type="tel"]:focus + label,
+.phone-container input[type="tel"]:not(:placeholder-shown) + label{left:12px;}
 
-li a{ 
-    text-decoration: none;
-    color:#00192D;
-	padding:15px;
-}
-.navbar-toggle{
-    background:#00192D;
-}
+/* SUBMIT ROW */
+.submit-row{display:flex;align-items:center;justify-content:space-between;margin-top:4px;gap:20px;}
 
-.icon-bar{
-	background:#fff;
-}
-.globe_spin{
-    width:100%;
-}
-.globe_spin img{
-    width:84%;
-	overflow: hidden;
-	
-}
-.globe_spin img {
-  -webkit-animation: spin 12s normal linear infinite;
-  animation: spin 12s normal linear infinite;
-}
+/* CTA SPACE */
+.cta-space{flex:1;position:relative;height:60px;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,rgba(0,9,219,.08),rgba(85,104,255,.06));border:1px solid rgba(0,9,219,.08);display:flex;align-items:center;justify-content:center;}
+.cta-text{position:relative;z-index:3;font-size:12px;font-weight:600;color:#0009DB;letter-spacing:.3px;animation:pulseText 2.5s infinite;}
+@keyframes pulseText{0%{opacity:.6;transform:translateY(0px);}50%{opacity:1;transform:translateY(-2px);}100%{opacity:.6;transform:translateY(0px);}}
+.wave{position:absolute;width:180px;height:180px;border-radius:50%;border:2px solid rgba(0,9,219,.12);animation:ripple 5s linear infinite;}
+.wave2{animation-delay:1.5s;}
+.wave3{animation-delay:3s;}
+@keyframes ripple{0%{transform:scale(.2);opacity:0;}30%{opacity:.4;}100%{transform:scale(1.5);opacity:0;}}
+.floating-icon{position:absolute;font-size:14px;color:#0009DB;opacity:.25;animation:floatIcons 8s linear infinite;}
+.icon1{left:15px;top:18px;}
+.icon2{right:20px;bottom:18px;animation-delay:2s;}
+.icon3{top:10px;right:50%;animation-delay:4s;}
+@keyframes floatIcons{0%{transform:translateY(0px) rotate(0deg);}50%{transform:translateY(-8px) rotate(8deg);}100%{transform:translateY(0px) rotate(0deg);}}
 
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate3d(0, 0, 1, 0deg);
-    transform: rotate3d(0, 0, 1, 0deg);
-  }
-  25% {
-    -webkit-transform: rotate3d(0, 0, 1, 90deg);
-    transform: rotate3d(0, 0, 1, 90deg);
-  }
-  50% {
-    -webkit-transform: rotate3d(0, 0, 1, 180deg);
-    transform: rotate3d(0, 0, 1, 180deg);
-  }
-  75% {
-    -webkit-transform: rotate3d(0, 0, 1, 270deg);
-    transform: rotate3d(0, 0, 1, 270deg);
-  }
-  100% {
-    -webkit-transform: rotate3d(0, 0, 1, 360deg);
-    transform: rotate3d(0, 0, 1, 360deg);
-  }
+/* BUTTON */
+.form-side .button{
+  --primary:#0009DB;--primary-dark:#2435ff;--primary-darkest:#0007b3;
+  --text:#FFFFFF;--text-opacity:1;--success:#2B3044;--success-scale:.2;--success-opacity:0;
+  --border-radius:7;--rotate:0;--plane-x:0;--plane-y:0;--plane-opacity:1;
+  --left-wing-background:var(--primary);--left-wing-first-x:0;--left-wing-first-y:0;--left-wing-second-x:50;--left-wing-second-y:0;--left-wing-third-x:0;--left-wing-third-y:100;
+  --left-body-background:var(--primary);--left-body-first-x:50;--left-body-first-y:0;--left-body-second-x:50;--left-body-second-y:100;--left-body-third-x:0;--left-body-third-y:100;
+  --right-wing-background:var(--primary);--right-wing-first-x:50;--right-wing-first-y:0;--right-wing-second-x:100;--right-wing-second-y:0;--right-wing-third-x:100;--right-wing-third-y:100;
+  --right-body-background:var(--primary);--right-body-first-x:50;--right-body-first-y:0;--right-body-second-x:50;--right-body-second-y:100;--right-body-third-x:100;--right-body-third-y:100;
+  display:block;cursor:pointer;position:relative;border:0;padding:8px 0;width:105px;
+  text-align:center;line-height:24px;font-family:inherit;font-weight:500;font-size:14px;
+  background:none;outline:none;color:var(--text);
+  transform:rotate(calc(var(--rotate) * 1deg)) translateZ(0);appearance:none;
 }
+.form-side .button .left,.form-side .button .right{position:absolute;left:0;top:0;right:0;bottom:0;opacity:var(--plane-opacity);transform:translate(calc(var(--plane-x) * 1px),calc(var(--plane-y) * 1px)) translateZ(0);}
+.form-side .button .left:before,.form-side .button .left:after,.form-side .button .right:before,.form-side .button .right:after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;border-radius:calc(var(--border-radius) * 1px);transform:translate(var(--x,0.4%),var(--y,0)) translateZ(0);z-index:var(--z-index,2);background:var(--background,var(--left-wing-background));clip-path:polygon(calc(var(--first-x,var(--left-wing-first-x)) * 1%) calc(var(--first-y,var(--left-wing-first-y)) * 1%),calc(var(--second-x,var(--left-wing-second-x)) * 1%) calc(var(--second-y,var(--left-wing-second-y)) * 1%),calc(var(--third-x,var(--left-wing-third-x)) * 1%) calc(var(--third-y,var(--left-wing-third-y)) * 1%));}
+.form-side .button .left:after{--x:0;--z-index:1;--background:var(--left-body-background);--first-x:var(--left-body-first-x);--first-y:var(--left-body-first-y);--second-x:var(--left-body-second-x);--second-y:var(--left-body-second-y);--third-x:var(--left-body-third-x);--third-y:var(--left-body-third-y);}
+.form-side .button .right:before{--x:-.4%;--z-index:2;--background:var(--right-wing-background);--first-x:var(--right-wing-first-x);--first-y:var(--right-wing-first-y);--second-x:var(--right-wing-second-x);--second-y:var(--right-wing-second-y);--third-x:var(--right-wing-third-x);--third-y:var(--right-wing-third-y);}
+.form-side .button .right:after{--x:0;--z-index:1;--background:var(--right-body-background);--first-x:var(--right-body-first-x);--first-y:var(--right-body-first-y);--second-x:var(--right-body-second-x);--second-y:var(--right-body-second-y);--third-x:var(--right-body-third-x);--third-y:var(--right-body-third-y);}
+.form-side .button span{display:block;position:relative;z-index:4;opacity:var(--text-opacity);}
+.form-side .button span.success{z-index:0;position:absolute;left:0;right:0;top:8px;transform:rotate(calc(var(--rotate) * -1deg)) scale(var(--success-scale)) translateZ(0);opacity:var(--success-opacity);color:var(--success);}
 
-.typewrite > .wrap {
-  border-right: 0.08em solid #000;
-  font-size: 1em;
-  display: inline-block;
-  
-}
+/* SHAKE ANIMATION */
+@keyframes shake{0%,100%{transform:translateX(0);}15%{transform:translateX(-6px);}30%{transform:translateX(6px);}45%{transform:translateX(-5px);}60%{transform:translateX(5px);}75%{transform:translateX(-3px);}90%{transform:translateX(3px);}}
+.shake{animation:shake .45s ease;}
 
-#welcome{
-   font-family: "K2D";
-   margin-top: 0.8em;
-   color:#00192D;
+/* RESPONSIVE */
+@media(max-width:850px){
+  .contact-card{flex-direction:column;}
+  .social-side,.form-side{width:100%;}
+  .form-side{padding:35px 24px;}
+  .submit-row{flex-direction:column;align-items:flex-start;}
+  .cta-space{width:100%;}
 }
-
-#welcome-text{
-   font-family: "K2D";
-   font-size: 1.25em;
-   margin-top: 0.8em;
-}
-
-#welcome-button{
-   width: 200px;
-   margin-top: 1.4em;
-   background: #FFFFFF;
-   color: #00192D;
-   border: 2px solid #00192D;
-   font-family: "K2D";
-   font-size: 1.5em;
-   text-align:center;
-   border-radius: 4px;
-   padding: 0.4em;
-   font-weight: bold;
-   cursor:pointer;
-   transition: background 0.9s ease-out;
-   box-shadow: 2px 2px 6px  #00192D;
-}
- #welcome-button:hover{
-   background:#00192D;
-   color: #FFFFFF;
-   box-shadow: 4px 4px 8px  #00192D;
- }
- 
- 
- .column {
-	margin: 15px 15px 0;
-	padding: 0;
-}
-.column::after {
-	content: '';
-	clear: both;
-	display: block;
-}
-.column div {
-	position: relative;
-	float: left;
-	width: 300px;
-	height: 200px;
-	margin: 0 0 0 25px;
-	padding: 0;
-}
-.column div:first-child {
-	margin-left: 0;
-}
-.column div span {
-	position: absolute;
-	bottom: -20px;
-	left: 0;
-	z-index: -1;
-	display: block;
-	width: 300px;
-	margin: 0;
-	padding: 0;
-	color: #444;
-	font-size: 18px;
-	text-decoration: none;
-	text-align: center;
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-	opacity: 0;
-}
-figure {
-	width: 300px;
-	height: 200px;
-	margin: 0;
-	padding: 0;
-	background: #fff;
-	overflow: hidden;
-}
-figure:hover+span {
-	bottom: -36px;
-	opacity: 1;
-}
- 
- /* Opacity #2 */
-.hover12 figure {
-	background: #1abc9c;
-}
-.hover12 figure img {
-	opacity: 1;
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-}
-.hover12 figure:hover img {
-	opacity: .5;
-}
-
-
-
-.bubble {
-  display: flex;
-  align-items: center;
-  position: relative;
-  background: linear-gradient(to bottom right, #070630 0%, #060454 100%);
-  min-height: 100vh;
-}
-
-.animation-container {
-  display: block;
-  position: relative;
-  width: 800px;
-  max-width: 100%;
-  margin: 0 auto;
-}
-.animation-container .lightning-container {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  display: flex;
-  transform: translateY(-50%);
-}
-.animation-container .lightning-container .lightning {
-  position: absolute;
-  display: block;
-  height: 12px;
-  width: 12px;
-  border-radius: 12px;
-  transform-origin: 6px 6px;
-  -webkit-animation-name: woosh;
-          animation-name: woosh;
-  -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-          animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  -webkit-animation-direction: alternate;
-          animation-direction: alternate;
-}
-.animation-container .lightning-container .lightning.white {
-  background-color: green;
-  box-shadow: 0px 50px 50px 0px rgba(255, 255, 255, 0.3);
-}
-.animation-container .lightning-container .lightning.red {
-  background-color: #fc7171;
-  box-shadow: 0px 50px 50px 0px rgba(252, 113, 113, 0.3);
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
-}
-.animation-container .boom-container {
-  position: absolute;
-  display: flex;
-  width: 80px;
-  height: 80px;
-  text-align: center;
-  align-items: center;
-  transform: translateY(-50%);
-  left: 200px;
-  top: -145px;
-}
-.animation-container .boom-container .shape {
-  display: inline-block;
-  position: relative;
-  opacity: 0;
-  transform-origin: center center;
-}
-.animation-container .boom-container .shape.triangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  transform-origin: 50% 80%;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  margin-left: -15px;
-  border-width: 0 2.5px 5px 2.5px;
-  border-color: transparent transparent #42e599 transparent;
-  -webkit-animation-name: boom-triangle;
-          animation-name: boom-triangle;
-}
-.animation-container .boom-container .shape.triangle.big {
-  margin-left: -25px;
-  border-width: 0 5px 10px 5px;
-  border-color: transparent transparent #fade28 transparent;
-  -webkit-animation-name: boom-triangle-big;
-          animation-name: boom-triangle-big;
-}
-.animation-container .boom-container .shape.disc {
-  width: 8px;
-  height: 8px;
-  border-radius: 100%;
-  background-color: #d15ff4;
-  -webkit-animation-name: boom-disc;
-          animation-name: boom-disc;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-.animation-container .boom-container .shape.circle {
-  width: 20px;
-  height: 20px;
-  -webkit-animation-name: boom-circle;
-          animation-name: boom-circle;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  border-radius: 100%;
-  margin-left: -30px;
-}
-.animation-container .boom-container .shape.circle.white {
-  border: 1px solid green;
-}
-.animation-container .boom-container .shape.circle.big {
-  width: 40px;
-  height: 40px;
-  margin-left: 0px;
-}
-.animation-container .boom-container .shape.circle.big.white {
-  border: 2px solid green;
-}
-.animation-container .boom-container .shape:after {
-  background-color: rgba(178, 215, 232, 0.2);
-}
-.animation-container .boom-container .shape.triangle, .animation-container .boom-container .shape.circle, .animation-container .boom-container .shape.circle.big, .animation-container .boom-container .shape.disc {
-  -webkit-animation-delay: 0.38s;
-          animation-delay: 0.38s;
-  -webkit-animation-duration: 3s;
-          animation-duration: 3s;
-}
-.animation-container .boom-container .shape.circle {
-  -webkit-animation-delay: 0.6s;
-          animation-delay: 0.6s;
-}
-.animation-container .boom-container.second {
-  left: 485px;
-  top: 155px;
-}
-.animation-container .boom-container.second .shape.triangle, .animation-container .boom-container.second .shape.circle, .animation-container .boom-container.second .shape.circle.big, .animation-container .boom-container.second .shape.disc {
-  -webkit-animation-delay: 1.9s;
-          animation-delay: 1.9s;
-}
-.animation-container .boom-container.second .shape.circle {
-  -webkit-animation-delay: 2.15s;
-          animation-delay: 2.15s;
-}
-
-@-webkit-keyframes woosh {
-  0% {
-    width: 12px;
-    transform: translate(0px, 0px) rotate(-35deg);
-  }
-  15% {
-    width: 50px;
-  }
-  30% {
-    width: 12px;
-    transform: translate(214px, -150px) rotate(-35deg);
-  }
-  30.1% {
-    transform: translate(214px, -150px) rotate(46deg);
-  }
-  50% {
-    width: 110px;
-  }
-  70% {
-    width: 12px;
-    transform: translate(500px, 150px) rotate(46deg);
-  }
-  70.1% {
-    transform: translate(500px, 150px) rotate(-37deg);
-  }
-  85% {
-    width: 50px;
-  }
-  100% {
-    width: 12px;
-    transform: translate(700px, 0) rotate(-37deg);
-  }
-}
-
-@keyframes woosh {
-  0% {
-    width: 12px;
-    transform: translate(0px, 0px) rotate(-35deg);
-  }
-  15% {
-    width: 50px;
-  }
-  30% {
-    width: 12px;
-    transform: translate(214px, -150px) rotate(-35deg);
-  }
-  30.1% {
-    transform: translate(214px, -150px) rotate(46deg);
-  }
-  50% {
-    width: 110px;
-  }
-  70% {
-    width: 12px;
-    transform: translate(500px, 150px) rotate(46deg);
-  }
-  70.1% {
-    transform: translate(500px, 150px) rotate(-37deg);
-  }
-  85% {
-    width: 50px;
-  }
-  100% {
-    width: 12px;
-    transform: translate(700px, 0) rotate(-37deg);
-  }
-}
-@-webkit-keyframes boom-circle {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0;
-    transform: scale(3);
-  }
-}
-@keyframes boom-circle {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0;
-    transform: scale(3);
-  }
-}
-@-webkit-keyframes boom-triangle-big {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-    transform: scale(2.5) translate(50px, -50px) rotate(360deg);
-  }
-}
-@keyframes boom-triangle-big {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-    transform: scale(2.5) translate(50px, -50px) rotate(360deg);
-  }
-}
-@-webkit-keyframes boom-triangle {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0;
-    transform: scale(3) translate(20px, 40px) rotate(360deg);
-  }
-}
-@keyframes boom-triangle {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0;
-    transform: scale(3) translate(20px, 40px) rotate(360deg);
-  }
-}
-@-webkit-keyframes boom-disc {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-    transform: scale(2) translate(-70px, -30px);
-  }
-}
-@keyframes boom-disc {
-  0% {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-    transform: scale(2) translate(-70px, -30px);
-  }
-}
-
-
-
-
-body .cursor {
-  pointer-events: none;
-}
-body .cursor__ball {
-  position: fixed;
-  top: 0;
-  left: 0;
-  mix-blend-mode: difference;
-  z-index: 1000;
-}
-body .cursor__ball circle {
-  fill: #f7f8fa;
-}
-  
-  </style>
-  
+</style>
 </head>
+
 <body>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
 
+<div class="contact-card">
 
-
-<div class="cursor">
-  <div class="cursor__ball cursor__ball--big ">
-    <svg height="30" width="30">
-      <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
-    </svg>
-  </div>
-  
-  <div class="cursor__ball cursor__ball--small">
-    <svg height="10" width="10">
-      <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
-    </svg>
-  </div>
-</div>
-
-
-<div class="container">
-
-
-
-<nav class="navbar">
-  
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a href="#"><img src="corium_connect.png"/></a>
+  <!-- LEFT SIDE -->
+  <div class="social-side">
+    <h1>Let's Connect</h1>
+    <p>Have a project or idea in mind?<br>Reach out and let's build something amazing.</p>
+    <div class="social-icons">
+      <a href="#" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" data-tooltip="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" data-tooltip="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a href="tel:+254700000000" data-tooltip="Phone"><i class="fas fa-phone"></i></a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/" >Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/services">Products & Services</a></li>
-        <li><a href="/portfolio">Portfolio</a></li>
-        <li><a href="/foundation">Foundation</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </div>
- 
-</nav>
-</div>
-
-  
-<div class="container row">
-  <div class="col-md-6">
-  <h1 id ="welcome">Welcome to Corium Connect</h1>
-  
-  <h3>
-  <a href="" class="typewrite" data-period="2000" data-type='[ "Innovate.", "Educate.", "Connect." ]'>
-    <span class="wrap"></span>
-  </a>
-</h3>
-
-  
-  <p id="welcome-text">Welcome to Corium Connect, your gateway to innovation and excellence in technology education. Our website offers a comprehensive overview of our diverse range of services, including the prestigious Corium Code Academy. Whether you're here to explore cutting-edge projects, 
-  enroll in our programming courses, or connect with like-minded tech enthusiasts, Corium Connect is your ultimate destination.</p>
-  
-  <div id="welcome-button"> Get In Touch</div>
-  
-  </div>
-  
-  
-  
-  <div class="col-md-6"><div class="globe_spin"> <img src="corium_globe.png"/> </div> </div>
-</div>
-
-<div class="hover12 column">
-  <div>
-    <figure><img src="https://picsum.photos/300/200?image=244" /></figure>
-    <span>Hover</span>
   </div>
 
-  <div class="animation-container">
-	<div class="lightning-container">
-		<div class="lightning white"></div>
-		<div class="lightning red"></div>
-	</div>
-	<div class="boom-container">
-		<div class="shape circle big white"></div>
-		<div class="shape circle white"></div>
-		<div class="shape triangle big yellow"></div>
-		<div class="shape disc white"></div>
-		<div class="shape triangle blue"></div>
-	</div>
-	<div class="boom-container second">
-		<div class="shape circle big white"></div>
-		<div class="shape circle white"></div>
-		<div class="shape disc white"></div>
-		<div class="shape triangle blue"></div>
-	</div>
-</div>
+  <!-- RIGHT SIDE -->
+  <div class="form-side">
+    <h2>Send a Message</h2>
+    <p class="subtitle">Fill the form below and I'll get back to you shortly.</p>
 
+    <form id="contactForm" novalidate>
+
+      <!-- NAME -->
+      <div class="input-container" id="wrap-name">
+        <input type="text" id="input-name" placeholder=" " autocomplete="name">
+        <label for="input-name">Your Name</label>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="input-container" id="wrap-email">
+        <input type="email" id="input-email" placeholder=" " autocomplete="email">
+        <label for="input-email">Your Email</label>
+      </div>
+
+      <!-- PHONE -->
+      <div class="input-container phone-container" id="wrap-phone">
+        <div class="country-select">
+          <button type="button" class="country-toggle" aria-expanded="false">
+            <span class="country-selected">
+              <img class="country-flag" src="img/country-code-flag-images/KE.png" alt="Kenya flag">
+              <span class="country-name-display">Kenya</span>
+              <span class="country-code-display">+254</span>
+            </span>
+            <span>▾</span>
+          </button>
+          <div class="country-dropdown" hidden>
+            <input type="text" class="country-search" placeholder="Search country...">
+            <ul class="country-list"></ul>
+          </div>
+        </div>
+        <input type="hidden" name="country-code" value="+254">
+        <input type="tel" id="input-phone" placeholder=" " autocomplete="tel">
+        <label for="input-phone">Your Phone</label>
+      </div>
+
+      <!-- MESSAGE -->
+      <div class="input-container" id="wrap-message" style="position:relative;">
+        <textarea id="input-message" placeholder=" " maxlength="1000"></textarea>
+        <label for="input-message">Your Message</label>
+        <span class="char-counter" id="char-counter">0 / 1000</span>
+      </div>
+
+      <!-- SUBMIT ROW -->
+      <div class="submit-row">
+        <button class="button" type="submit" id="submitBtn">
+          <span class="default">Send</span>
+          <span class="success">Sent</span>
+          <div class="left"></div>
+          <div class="right"></div>
+        </button>
+
+        <div class="cta-space">
+          <div class="wave"></div>
+          <div class="wave wave2"></div>
+          <div class="wave wave3"></div>
+          <i class="fas fa-paper-plane floating-icon icon1"></i>
+          <i class="fas fa-star floating-icon icon2"></i>
+          <i class="fas fa-bolt floating-icon icon3"></i>
+          <div class="cta-text">Building Digital Experiences</div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
 
 <script>
+/* =============================================
+   COUNTRIES DATA
+============================================= */
+const countries = [
+  { name: 'Afghanistan', code: '+93', iso: 'AF' },
+  { name: 'Albania', code: '+355', iso: 'AL' },
+  { name: 'Algeria', code: '+213', iso: 'DZ' },
+  { name: 'Andorra', code: '+376', iso: 'AD' },
+  { name: 'Angola', code: '+244', iso: 'AO' },
+  { name: 'Anguilla', code: '+1-264', iso: 'AI' },
+  { name: 'Antigua and Barbuda', code: '+1-268', iso: 'AG' },
+  { name: 'Argentina', code: '+54', iso: 'AR' },
+  { name: 'Armenia', code: '+374', iso: 'AM' },
+  { name: 'Aruba', code: '+297', iso: 'AW' },
+  { name: 'Australia', code: '+61', iso: 'AU' },
+  { name: 'Austria', code: '+43', iso: 'AT' },
+  { name: 'Azerbaijan', code: '+994', iso: 'AZ' },
+  { name: 'Bahamas', code: '+1-242', iso: 'BS' },
+  { name: 'Bahrain', code: '+973', iso: 'BH' },
+  { name: 'Bangladesh', code: '+880', iso: 'BD' },
+  { name: 'Barbados', code: '+1-246', iso: 'BB' },
+  { name: 'Belarus', code: '+375', iso: 'BY' },
+  { name: 'Belgium', code: '+32', iso: 'BE' },
+  { name: 'Belize', code: '+501', iso: 'BZ' },
+  { name: 'Benin', code: '+229', iso: 'BJ' },
+  { name: 'Bermuda', code: '+1-441', iso: 'BM' },
+  { name: 'Bhutan', code: '+975', iso: 'BT' },
+  { name: 'Bolivia', code: '+591', iso: 'BO' },
+  { name: 'Bosnia and Herzegovina', code: '+387', iso: 'BA' },
+  { name: 'Botswana', code: '+267', iso: 'BW' },
+  { name: 'Brazil', code: '+55', iso: 'BR' },
+  { name: 'British Indian Ocean Territory', code: '+246', iso: 'IO' },
+  { name: 'Brunei', code: '+673', iso: 'BN' },
+  { name: 'Bulgaria', code: '+359', iso: 'BG' },
+  { name: 'Burkina Faso', code: '+226', iso: 'BF' },
+  { name: 'Burundi', code: '+257', iso: 'BI' },
+  { name: 'Cambodia', code: '+855', iso: 'KH' },
+  { name: 'Cameroon', code: '+237', iso: 'CM' },
+  { name: 'Canada', code: '+1', iso: 'CA' },
+  { name: 'Cape Verde', code: '+238', iso: 'CV' },
+  { name: 'Cayman Islands', code: '+1-345', iso: 'KY' },
+  { name: 'Central African Republic', code: '+236', iso: 'CF' },
+  { name: 'Chad', code: '+235', iso: 'TD' },
+  { name: 'Chile', code: '+56', iso: 'CL' },
+  { name: 'China', code: '+86', iso: 'CN' },
+  { name: 'Colombia', code: '+57', iso: 'CO' },
+  { name: 'Comoros', code: '+269', iso: 'KM' },
+  { name: 'Congo', code: '+242', iso: 'CG' },
+  { name: 'Costa Rica', code: '+506', iso: 'CR' },
+  { name: 'Croatia', code: '+385', iso: 'HR' },
+  { name: 'Cuba', code: '+53', iso: 'CU' },
+  { name: 'Curaçao', code: '+599', iso: 'CW' },
+  { name: 'Cyprus', code: '+357', iso: 'CY' },
+  { name: 'Czech Republic', code: '+420', iso: 'CZ' },
+  { name: 'Denmark', code: '+45', iso: 'DK' },
+  { name: 'Djibouti', code: '+253', iso: 'DJ' },
+  { name: 'Dominica', code: '+1-767', iso: 'DM' },
+  { name: 'Dominican Republic', code: '+1-809', iso: 'DO' },
+  { name: 'Ecuador', code: '+593', iso: 'EC' },
+  { name: 'Egypt', code: '+20', iso: 'EG' },
+  { name: 'El Salvador', code: '+503', iso: 'SV' },
+  { name: 'Equatorial Guinea', code: '+240', iso: 'GQ' },
+  { name: 'Eritrea', code: '+291', iso: 'ER' },
+  { name: 'Estonia', code: '+372', iso: 'EE' },
+  { name: 'Eswatini', code: '+268', iso: 'SZ' },
+  { name: 'Ethiopia', code: '+251', iso: 'ET' },
+  { name: 'Faroe Islands', code: '+298', iso: 'FO' },
+  { name: 'Fiji', code: '+679', iso: 'FJ' },
+  { name: 'Finland', code: '+358', iso: 'FI' },
+  { name: 'France', code: '+33', iso: 'FR' },
+  { name: 'French Guiana', code: '+594', iso: 'GF' },
+  { name: 'French Polynesia', code: '+689', iso: 'PF' },
+  { name: 'Gabon', code: '+241', iso: 'GA' },
+  { name: 'Gambia', code: '+220', iso: 'GM' },
+  { name: 'Georgia', code: '+995', iso: 'GE' },
+  { name: 'Germany', code: '+49', iso: 'DE' },
+  { name: 'Ghana', code: '+233', iso: 'GH' },
+  { name: 'Gibraltar', code: '+350', iso: 'GI' },
+  { name: 'Greece', code: '+30', iso: 'GR' },
+  { name: 'Greenland', code: '+299', iso: 'GL' },
+  { name: 'Grenada', code: '+1-473', iso: 'GD' },
+  { name: 'Guadeloupe', code: '+590', iso: 'GP' },
+  { name: 'Guam', code: '+1-671', iso: 'GU' },
+  { name: 'Guatemala', code: '+502', iso: 'GT' },
+  { name: 'Guernsey', code: '+44', iso: 'GG' },
+  { name: 'Guinea', code: '+224', iso: 'GN' },
+  { name: 'Guinea-Bissau', code: '+245', iso: 'GW' },
+  { name: 'Guyana', code: '+592', iso: 'GY' },
+  { name: 'Haiti', code: '+509', iso: 'HT' },
+  { name: 'Honduras', code: '+504', iso: 'HN' },
+  { name: 'Hong Kong', code: '+852', iso: 'HK' },
+  { name: 'Hungary', code: '+36', iso: 'HU' },
+  { name: 'Iceland', code: '+354', iso: 'IS' },
+  { name: 'India', code: '+91', iso: 'IN' },
+  { name: 'Indonesia', code: '+62', iso: 'ID' },
+  { name: 'Iran', code: '+98', iso: 'IR' },
+  { name: 'Iraq', code: '+964', iso: 'IQ' },
+  { name: 'Ireland', code: '+353', iso: 'IE' },
+  { name: 'Isle of Man', code: '+44', iso: 'IM' },
+  { name: 'Israel', code: '+972', iso: 'IL' },
+  { name: 'Italy', code: '+39', iso: 'IT' },
+  { name: 'Ivory Coast', code: '+225', iso: 'CI' },
+  { name: 'Jamaica', code: '+1-876', iso: 'JM' },
+  { name: 'Japan', code: '+81', iso: 'JP' },
+  { name: 'Jersey', code: '+44', iso: 'JE' },
+  { name: 'Jordan', code: '+962', iso: 'JO' },
+  { name: 'Kazakhstan', code: '+7', iso: 'KZ' },
+  { name: 'Kenya', code: '+254', iso: 'KE' },
+  { name: 'Kiribati', code: '+686', iso: 'KI' },
+  { name: 'Kosovo', code: '+383', iso: 'XK' },
+  { name: 'Kuwait', code: '+965', iso: 'KW' },
+  { name: 'Kyrgyzstan', code: '+996', iso: 'KG' },
+  { name: 'Laos', code: '+856', iso: 'LA' },
+  { name: 'Latvia', code: '+371', iso: 'LV' },
+  { name: 'Lebanon', code: '+961', iso: 'LB' },
+  { name: 'Lesotho', code: '+266', iso: 'LS' },
+  { name: 'Liberia', code: '+231', iso: 'LR' },
+  { name: 'Libya', code: '+218', iso: 'LY' },
+  { name: 'Liechtenstein', code: '+423', iso: 'LI' },
+  { name: 'Lithuania', code: '+370', iso: 'LT' },
+  { name: 'Luxembourg', code: '+352', iso: 'LU' },
+  { name: 'Macao', code: '+853', iso: 'MO' },
+  { name: 'Madagascar', code: '+261', iso: 'MG' },
+  { name: 'Malawi', code: '+265', iso: 'MW' },
+  { name: 'Malaysia', code: '+60', iso: 'MY' },
+  { name: 'Maldives', code: '+960', iso: 'MV' },
+  { name: 'Mali', code: '+223', iso: 'ML' },
+  { name: 'Malta', code: '+356', iso: 'MT' },
+  { name: 'Marshall Islands', code: '+692', iso: 'MH' },
+  { name: 'Martinique', code: '+596', iso: 'MQ' },
+  { name: 'Mauritania', code: '+222', iso: 'MR' },
+  { name: 'Mauritius', code: '+230', iso: 'MU' },
+  { name: 'Mayotte', code: '+262', iso: 'YT' },
+  { name: 'Mexico', code: '+52', iso: 'MX' },
+  { name: 'Micronesia', code: '+691', iso: 'FM' },
+  { name: 'Moldova', code: '+373', iso: 'MD' },
+  { name: 'Monaco', code: '+377', iso: 'MC' },
+  { name: 'Mongolia', code: '+976', iso: 'MN' },
+  { name: 'Montenegro', code: '+382', iso: 'ME' },
+  { name: 'Montserrat', code: '+1-664', iso: 'MS' },
+  { name: 'Morocco', code: '+212', iso: 'MA' },
+  { name: 'Mozambique', code: '+258', iso: 'MZ' },
+  { name: 'Myanmar', code: '+95', iso: 'MM' },
+  { name: 'Namibia', code: '+264', iso: 'NA' },
+  { name: 'Nauru', code: '+674', iso: 'NR' },
+  { name: 'Nepal', code: '+977', iso: 'NP' },
+  { name: 'Netherlands', code: '+31', iso: 'NL' },
+  { name: 'New Caledonia', code: '+687', iso: 'NC' },
+  { name: 'New Zealand', code: '+64', iso: 'NZ' },
+  { name: 'Nicaragua', code: '+505', iso: 'NI' },
+  { name: 'Niger', code: '+227', iso: 'NE' },
+  { name: 'Nigeria', code: '+234', iso: 'NG' },
+  { name: 'Niue', code: '+683', iso: 'NU' },
+  { name: 'Norfolk Island', code: '+672', iso: 'NF' },
+  { name: 'North Korea', code: '+850', iso: 'KP' },
+  { name: 'North Macedonia', code: '+389', iso: 'MK' },
+  { name: 'Northern Mariana Islands', code: '+1-670', iso: 'MP' },
+  { name: 'Norway', code: '+47', iso: 'NO' },
+  { name: 'Oman', code: '+968', iso: 'OM' },
+  { name: 'Pakistan', code: '+92', iso: 'PK' },
+  { name: 'Palau', code: '+680', iso: 'PW' },
+  { name: 'Palestine', code: '+970', iso: 'PS' },
+  { name: 'Panama', code: '+507', iso: 'PA' },
+  { name: 'Papua New Guinea', code: '+675', iso: 'PG' },
+  { name: 'Paraguay', code: '+595', iso: 'PY' },
+  { name: 'Peru', code: '+51', iso: 'PE' },
+  { name: 'Philippines', code: '+63', iso: 'PH' },
+  { name: 'Poland', code: '+48', iso: 'PL' },
+  { name: 'Portugal', code: '+351', iso: 'PT' },
+  { name: 'Puerto Rico', code: '+1-787', iso: 'PR' },
+  { name: 'Qatar', code: '+974', iso: 'QA' },
+  { name: 'Réunion', code: '+262', iso: 'RE' },
+  { name: 'Romania', code: '+40', iso: 'RO' },
+  { name: 'Russia', code: '+7', iso: 'RU' },
+  { name: 'Rwanda', code: '+250', iso: 'RW' },
+  { name: 'Saint Barthélemy', code: '+590', iso: 'BL' },
+  { name: 'Saint Helena', code: '+290', iso: 'SH' },
+  { name: 'Saint Kitts and Nevis', code: '+1-869', iso: 'KN' },
+  { name: 'Saint Lucia', code: '+1-758', iso: 'LC' },
+  { name: 'Saint Martin', code: '+590', iso: 'MF' },
+  { name: 'Saint Pierre and Miquelon', code: '+508', iso: 'PM' },
+  { name: 'Saint Vincent and the Grenadines', code: '+1-784', iso: 'VC' },
+  { name: 'Samoa', code: '+685', iso: 'WS' },
+  { name: 'San Marino', code: '+378', iso: 'SM' },
+  { name: 'Sao Tome and Príncipe', code: '+239', iso: 'ST' },
+  { name: 'Saudi Arabia', code: '+966', iso: 'SA' },
+  { name: 'Senegal', code: '+221', iso: 'SN' },
+  { name: 'Serbia', code: '+381', iso: 'RS' },
+  { name: 'Seychelles', code: '+248', iso: 'SC' },
+  { name: 'Sierra Leone', code: '+232', iso: 'SL' },
+  { name: 'Singapore', code: '+65', iso: 'SG' },
+  { name: 'Sint Maarten', code: '+1-721', iso: 'SX' },
+  { name: 'Slovakia', code: '+421', iso: 'SK' },
+  { name: 'Slovenia', code: '+386', iso: 'SI' },
+  { name: 'Solomon Islands', code: '+677', iso: 'SB' },
+  { name: 'Somalia', code: '+252', iso: 'SO' },
+  { name: 'South Africa', code: '+27', iso: 'ZA' },
+  { name: 'South Georgia and the South Sandwich Islands', code: '+500', iso: 'GS' },
+  { name: 'South Korea', code: '+82', iso: 'KR' },
+  { name: 'South Sudan', code: '+211', iso: 'SS' },
+  { name: 'Spain', code: '+34', iso: 'ES' },
+  { name: 'Sri Lanka', code: '+94', iso: 'LK' },
+  { name: 'Sudan', code: '+249', iso: 'SD' },
+  { name: 'Suriname', code: '+597', iso: 'SR' },
+  { name: 'Svalbard and Jan Mayen', code: '+47', iso: 'SJ' },
+  { name: 'Sweden', code: '+46', iso: 'SE' },
+  { name: 'Switzerland', code: '+41', iso: 'CH' },
+  { name: 'Syria', code: '+963', iso: 'SY' },
+  { name: 'Taiwan', code: '+886', iso: 'TW' },
+  { name: 'Tajikistan', code: '+992', iso: 'TJ' },
+  { name: 'Tanzania', code: '+255', iso: 'TZ' },
+  { name: 'Thailand', code: '+66', iso: 'TH' },
+  { name: 'Timor-Leste', code: '+670', iso: 'TL' },
+  { name: 'Togo', code: '+228', iso: 'TG' },
+  { name: 'Tokelau', code: '+690', iso: 'TK' },
+  { name: 'Tonga', code: '+676', iso: 'TO' },
+  { name: 'Trinidad and Tobago', code: '+1-868', iso: 'TT' },
+  { name: 'Tunisia', code: '+216', iso: 'TN' },
+  { name: 'Turkey', code: '+90', iso: 'TR' },
+  { name: 'Turkmenistan', code: '+993', iso: 'TM' },
+  { name: 'Turks and Caicos Islands', code: '+1-649', iso: 'TC' },
+  { name: 'Tuvalu', code: '+688', iso: 'TV' },
+  { name: 'Uganda', code: '+256', iso: 'UG' },
+  { name: 'Ukraine', code: '+380', iso: 'UA' },
+  { name: 'United Arab Emirates', code: '+971', iso: 'AE' },
+  { name: 'United Kingdom', code: '+44', iso: 'GB' },
+  { name: 'United States', code: '+1', iso: 'US' },
+  { name: 'Uruguay', code: '+598', iso: 'UY' },
+  { name: 'Uzbekistan', code: '+998', iso: 'UZ' },
+  { name: 'Vanuatu', code: '+678', iso: 'VU' },
+  { name: 'Vatican City', code: '+379', iso: 'VA' },
+  { name: 'Venezuela', code: '+58', iso: 'VE' },
+  { name: 'Vietnam', code: '+84', iso: 'VN' },
+  { name: 'Virgin Islands (British)', code: '+1-284', iso: 'VG' },
+  { name: 'Virgin Islands (U.S.)', code: '+1-340', iso: 'VI' },
+  { name: 'Wallis and Futuna', code: '+681', iso: 'WF' },
+  { name: 'Western Sahara', code: '+212', iso: 'EH' },
+  { name: 'Yemen', code: '+967', iso: 'YE' },
+  { name: 'Zambia', code: '+260', iso: 'ZM' },
+  { name: 'Zimbabwe', code: '+263', iso: 'ZW' }
+];
 
-class Typewriter {
-  constructor(el, toRotate, period, colors) {
-    this.toRotate = toRotate;
-    this.el = el;
-    this.loopNum = 0;
-    this.period = parseInt(period, 10) || 2000;
-    this.txt = '';
-    this.colors = colors;
-    this.tick();
-    this.isDeleting = false;
+/* =============================================
+   VALIDATION HELPERS
+============================================= */
+
+// Track which fields have been interacted with (for on-input UX)
+const touched = { name: false, email: false, phone: false, message: false };
+
+function showError(wrapId, inputEl, message) {
+  const wrap = document.getElementById(wrapId);
+  inputEl.classList.remove('input-success');
+  inputEl.classList.add('input-error');
+  // Remove old feedback
+  const old = wrap.querySelector('.field-error, .field-success');
+  if (old) old.remove();
+  // Insert new
+  const span = document.createElement('span');
+  span.className = 'field-error';
+  span.textContent = message;
+  wrap.appendChild(span);
+}
+
+function showSuccess(wrapId, inputEl, message) {
+  const wrap = document.getElementById(wrapId);
+  inputEl.classList.remove('input-error');
+  inputEl.classList.add('input-success');
+  const old = wrap.querySelector('.field-error, .field-success');
+  if (old) old.remove();
+  if (message) {
+    const span = document.createElement('span');
+    span.className = 'field-success';
+    span.textContent = message;
+    wrap.appendChild(span);
+  }
+}
+
+function clearFeedback(wrapId, inputEl) {
+  const wrap = document.getElementById(wrapId);
+  inputEl.classList.remove('input-error', 'input-success');
+  const old = wrap.querySelector('.field-error, .field-success');
+  if (old) old.remove();
+}
+
+/* =============================================
+   FIELD VALIDATORS — return true if valid
+============================================= */
+
+function validateName() {
+  const el = document.getElementById('input-name');
+  const val = el.value.trim();
+  if (!val) {
+    showError('wrap-name', el, 'Name is required.');
+    return false;
+  }
+  if (val.length < 2) {
+    showError('wrap-name', el, 'Name must be at least 2 characters.');
+    return false;
+  }
+  if (val.length > 80) {
+    showError('wrap-name', el, 'Name must be under 80 characters.');
+    return false;
+  }
+  if (!/^[a-zA-ZÀ-ÿ\s'\-\.]+$/.test(val)) {
+    showError('wrap-name', el, 'Name can only contain letters, spaces, hyphens, or apostrophes.');
+    return false;
+  }
+  showSuccess('wrap-name', el, '');
+  return true;
+}
+
+function validateEmail() {
+  const el = document.getElementById('input-email');
+  const val = el.value.trim();
+  if (!val) {
+    showError('wrap-email', el, 'Email address is required.');
+    return false;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!emailRegex.test(val)) {
+    showError('wrap-email', el, 'Please enter a valid email address.');
+    return false;
+  }
+  showSuccess('wrap-email', el, '');
+  return true;
+}
+
+function validatePhone() {
+  const el = document.getElementById('input-phone');
+  const val = el.value.trim();
+  const countryCode = document.querySelector('input[name="country-code"]').value;
+
+  if (!val) {
+    showError('wrap-phone', el, 'Phone number is required.');
+    return false;
   }
 
-  tick() {
-    const i = this.loopNum % this.toRotate.length;
-    const fullTxt = this.toRotate[i];
-
-    if (this.isDeleting) {
-      this.txt = fullTxt.substring(0, this.txt.length - 1);
-    } else {
-      this.txt = fullTxt.substring(0, this.txt.length + 1);
+  // Try libphonenumber first
+  try {
+    const country = countries.find(c => c.code === countryCode);
+    if (country) {
+      const parsed = libphonenumber.parsePhoneNumber(val, country.iso);
+      if (parsed && parsed.isValid()) {
+        showSuccess('wrap-phone', el, 'Valid number ✓');
+        return true;
+      } else if (parsed && parsed.isPossible()) {
+        showError('wrap-phone', el, 'Number looks incomplete for ' + country.name + '.');
+        return false;
+      } else {
+        showError('wrap-phone', el, 'Invalid number for ' + country.name + '.');
+        return false;
+      }
     }
-
-    this.el.innerHTML = '<span class="wrap" style="color:' + this.colors[i] + ';">' + this.txt + '</span>';
-
-    const that = this;
-    let delta = 200 - Math.random() * 100;
-
-    if (this.isDeleting) { delta /= 2; }
-
-    if (!this.isDeleting && this.txt === fullTxt) {
-      delta = this.period;
-      this.isDeleting = true;
-    } else if (this.isDeleting && this.txt === '') {
-      this.isDeleting = false;
-      this.loopNum++;
-      delta = 500;
-    }
-
-    setTimeout(function() {
-      that.tick();
-    }, delta);
+  } catch (e) {
+    // Fallback: digit count check
   }
-}
 
-window.onload = function() {
-  const elements = document.getElementsByClassName('typewrite');
-  for (let i = 0; i < elements.length; i++) {
-    const toRotate = elements[i].getAttribute('data-type');
-    const period = elements[i].getAttribute('data-period');
-    const colors = ['#A01926', '#0095B7', '#BA5C02']; // Array of colors for each text
-
-    if (toRotate) {
-      new Typewriter(elements[i], JSON.parse(toRotate), period, colors);
-    }
+  const digits = val.replace(/\D/g, '');
+  if (digits.length < 6) {
+    showError('wrap-phone', el, 'Phone number is too short.');
+    return false;
   }
-};
-
-//cursor effects
-const $bigBall = document.querySelector('.cursor__ball--big');
-const $smallBall = document.querySelector('.cursor__ball--small');
-const $hoverables = document.querySelectorAll('.hoverable');
-
-// Listeners
-document.body.addEventListener('mousemove', onMouseMove);
-for (let i = 0; i < $hoverables.length; i++) {if (window.CP.shouldStopExecution(0)) break;
-  $hoverables[i].addEventListener('mouseenter', onMouseHover);
-  $hoverables[i].addEventListener('mouseleave', onMouseHoverOut);
+  if (digits.length > 15) {
+    showError('wrap-phone', el, 'Phone number is too long.');
+    return false;
+  }
+  showSuccess('wrap-phone', el, 'Number looks valid ✓');
+  return true;
 }
 
-// Move the cursor
-window.CP.exitedLoop(0);function onMouseMove(e) {
-  TweenMax.to($bigBall, .4, {
-    x: e.pageX - 15,
-    y: e.pageY - 15 });
-
-  TweenMax.to($smallBall, .1, {
-    x: e.pageX - 5,
-    y: e.pageY - 7 });
-
+function validateMessage() {
+  const el = document.getElementById('input-message');
+  const val = el.value.trim();
+  if (!val) {
+    showError('wrap-message', el, 'Message is required.');
+    return false;
+  }
+  if (val.length < 10) {
+    showError('wrap-message', el, `Message is too short — please write at least 10 characters (${val.length} so far).`);
+    return false;
+  }
+  if (val.length > 1000) {
+    showError('wrap-message', el, 'Message cannot exceed 1000 characters.');
+    return false;
+  }
+  showSuccess('wrap-message', el, '');
+  return true;
 }
 
-// Hover an element
-function onMouseHover() {
-  TweenMax.to($bigBall, .3, {
-    scale: 4 });
+/* =============================================
+   ON-INPUT LISTENERS (only fire after first touch)
+============================================= */
 
+document.getElementById('input-name').addEventListener('input', () => {
+  touched.name = true;
+  validateName();
+});
+document.getElementById('input-name').addEventListener('blur', () => {
+  touched.name = true;
+  validateName();
+});
+
+document.getElementById('input-email').addEventListener('input', () => {
+  touched.email = true;
+  validateEmail();
+});
+document.getElementById('input-email').addEventListener('blur', () => {
+  touched.email = true;
+  validateEmail();
+});
+
+const phoneInput = document.getElementById('input-phone');
+
+phoneInput.addEventListener('input', (e) => {
+  touched.phone = true;
+  // Format number on input
+  const countryCode = document.querySelector('input[name="country-code"]').value;
+  const formatted = formatPhoneNumber(e.target.value, countryCode);
+  if (formatted !== e.target.value) e.target.value = formatted;
+  // Debounce validation slightly for phone
+  clearTimeout(phoneInput._vTimeout);
+  phoneInput._vTimeout = setTimeout(validatePhone, 400);
+});
+phoneInput.addEventListener('blur', () => {
+  touched.phone = true;
+  validatePhone();
+});
+
+const messageEl = document.getElementById('input-message');
+const charCounter = document.getElementById('char-counter');
+
+messageEl.addEventListener('input', () => {
+  touched.message = true;
+  const len = messageEl.value.length;
+  charCounter.textContent = `${len} / 1000`;
+  charCounter.className = 'char-counter' + (len > 950 ? ' over' : len > 800 ? ' warn' : '');
+  validateMessage();
+});
+messageEl.addEventListener('blur', () => {
+  touched.message = true;
+  validateMessage();
+});
+
+/* =============================================
+   PHONE FORMATTING
+============================================= */
+
+function formatPhoneNumber(value, countryCode) {
+  const digits = value.replace(/\D/g, '');
+  const patterns = {
+    '+1':   d => d.length >= 10 ? `${d.slice(0,3)}-${d.slice(3,6)}-${d.slice(6,10)}` : d,
+    '+44':  d => d.length >= 10 ? `${d.slice(0,2)} ${d.slice(2,6)} ${d.slice(6,10)}` : d,
+    '+254': d => d.length >= 9  ? `${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,9)}` : d,
+    '+91':  d => d.length >= 10 ? `${d.slice(0,5)} ${d.slice(5,10)}` : d,
+    '+33':  d => d.length >= 9  ? `${d.slice(0,1)} ${d.slice(1,3)} ${d.slice(3,5)} ${d.slice(5,7)} ${d.slice(7,9)}` : d,
+    '+49':  d => d.length >= 10 ? `${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,10)}` : d,
+  };
+  const fn = patterns[countryCode];
+  return fn ? fn(digits) : value;
 }
-function onMouseHoverOut() {
-  TweenMax.to($bigBall, .3, {
-    scale: 1 });
 
+/* =============================================
+   COUNTRY SELECT
+============================================= */
+
+const countrySelect    = document.querySelector('.country-select');
+const toggle           = document.querySelector('.country-toggle');
+const dropdown         = document.querySelector('.country-dropdown');
+const search           = document.querySelector('.country-search');
+const list             = document.querySelector('.country-list');
+const countryNameDisplay = countrySelect.querySelector('.country-name-display');
+const countryCodeDisplay = countrySelect.querySelector('.country-code-display');
+const countryFlag      = countrySelect.querySelector('.country-toggle img.country-flag');
+const hiddenCountryCode = document.querySelector('input[name="country-code"]');
+
+let selectedIndex = -1;
+let filteredCountries = [];
+
+function selectCountry(country) {
+  const flagPath = `img/country-code-flag-images/${country.iso}.png`;
+  gsap.to(countryFlag, { rotationY: 360, opacity: 0.5, duration: 0.3, onComplete: () => {
+    countryFlag.src = flagPath;
+    countryFlag.alt = `${country.name} flag`;
+    gsap.to(countryFlag, { rotationY: 0, opacity: 1, duration: 0.3 });
+  }});
+  gsap.to(countryNameDisplay, { opacity: 0, duration: 0.15, onComplete: () => {
+    countryNameDisplay.textContent = country.name;
+    gsap.to(countryNameDisplay, { opacity: 1, duration: 0.15 });
+  }});
+  gsap.to(countryCodeDisplay, { opacity: 0, duration: 0.15, onComplete: () => {
+    countryCodeDisplay.textContent = country.code;
+    gsap.to(countryCodeDisplay, { opacity: 1, duration: 0.15 });
+  }});
+  hiddenCountryCode.value = country.code;
+  // Re-validate phone if touched
+  if (touched.phone) setTimeout(validatePhone, 50);
+  gsap.to(dropdown, { opacity: 0, duration: 0.2, onComplete: () => { dropdown.hidden = true; gsap.set(dropdown, { opacity: 1 }); }});
+  search.value = '';
+  selectedIndex = -1;
 }
 
+function highlightMatch(text, query) {
+  if (!query) return text;
+  return text.replace(new RegExp(`(${query})`, 'gi'), '<strong>$1</strong>');
+}
+
+function renderCountries(filter = '') {
+  const query = filter.toLowerCase();
+  selectedIndex = -1;
+  list.innerHTML = '';
+  filteredCountries = countries.filter(c => (c.name + c.code).toLowerCase().includes(query));
+  filteredCountries.forEach((country, index) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span class="country-choice">
+        <img class="country-flag" src="img/country-code-flag-images/${country.iso}.png" alt="${country.name} flag">
+        <span>${highlightMatch(country.name, query)}</span>
+      </span>
+      <span class="country-code">${highlightMatch(country.code, query)}</span>
+    `;
+    li.addEventListener('click', () => selectCountry(country));
+    li.addEventListener('mouseenter', () => { selectedIndex = index; updateSelection(); });
+    list.appendChild(li);
+  });
+}
+
+function updateSelection() {
+  list.querySelectorAll('li').forEach((item, i) => {
+    item.style.background = i === selectedIndex ? '#e8ebff' : '';
+    item.style.fontWeight = i === selectedIndex ? '500' : '';
+  });
+}
+
+renderCountries();
+
+toggle.addEventListener('click', () => {
+  if (dropdown.hidden) {
+    dropdown.hidden = false;
+    gsap.fromTo(dropdown, { opacity: 0, y: -10, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: 'back.out' });
+    search.focus();
+  } else {
+    gsap.to(dropdown, { opacity: 0, y: -10, scale: 0.95, duration: 0.2, ease: 'back.in', onComplete: () => { dropdown.hidden = true; search.value = ''; selectedIndex = -1; }});
+  }
+});
+
+search.addEventListener('input', e => renderCountries(e.target.value));
+
+search.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown') { e.preventDefault(); selectedIndex = Math.min(selectedIndex + 1, filteredCountries.length - 1); updateSelection(); list.querySelectorAll('li')[selectedIndex]?.scrollIntoView({ block: 'nearest' }); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); selectedIndex = Math.max(selectedIndex - 1, -1); updateSelection(); if (selectedIndex >= 0) list.querySelectorAll('li')[selectedIndex]?.scrollIntoView({ block: 'nearest' }); }
+  else if (e.key === 'Enter') { e.preventDefault(); if (selectedIndex >= 0 && filteredCountries[selectedIndex]) selectCountry(filteredCountries[selectedIndex]); }
+  else if (e.key === 'Escape') { gsap.to(dropdown, { opacity: 0, y: -10, scale: 0.95, duration: 0.2, onComplete: () => { dropdown.hidden = true; search.value = ''; selectedIndex = -1; }}); }
+});
+
+document.addEventListener('click', e => {
+  if (!countrySelect.contains(e.target) && !dropdown.hidden) {
+    gsap.to(dropdown, { opacity: 0, y: -10, scale: 0.95, duration: 0.2, onComplete: () => { dropdown.hidden = true; }});
+  }
+});
+
+/* IP GEOLOCATION */
+async function detectUserCountry() {
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    if (data.country_code) {
+      const found = countries.find(c => c.iso === data.country_code);
+      if (found) { selectCountry(found); return; }
+    }
+  } catch(e) {}
+  const ke = countries.find(c => c.iso === 'KE');
+  if (ke) selectCountry(ke);
+}
+
+document.addEventListener('DOMContentLoaded', detectUserCountry);
+
+/* =============================================
+   CTA PARALLAX
+============================================= */
+const cta = document.querySelector('.cta-space');
+cta.addEventListener('mousemove', e => {
+  const rect = cta.getBoundingClientRect();
+  gsap.to('.floating-icon', { x:(e.clientX - rect.left - rect.width/2)/18, y:(e.clientY - rect.top - rect.height/2)/18, duration:1 });
+});
+cta.addEventListener('mouseleave', () => gsap.to('.floating-icon', { x:0, y:0, duration:1 }));
+
+/* =============================================
+   BUTTON SEND ANIMATION
+============================================= */
+function runButtonAnimation(button, form) {
+  if (button.classList.contains('active')) return;
+  button.classList.add('active');
+
+  const getVar = v => getComputedStyle(button).getPropertyValue(v);
+
+  gsap.to(button, {
+    keyframes: [
+      { '--left-wing-first-x':50,'--left-wing-first-y':100,'--right-wing-second-x':50,'--right-wing-second-y':100, duration:.2,
+        onComplete() {
+          gsap.set(button, {'--left-wing-first-y':0,'--left-wing-second-x':40,'--left-wing-second-y':100,'--left-wing-third-x':0,'--left-wing-third-y':100,'--left-body-third-x':40,'--right-wing-first-x':50,'--right-wing-first-y':0,'--right-wing-second-x':60,'--right-wing-second-y':100,'--right-wing-third-x':100,'--right-wing-third-y':100,'--right-body-third-x':60});
+        }
+      },
+      {'--left-wing-third-x':20,'--left-wing-third-y':90,'--left-wing-second-y':90,'--left-body-third-y':90,'--right-wing-third-x':80,'--right-wing-third-y':90,'--right-body-third-y':90,'--right-wing-second-y':90, duration:.2},
+      {'--rotate':50,'--left-wing-third-y':95,'--left-wing-third-x':27,'--right-body-third-x':45,'--right-wing-second-x':45,'--right-wing-third-x':60,'--right-wing-third-y':83, duration:.25},
+      {'--rotate':55,'--plane-x':-8,'--plane-y':24, duration:.2},
+      {'--rotate':40,'--plane-x':45,'--plane-y':-180,'--plane-opacity':0, duration:.3,
+        onComplete() {
+          setTimeout(() => {
+            button.removeAttribute('style');
+            gsap.fromTo(button, { opacity:0, y:-8 }, { opacity:1, y:0, clearProps:true, duration:.3,
+              onComplete() {
+                button.classList.remove('active');
+                form.reset();
+                // Reset all touched states and clear feedback
+                Object.keys(touched).forEach(k => touched[k] = false);
+                ['wrap-name','wrap-email','wrap-phone','wrap-message'].forEach((wid, i) => {
+                  const inputs = [document.getElementById('input-name'), document.getElementById('input-email'), document.getElementById('input-phone'), document.getElementById('input-message')];
+                  clearFeedback(wid, inputs[i]);
+                });
+                charCounter.textContent = '0 / 1000';
+                charCounter.className = 'char-counter';
+              }
+            });
+          }, 1800);
+        }
+      }
+    ]
+  });
+
+  gsap.to(button, {
+    keyframes: [
+      {'--text-opacity':0,'--border-radius':0,'--left-wing-background':getVar('--primary-darkest'),'--right-wing-background':getVar('--primary-darkest'), duration:.1},
+      {'--left-wing-background':getVar('--primary'),'--right-wing-background':getVar('--primary'), duration:.1},
+      {'--left-body-background':getVar('--primary-dark'),'--right-body-background':getVar('--primary-darkest'), duration:.4},
+      {'--success-opacity':1,'--success-scale':1, duration:.25, delay:.25}
+    ]
+  });
+}
+
+/* =============================================
+   FORM SUBMIT
+============================================= */
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+
+  // Force touch all fields and validate
+  touched.name = true; touched.email = true; touched.phone = true; touched.message = true;
+
+  const nameOk    = validateName();
+  const emailOk   = validateEmail();
+  const phoneOk   = validatePhone();
+  const messageOk = validateMessage();
+
+  if (!nameOk || !emailOk || !phoneOk || !messageOk) {
+    // Shake the button
+    const btn = document.getElementById('submitBtn');
+    btn.classList.remove('shake');
+    void btn.offsetWidth; // reflow to restart animation
+    btn.classList.add('shake');
+    btn.addEventListener('animationend', () => btn.classList.remove('shake'), { once: true });
+    // Scroll first error into view
+    const firstError = document.querySelector('.field-error');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  runButtonAnimation(document.getElementById('submitBtn'), document.getElementById('contactForm'));
+});
 </script>
 </body>
 </html>
+ 

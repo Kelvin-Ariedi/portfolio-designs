@@ -10,6 +10,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/4c88285b12.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://unpkg.com/libphonenumber-js@1.11.17/bundle/libphonenumber-max.js"></script>
+
 
   <style>
     /* Tooltip text */
@@ -54,6 +60,8 @@ body{
 .sidenav-profile-img {
     display: inline-block; /* Make the image an inline block element */
     margin: 20px auto; /* Center align block elements if necessary */
+    border-radius: 50%; /* Make the image circular */ 
+    width: 140px; /* Set a fixed width for the profile image */
 }
 .sidenav-headline{
    margin: auto;
@@ -205,6 +213,7 @@ body{
     position: absolute;
     z-index: 10; /* Ensures button is on top of the circles */
     padding: 10px 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
  /* main home section ends her */
  
@@ -212,6 +221,7 @@ body{
       padding: 30px;
       height: 200px;
       background: #FFFFFF;
+      color: #111;
       text-align: center;
       margin: 20px auto;
       border-radius: 8px;
@@ -227,22 +237,27 @@ body{
     }
     .service-card h3 {
       transition: all 0.6s ease-in-out;
+      color: #111;
     }
     .service-card .p {
       opacity: 0;
       position: relative;
       margin-top: 10%;
       bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
+      width: 100%;
+      text-align: center;
       transition: all 0.6s ease-in-out;
+      color: #111;
     }
     .p p{
       margin: 0%;
       padding: 0;
+      color: #111;
     }
     .service-card:hover {
       transform: scale(1.06);
+      background: #f5f7ff;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
     }
     .service-card::before {
       content: '';
@@ -274,10 +289,14 @@ body{
       text-decoration: underline;
       text-decoration-color: #0009DB;
       text-decoration-thickness: 2px;
+      color: #081a4c;
+    }
+    .service-card:hover .p p {
+      color: #111;
     }
     .service-card:hover .p {
       opacity: 1;
-      transform: translateX(-50%) translateY(-20px);
+      transform: translateY(-20px);
       transition-delay: 300ms;
     }
  /* work process secion starts here */
@@ -489,6 +508,10 @@ body{
     background: #FFFFFF;
     border-radius: 8px;
  }
+ .experience-card h2 {
+    background: transparent;
+    padding: 0;
+ }
        .portfolio-card {
             cursor: pointer;
             border: none;
@@ -617,50 +640,6 @@ body{
             color: #fff;
         }
 
- .contact-form{
-   background: #FFFFFF;
-   padding: 15px;
-   border-radius: 8px;
-   text-align: center;
-   width: 100%;
-   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
- }
- .contact-form input, textarea{
-    width: 100%;
-    background-color: #dbdbdd;
-    border: none;
-    margin: 20px auto;
-    border-radius: 4px;
- }
- .contact-form input{
-   padding: 6px;
- }
- .contact-form input[type=submit]{
-   padding: 6px;
-   background: #0009DB;
-   color: #FFFFFF;
-   max-width: 300px;
- }
-
- .contact-form input:focus, textarea:focus{
-   padding: 6px;
-   border: 1px solid #0009DB;
-   outline: 2.6px solid #0007db79;
-   background-color: #F0F0F6;
- }
-
-
-
-.left i{
-   font-size: 40px;
-   margin: 10px auto;
- }
-
- .left .contact{
-   margin: 40px auto;
-   width: 100%;
- }
- 
 
 
 .footer{
@@ -683,21 +662,38 @@ nav{
 nav ul{
    list-style: none;
    text-align: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   height: calc(100vh - 40px);
+}
+nav li{
+   margin: 0;
 }
 nav li a{
    text-decoration: none;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   outline: none;
+   border: none;
+}
+
+nav li a:focus {
+   outline: none;
 }
 
 .nav-icon {
   font-size: 1.8em;
   color: #d7d8ff;
   transition: color 0.5s ease, transform 0.3s ease;
-  margin: 1em auto;
+  margin: 0;
   padding: 10px;
 }
 
 nav li a:hover .nav-icon {
-  color: #0009DB; /* Change this to your website's blue theme color */
+  color: #0009DB;
   transform: scale(1.3);
 }
 
@@ -709,76 +705,468 @@ nav li a:hover .nav-icon {
   </style>
 
   <style>
-    .form-area {
-    padding-top: 7%;
-}
-.row.single-form {
-    box-shadow: 0 2px 20px -5px hsla(0, 0%, 0%, 0.5);
-}
-.left {
-    background: #0009DB;
-    min-width: 100%;
-    min-height: 100%;
-    color: #F0F0F6;
-    padding: 70px 100px;
-    text-align: center;
-    margin: auto;
-}
-
-
-.right {
-    padding: 70px 100px;
-    position: relative;
-}
-.right i {
-    position: absolute;
-    font-size: 80px;
-    left: -27px;
-    top: 40%;
-    color: hsl(0, 0%, 100%);
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 
 
-/*responsive*/
+.blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;z-index:-1;animation:float 10s infinite alternate ease-in-out;}
+.blob1{width:220px;height:220px;background:#0009DB;top:-70px;left:-70px;}
+.blob2{width:180px;height:180px;background:#5E72FF;bottom:-50px;right:-50px;}
+@keyframes float{from{transform:translateY(0px);}to{transform:translateY(25px);}}
 
-@media (min-width:768px) and (max-width:991px){
-    .right i {
-    top: -52px;
-    transform: rotate(90deg);
-    left: 50%;
+.contact-card{
+  width:100%;max-width:740px;display:flex;overflow:hidden;margin:0 auto;
+  border-radius:20px;background:rgba(255,255,255,0.78);
+  backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.4);
+  box-shadow:0 12px 40px rgba(0,9,219,.12);animation:fadeUp .8s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
+.contact-card.fade-slide-in{
+  animation: contactIn 0.6s ease forwards;
+}
+.animation-container.pulse-fast .animation-circle {
+  animation: pulseFast 0.22s ease-in-out infinite alternate;
+}
+#hireme-button.pulse-hover {
+  animation: buttonPulse 0.5s ease-in-out infinite alternate;
+  box-shadow: 0 0 22px rgba(0, 137, 255, 0.45);
+  transform: scale(1.02);
+}
+@keyframes buttonPulse {
+  from { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 137, 255, 0.35); }
+  to { transform: scale(1.08); box-shadow: 0 0 30px rgba(0, 137, 255, 0.55); }
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes contactIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulseFast{from{transform:scale(1);}to{transform:scale(1.08);}}
+
+/* LEFT SIDE */
+.social-side{
+  flex:1;min-width:210px;position:relative;padding:32px 24px;color:white;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  background:linear-gradient(135deg,#0009DB 0%,#2435ff 55%,#5568ff 100%);
+  animation:gradientShift 8s ease-in-out infinite;background-size:200% 200%;
+}
+@keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+@keyframes floatCircle{0%{transform:translateY(0px) scale(1);opacity:.8;}50%{transform:translateY(-20px) scale(1.05);opacity:.6;}100%{transform:translateY(0px) scale(1);opacity:.8;}}
+@keyframes iconFloat{0%{transform:translateY(0px);}50%{transform:translateY(-8px);}100%{transform:translateY(0px);}}
+
+.social-side::before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.08);top:-90px;right:-90px;animation:floatCircle 6s ease-in-out infinite;}
+.social-side::after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:1px solid rgba(255,255,255,.1);bottom:30px;left:-50px;animation:floatCircle 8s ease-in-out infinite reverse;}
+.social-side h1{font-size:24px;margin-bottom:10px;z-index:2;}
+.social-side p{font-size:12px;line-height:1.8;opacity:.92;margin-bottom:24px;z-index:2;}
+
+.social-icons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;z-index:2;}
+.social-icons a{width:38px;height:38px;border-radius:50%;display:flex;justify-content:center;align-items:center;text-decoration:none;color:white;font-size:15px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);transition:.35s;animation:iconFloat 3s ease-in-out infinite;position:relative;}
+.social-icons a:nth-child(1){animation-delay:0s;}
+.social-icons a:nth-child(2){animation-delay:.15s;}
+.social-icons a:nth-child(3){animation-delay:.3s;}
+.social-icons a:nth-child(4){animation-delay:.45s;}
+.social-icons a:nth-child(5){animation-delay:.6s;}
+.social-icons a::before{content:attr(data-tooltip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(-10px);background:white;color:#0009DB;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;z-index:10;}
+.social-icons a::after{content:"";position:absolute;bottom:calc(100% - 4px);left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid white;opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:10;}
+.social-icons a:hover::before,.social-icons a:hover::after{opacity:1;}
+.social-icons a:hover::before{transform:translateX(-50%) translateY(-15px);}
+.social-icons a:hover{transform:translateY(-5px) scale(1.06);background:rgba(255,255,255,.22);box-shadow:0 10px 25px rgba(255,255,255,.18);animation:none;border:white solid 1px;}
+
+/* RIGHT SIDE */
+.form-side{flex:1.3;position:relative;padding:30px 28px;background:rgba(255,255,255,.35);}
+.form-side::before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,#dbe1ff 0%,transparent 70%);top:-50px;right:-50px;}
+.form-side h2{font-size:22px;color:#0009DB;margin-bottom:6px;position:relative;z-index:2;}
+.subtitle{color:#5d647a;font-size:13px;line-height:1.6;margin-bottom:18px;position:relative;z-index:2;}
+
+form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
+
+/* INPUTS */
+.input-container{position:relative;}
+
+.input-container input,
+.input-container textarea{
+  width:100%;padding:12px 14px;border-radius:11px;
+  border:1.5px solid rgba(0,9,219,.08);background:rgba(255,255,255,.88);
+  font-family:inherit;font-size:13px;outline:none;transition:.3s;
+  box-shadow:0 3px 8px rgba(0,9,219,.03);
+}
+.input-container textarea{min-height:88px;resize:none;}
+
+.input-container label{
+  position:absolute;top:50%;left:14px;transform:translateY(-50%);
+  background:white;padding:0 5px;color:#666;pointer-events:none;transition:.3s;font-size:13px;
+}
+.input-container textarea + label{top:20px;}
+
+.input-container input:focus,
+.input-container textarea:focus{border-color:#5568ff;box-shadow:0 0 0 4px rgba(85,104,255,.12);}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label,
+.input-container textarea:focus + label,
+.input-container textarea:not(:placeholder-shown) + label{top:-1px;left:12px;font-size:11px;color:#0009DB;}
+
+/* VALIDATION STATES */
+.input-container input.input-error,
+.input-container textarea.input-error{
+  border-color:#ef4444 !important;
+  box-shadow:0 0 0 4px rgba(239,68,68,.1) !important;
+}
+.input-container input.input-success,
+.input-container textarea.input-success{
+  border-color:#10b981 !important;
+  box-shadow:0 0 0 4px rgba(16,185,129,.08) !important;
 }
 
-@media (max-width:767px){
-    .left {
-  padding: 90px 15px;
-  text-align: center;
+/* FIELD ERROR MESSAGE */
+.field-error{
+  display:block;
+  font-size:11.5px;
+  font-weight:500;
+  color:#ef4444;
+  margin-top:6px;
+  padding:4px 10px;
+  background:#fff1f1;
+  border:1px solid #fecaca;
+  border-radius:7px;
+  animation:slideDown .2s ease;
 }
-.left i{
-   font-size:25px;
-   margin-bottom: 10px;
- }
+.field-success{
+  display:block;
+  font-size:11.5px;
+  font-weight:500;
+  color:#10b981;
+  margin-top:6px;
+  padding:4px 10px;
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
+  border-radius:7px;
+  animation:slideDown .2s ease;
+}
+@keyframes slideDown{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
 
- .left .contact{
-   margin: 15px auto;
-   width: 100%;
- }
-.right {
-  padding: 25px;
+/* CHARACTER COUNTER */
+.char-counter{
+  position:absolute;
+  bottom:10px;
+  right:14px;
+  font-size:11px;
+  color:#aaa;
+  pointer-events:none;
+  transition:.2s;
 }
-.right i {
-  top: -52px;
-  transform: rotate(90deg);
-  left: 46%;
+.char-counter.warn{color:#f59e0b;}
+.char-counter.over{color:#ef4444;font-weight:600;}
+
+/* PHONE INPUT */
+.phone-container{position:relative;}
+.country-select{position:absolute;top:7px;left:7px;width:122px;z-index:5;}
+.country-toggle{width:100%;height:34px;border:none;border-radius:8px;background:#eef1ff;padding:0 10px;display:flex;justify-content:space-between;align-items:center;font-family:inherit;font-size:12px;cursor:pointer;color:#0009DB;transition:.3s;}
+.country-toggle:hover{background:#e2e7ff;}
+.country-selected{display:flex;gap:6px;align-items:center;perspective:1000px;}
+.country-flag{width:18px;height:12px;object-fit:cover;border-radius:2px;transform-style:preserve-3d;}
+.country-choice{display:flex;align-items:center;gap:8px;}
+.country-dropdown{top:44px;left:0;width:260px;background:white;border-radius:14px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.1);}
+.country-dropdown[hidden]{display:none;}
+.country-search{width:100%;padding:12px;border:none;border-bottom:1px solid #eee;outline:none;font-family:inherit;font-size:13px;}
+.country-list{list-style:none;max-height:200px;overflow:auto;}
+.country-list li{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:.2s;font-size:13px;}
+.country-list li:hover{background:#f4f6ff;}
+.country-list li strong{font-weight:600;color:#0009DB;}
+.country-code{color:#0009DB;font-weight:600;}
+.phone-container input[type="tel"]{padding-left:138px;}
+.phone-container label{left:144px;}
+.phone-container input[type="tel"]:focus + label,
+.phone-container input[type="tel"]:not(:placeholder-shown) + label{left:12px;}
+
+/* SUBMIT ROW */
+.submit-row{display:flex;align-items:center;justify-content:space-between;margin-top:4px;gap:20px;}
+
+/* CTA SPACE */
+.cta-space{flex:1;position:relative;height:60px;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,rgba(0,9,219,.08),rgba(85,104,255,.06));border:1px solid rgba(0,9,219,.08);display:flex;align-items:center;justify-content:center;}
+.cta-text{position:relative;z-index:3;font-size:12px;font-weight:600;color:#0009DB;letter-spacing:.3px;animation:pulseText 2.5s infinite;}
+@keyframes pulseText{0%{opacity:.6;transform:translateY(0px);}50%{opacity:1;transform:translateY(-2px);}100%{opacity:.6;transform:translateY(0px);}}
+.wave{position:absolute;width:180px;height:180px;border-radius:50%;border:2px solid rgba(0,9,219,.12);animation:ripple 5s linear infinite;}
+.wave2{animation-delay:1.5s;}
+.wave3{animation-delay:3s;}
+@keyframes ripple{0%{transform:scale(.2);opacity:0;}30%{opacity:.4;}100%{transform:scale(1.5);opacity:0;}}
+.floating-icon{position:absolute;font-size:14px;color:#0009DB;opacity:.25;animation:floatIcons 8s linear infinite;}
+.icon1{left:15px;top:18px;}
+.icon2{right:20px;bottom:18px;animation-delay:2s;}
+.icon3{top:10px;right:50%;animation-delay:4s;}
+@keyframes floatIcons{0%{transform:translateY(0px) rotate(0deg);}50%{transform:translateY(-8px) rotate(8deg);}100%{transform:translateY(0px) rotate(0deg);}}
+
+/* BUTTON */
+.form-side .button{
+  --primary:#0009DB;--primary-dark:#2435ff;--primary-darkest:#0007b3;
+  --text:#FFFFFF;--text-opacity:1;--success:#2B3044;--success-scale:.2;--success-opacity:0;
+  --border-radius:7;--rotate:0;--plane-x:0;--plane-y:0;--plane-opacity:1;
+  --left-wing-background:var(--primary);--left-wing-first-x:0;--left-wing-first-y:0;--left-wing-second-x:50;--left-wing-second-y:0;--left-wing-third-x:0;--left-wing-third-y:100;
+  --left-body-background:var(--primary);--left-body-first-x:50;--left-body-first-y:0;--left-body-second-x:50;--left-body-second-y:100;--left-body-third-x:0;--left-body-third-y:100;
+  --right-wing-background:var(--primary);--right-wing-first-x:50;--right-wing-first-y:0;--right-wing-second-x:100;--right-wing-second-y:0;--right-wing-third-x:100;--right-wing-third-y:100;
+  --right-body-background:var(--primary);--right-body-first-x:50;--right-body-first-y:0;--right-body-second-x:50;--right-body-second-y:100;--right-body-third-x:100;--right-body-third-y:100;
+  display:block;cursor:pointer;position:relative;border:0;padding:8px 0;width:105px;
+  text-align:center;line-height:24px;font-family:inherit;font-weight:500;font-size:14px;
+  background:none;outline:none;color:var(--text);
+  transform:rotate(calc(var(--rotate) * 1deg)) translateZ(0);appearance:none;
 }
-    .right button {
-    width: 150px;
-    padding: 12px 0;
-}
-    
+.form-side .button .left,.form-side .button .right{position:absolute;left:0;top:0;right:0;bottom:0;opacity:var(--plane-opacity);transform:translate(calc(var(--plane-x) * 1px),calc(var(--plane-y) * 1px)) translateZ(0);}
+.form-side .button .left:before,.form-side .button .left:after,.form-side .button .right:before,.form-side .button .right:after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;border-radius:calc(var(--border-radius) * 1px);transform:translate(var(--x,0.4%),var(--y,0)) translateZ(0);z-index:var(--z-index,2);background:var(--background,var(--left-wing-background));clip-path:polygon(calc(var(--first-x,var(--left-wing-first-x)) * 1%) calc(var(--first-y,var(--left-wing-first-y)) * 1%),calc(var(--second-x,var(--left-wing-second-x)) * 1%) calc(var(--second-y,var(--left-wing-second-y)) * 1%),calc(var(--third-x,var(--left-wing-third-x)) * 1%) calc(var(--third-y,var(--left-wing-third-y)) * 1%));}
+.form-side .button .left:after{--x:0;--z-index:1;--background:var(--left-body-background);--first-x:var(--left-body-first-x);--first-y:var(--left-body-first-y);--second-x:var(--left-body-second-x);--second-y:var(--left-body-second-y);--third-x:var(--left-body-third-x);--third-y:var(--left-body-third-y);}
+.form-side .button .right:before{--x:-.4%;--z-index:2;--background:var(--right-wing-background);--first-x:var(--right-wing-first-x);--first-y:var(--right-wing-first-y);--second-x:var(--right-wing-second-x);--second-y:var(--right-wing-second-y);--third-x:var(--right-wing-third-x);--third-y:var(--right-wing-third-y);}
+.form-side .button .right:after{--x:0;--z-index:1;--background:var(--right-body-background);--first-x:var(--right-body-first-x);--first-y:var(--right-body-first-y);--second-x:var(--right-body-second-x);--second-y:var(--right-body-second-y);--third-x:var(--right-body-third-x);--third-y:var(--right-body-third-y);}
+.form-side .button span{display:block;position:relative;z-index:4;opacity:var(--text-opacity);}
+.form-side .button span.success{z-index:0;position:absolute;left:0;right:0;top:8px;transform:rotate(calc(var(--rotate) * -1deg)) scale(var(--success-scale)) translateZ(0);opacity:var(--success-opacity);color:var(--success);}
+
+/* SHAKE ANIMATION */
+@keyframes shake{0%,100%{transform:translateX(0);}15%{transform:translateX(-6px);}30%{transform:translateX(6px);}45%{transform:translateX(-5px);}60%{transform:translateX(5px);}75%{transform:translateX(-3px);}90%{transform:translateX(3px);}}
+.shake{animation:shake .45s ease;}
+
+/* RESPONSIVE */
+@media(max-width:850px){
+  .contact-card{flex-direction:column;}
+  .social-side,.form-side{width:100%;}
+  .form-side{padding:35px 24px;}
+  .submit-row{flex-direction:column;align-items:flex-start;}
+  .cta-space{width:100%;}
 }
 
+/* =====================
+   FOOTER
+===================== */
+.footer-wrap {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0 !important;
+}
+
+.footer {
+  background: #0009DB;
+  color: #fff;
+  padding: 40px 32px 28px;
+  border-radius: 16px 16px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.04);
+  top: -130px; right: -90px;
+  pointer-events: none;
+}
+.footer::after {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.03);
+  bottom: -70px; left: -60px;
+  pointer-events: none;
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.footer-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-name {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.footer-tagline {
+  font-size: .85rem;
+  color: rgba(255,255,255,.8);
+  letter-spacing: 0.2px;
+}
+
+.footer-location {
+  font-size: .8rem;
+  color: rgba(255,255,255,.6);
+}
+
+.footer-cta-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: center;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 14px;
+  padding: 18px 22px;
+  min-width: 240px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-cta-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.06) 50%, transparent 65%);
+  background-size: 200% 100%;
+  animation: ctaShimmer 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes ctaShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.footer-cta-code {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  background: rgba(0,0,0,.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.fc-line { display: block; white-space: nowrap; }
+.fc-kw   { color: #79b8ff; }
+.fc-var  { color: #e3e3e3; }
+.fc-op   { color: rgba(255,255,255,.5); }
+.fc-str  { color: #9ecbff; }
+.fc-fn   { color: #b392f0; }
+.fc-semi { color: rgba(255,255,255,.4); }
+.fc-cursor {
+  display: inline-block;
+  width: 2px;
+  color: #fff;
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 1px;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.footer-cta-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-avail-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74,222,128,.5);
+  animation: availPulse 2s ease-out infinite;
+  flex-shrink: 0;
+}
+@keyframes availPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(74,222,128,.55); }
+  60%  { box-shadow: 0 0 0 8px rgba(74,222,128,.0); }
+  100% { box-shadow: 0 0 0 0   rgba(74,222,128,.0); }
+}
+.footer-avail-text {
+  font-size: .75rem;
+  color: rgba(255,255,255,.75);
+  letter-spacing: 0.3px;
+}
+
+.footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #0009DB;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all .25s ease;
+  align-self: flex-start;
+}
+.footer-cta-btn i {
+  font-size: 11px;
+  transition: transform .25s ease;
+}
+.footer-cta-btn:hover {
+  background: #e8ecff;
+  color: #0007b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.2);
+  text-decoration: none;
+}
+.footer-cta-btn:hover i {
+  transform: translateX(4px);
+}
+
+.footer-rule {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,.15);
+  border-radius: 1px;
+}
+
+.footer-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 6px 20px;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  font-size: .78rem;
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  transition: color .2s ease;
+  letter-spacing: 0.3px;
+}
+.footer-nav a:hover {
+  color: #fff;
+}
+
+.footer-note {
+  font-size: .75rem;
+  color: rgba(255,255,255,.4);
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media(max-width: 600px) {
+  .footer-top-row { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer-cta-card { width: 100%; min-width: unset; }
+  .footer-bottom-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .footer-note { align-self: flex-start; }
+  .footer-name { font-size: 1.4rem; }
+}
 
   </style>
   
@@ -788,22 +1176,7 @@ nav li a:hover .nav-icon {
   <div class="container-fluid">
     <div class="col-md-3 info-sidenav">
        <img src="Profile.png" class="sidenav-profile-img"/>
-       
-       <p class="sidenav-headline">AWS Certified Cloud Practitioner <span class="pipe">|</span> UI/UX Designer <span class="pipe">|</span> Front-End Developer <span class="pipe">|</span> Innovator in Web Design & Programming <span class="pipe">|</span> Android Developer</p>
 
-       <div class="social-media-icons">
-          <a href="www.linkedin.com/in/kelvin-ariedi-781128235" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://github.com/Kelvin-Ariedi" data-toggle="tooltip" data-placement="top" title="Github"><i class="fa-brands fa-github"></i></a>
-          <a href="#contact"data-toggle="tooltip" data-placement="top" title="Contact me"><i class="fa-solid fa-envelope-open-text"></i></a>
-       </div>
-
-       <hr>
-       <div class="info-badges">
-         <div class="flex"><span class="badge">Age:</span> <div class="badge-info ">28</div></div>
-         <div class="flex"><span class="badge">Residence:</span> <div class="badge-info ">Kenya</div></div>
-         <div class="flex"><span class="badge">Freelance:</span> <div class="badge-info ">Available</div></div>
-         <div class="flex"><span class="badge">Address:</span> <div class="badge-info ">Limuru,Kenya</div></div>
-       </div>
        
        <hr>
        <h4>Languages</h4>
@@ -912,10 +1285,10 @@ nav li a:hover .nav-icon {
         </div>
       </section>
 
-      <section class="services-section" id="services" >
+      <section class="offerings-section" id="offerings" >
         <div class="section-headline">
-          <h1>My Services</h1>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+          <h1>What I Offer</h1>
+          <p>Services that turn ideas into polished digital products, delivered with clarity and strong user focus.</p>
         </div>
 
         <div class="row">
@@ -938,7 +1311,6 @@ nav li a:hover .nav-icon {
               <h3 class="service-name">Web Development</h3>
               <div class="p">
                 <p>Custom website development using modern frameworks </p>
-                <p>E-commerce website development using platforms like Shopify, WooCommerce, Magento</p>
                 <p>CMS Development</p>
               </div>
           </div>
@@ -1064,11 +1436,11 @@ nav li a:hover .nav-icon {
                 <path d="M366 493.626C359.333 500.159 364 511.626 373.333 511.626C378.8 511.626 384 506.426 384 500.959C384 495.493 378.8 490.293 373.333 490.293C370.8 490.293 368 491.493 366 493.626Z" fill="#0009DB"/>
               </svg>
                 
-                <h3>SEO & Digital Marketing</h3>
+                <h3>SEO</h3>
                 <div class="p">
                   <p>On-page and off-page search engine optimization</p>
                   <p>Keyword research and content optimization</p>
-                  <p>Social Media Marketing (Facebook, Instagram, LinkedIn)</p>
+                  
                 </div>
             </div>
           </div>
@@ -1076,113 +1448,107 @@ nav li a:hover .nav-icon {
 
       </section>
 
-      <section class="education-section" id="education" >
+      <section class="process-section" id="process" >
         <div class="section-headline">
-          <h1>Education</h1>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+          <h1>My Development Process</h1>
+          <p>A personal methodology for creating intuitive, efficient, and reliable software solutions.</p>
         </div>
         <div class="timeline"> 
           <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
             <div class="timeline__event__icon">
-              <img src="data.svg">
-        
+              <img src="img/planning.svg" style="filter: invert(18%) sepia(95%) saturate(1500%) hue-rotate(245deg) brightness(102%) contrast(103%); width: 40px; height: 40px;">
             </div>
             <div class="timeline__event__date">
               1
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Lunch
+                Planning & Requirements
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+                <p>Every project starts with understanding the requirements and defining clear goals. After understanding the objectives we develop a solid foundation.</p>
               </div>
             </div>
           </div>
           <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
             <div class="timeline__event__icon">
-              <img src="data.svg">
-        
+              <img src="img/design.svg" style="filter: invert(18%) sepia(95%) saturate(1500%) hue-rotate(245deg) brightness(102%) contrast(103%); width: 40px; height: 40px;">
             </div>
             <div class="timeline__event__date">
               2
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Lunch
+                Design
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+                <p>Once we have developed the concepts, I will create very user friendly interfaces that are intuitive, modern, simple to use, and effective.</p>
               </div>
             </div>
           </div>
           <div class="timeline__event animated fadeInUp delay-1s timeline__event--type3">
             <div class="timeline__event__icon">
-              <img src="data.svg">
-        
+              <img src="img/coding.svg" style="filter: invert(18%) sepia(95%) saturate(1500%) hue-rotate(245deg) brightness(102%) contrast(103%); width: 40px; height: 40px;">
             </div>
             <div class="timeline__event__date">
               3
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Lunch
+                Development
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+                <p>Next, I will implement the concept using quality coding that is efficient in terms of speed and performance.</p>
               </div>
             </div>
           </div>
           <div class="timeline__event animated fadeInUp timeline__event--type1">
             <div class="timeline__event__icon">
-              <img src="data.svg">
-        
+              <img src="img/debug.svg" style="filter: invert(18%) sepia(95%) saturate(1500%) hue-rotate(245deg) brightness(102%) contrast(103%); width: 40px; height: 40px;">
             </div>
             <div class="timeline__event__date">
               4
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Lunch
+                Testing & QA
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+                <p>Lastly, I will thoroughly test every function for safety and reliability before deploying it.</p>
               </div>
             </div>
           </div>
           
           <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
             <div class="timeline__event__icon">
-              <img src="data.svg">
-        
+              <img src="img/rocket-launch.svg" style="filter: invert(18%) sepia(95%) saturate(1500%) hue-rotate(245deg) brightness(102%) contrast(103%); width: 40px; height: 40px;">
             </div>
             <div class="timeline__event__date">
               5
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Lunch
+                Launch
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+                <p>Assuming that everything is working as planned, the next step will be to release and deploy the software to the users</p>
               </div>
             </div>
           </div>
           
           <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
             <div class="timeline__event__icon">
-              <img src="data.svg">
-        
+              <img src="img/maintainance.svg" style="filter: invert(18%) sepia(95%) saturate(1500%) hue-rotate(245deg) brightness(102%) contrast(103%); width: 40px; height: 40px;">
             </div>
             <div class="timeline__event__date">
               6
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Lunch
+                Maintenance & Support
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <p>
+                <p>Once the application is deployed, we will continue making improvements to the application after completion.</p>
               </div>
             </div>
           </div>
@@ -1193,49 +1559,72 @@ nav li a:hover .nav-icon {
       <section class="experience-section" id="experience" >
         <div class="section-headline">
           <h1>Work History</h1>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+          <p>Professional experience in banking, cloud consulting, digital product design, teaching, and retail operations.</p>
         </div>
+
         <div class="experience-card">
           <div class="row">
             <div class="col-md-4">
-              <h3>Bata Shoe Company Kenya</h3>
-              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">3 yrs</div></div>
+              <h3>NCBA Bank</h3>
+              <div class="flex"><span class="badge">Feb 2024 - Aug 2024</span> <div class="badge-info">Ecosystem Customer Product Advisor</div></div>
             </div>
-            
             <div class="col-md-8">
-              <h2>FrontEnd Developer</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+              <h2>Retail Sales Department</h2>
+              <p>Partnered with marketing, product, and service teams to coordinate market activations and launch new financial solutions with consistent performance. Gathered customer feedback to identify behavior patterns and pain points, then turned insights into improvements for digital platform journeys.</p>
             </div>
           </div>
-        
         </div>
+
         <div class="experience-card">
           <div class="row">
             <div class="col-md-4">
-              <h3>Bata Shoe Company Kenya</h3>
-              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+              <h3>Independent</h3>
+              <div class="flex"><span class="badge">Apr 2023 - Feb 2024</span> <div class="badge-info">Freelance AWS Cloud Consultant</div></div>
             </div>
-            
             <div class="col-md-8">
-              <h2>University of Naiorobi</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+              <h2>Cloud Architecture & Advisory</h2>
+              <p>Designed efficient, cost-conscious AWS cloud environments and ensured clients’ solutions ran smoothly and reliably. Guided clients through technical cloud transitions while focusing on business goals, customer pain points, and easy-to-use adoption.</p>
             </div>
           </div>
-        
         </div>
+
         <div class="experience-card">
           <div class="row">
             <div class="col-md-4">
-              <h3>Bata Shoe Company Kenya</h3>
-              <div class="flex"><span class="badge">Jan 2015  - Dec 2022</span> <div class="badge-info ">Student</div></div>
+              <h3>Corium Connect</h3>
+              <div class="flex"><span class="badge">Sep 2021 - Dec 2022</span> <div class="badge-info">Full-Stack Designer & Marketer</div></div>
             </div>
-            
             <div class="col-md-8">
-              <h2>University of Naiorobi</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet dapibus nibh ut faucibus nunc, egestas id amet porttitor. Pulvinar quisque sed amet, nulla nunc. Eleifend sodales posuere fusce tempus etiam et pellentesque. Molestie risus enim neque eget dui.</p>
+              <h2>Digital Product Design</h2>
+              <p>Owned the full creative process from visual layouts and front-end builds to dynamic marketing experiences. Worked directly with clients to clarify needs, improve usability, and deliver functional, attractive digital interfaces.</p>
             </div>
           </div>
-        
+        </div>
+
+        <div class="experience-card">
+          <div class="row">
+            <div class="col-md-4">
+              <h3>University of Nairobi</h3>
+              <div class="flex"><span class="badge">May 2015 - Aug 2016</span> <div class="badge-info">Teaching Assistant</div></div>
+            </div>
+            <div class="col-md-8">
+              <h2>Department of Computer Science</h2>
+              <p>Mentored students in Data Structures, Algorithms, and OOP. Led weekly study sessions and collaborated with faculty to make technical concepts easier to understand.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Bata Shoe Company Limited</h3>
+              <div class="flex"><span class="badge">2010 - 2013</span> <div class="badge-info">Team Collaborator</div></div>
+            </div>
+            <div class="col-md-8">
+              <h2>Operations & Dispatch</h2>
+              <p>Worked within a fast-paced operational team handling product picking, precise record keeping, and dispatch reporting.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1319,54 +1708,95 @@ nav li a:hover .nav-icon {
         </div>
         <div class="row">
               <!-- CONTACT FORM SECTION START -->
-    <section class="mb-5">
-      <div class="form-area">
-          <div class="container">
-              <div class="row single-form g-0">
-                  <div class="col-sm-12 col-lg-6" style="background: #0009DB;box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); border-radius: 8px;">
-                      <div class="left">
-                        
-                          <div class="contact">
-                            <i class="fa-solid fa-at"></i>
-                            <h3>EMAIL</h3>
-                            <h4>johnsonkelvin022@gmail.com</h4>
-                          </div>
-                        
-                        
-                          <div class="contact">
-                            <i class="fa-solid fa-phone-flip"></i>
-                            <h3>PHONE</h3>
-                            <h4>+254 718813308</h4>
-                          </div>
-                        
-                        
-                          <div class="contact" >
-                            <i class="fa-brands fa-linkedin-in"></i>
-                            <h3>LINKEDIN</h3>
-                            <h4>johnsonkelvin022@gmail.com</h4>
-                          </div>
-                        
-                      </div>
-                  </div>
-                  <div class="col-sm-12 col-lg-6 contact-form">
-                      <div class="right">
-                      <i class="fa fa-caret-left"></i>
-                      
-                        <h4>Send Me A Message</h4>
-                        <form action="#">
-                          <input type="text" name="Name" id="name" required placeholder="Name">
-                          <input type="email" name="Email" id="email" required placeholder="Email">
-                          <textarea name="Message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                          <input type="submit" value="Send">
-                        </form>
-                      
-                          
-                      
-                  </div>
-              </div>
-          </div>
+ <div class="blob blob1"></div>
+<div class="blob blob2"></div>
+
+<div class="contact-card">
+
+  <!-- LEFT SIDE -->
+  <div class="social-side">
+    <h1>Let's Connect</h1>
+    <p>Have a project or idea in mind?<br>Reach out and let's build something amazing.</p>
+    <div class="social-icons">
+      <a href="#" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" data-tooltip="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" data-tooltip="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a href="tel:+254700000000" data-tooltip="Phone"><i class="fas fa-phone"></i></a>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="form-side">
+    <h2>Send a Message</h2>
+    <p class="subtitle">Fill the form below and I'll get back to you shortly.</p>
+
+    <form id="contactForm" novalidate>
+
+      <!-- NAME -->
+      <div class="input-container" id="wrap-name">
+        <input type="text" id="input-name" placeholder=" " autocomplete="name">
+        <label for="input-name">Your Name</label>
       </div>
-  </section>
+
+      <!-- EMAIL -->
+      <div class="input-container" id="wrap-email">
+        <input type="email" id="input-email" placeholder=" " autocomplete="email">
+        <label for="input-email">Your Email</label>
+      </div>
+
+      <!-- PHONE -->
+      <div class="input-container phone-container" id="wrap-phone">
+        <div class="country-select">
+          <button type="button" class="country-toggle" aria-expanded="false">
+            <span class="country-selected">
+              <img class="country-flag" src="img/country-code-flag-images/KE.png" alt="Kenya flag">
+              <span class="country-name-display">Kenya</span>
+              <span class="country-code-display">+254</span>
+            </span>
+            <span>▾</span>
+          </button>
+          <div class="country-dropdown" hidden>
+            <input type="text" class="country-search" placeholder="Search country...">
+            <ul class="country-list"></ul>
+          </div>
+        </div>
+        <input type="hidden" name="country-code" value="+254">
+        <input type="tel" id="input-phone" placeholder=" " autocomplete="tel">
+        <label for="input-phone">Your Phone</label>
+      </div>
+
+      <!-- MESSAGE -->
+      <div class="input-container" id="wrap-message" style="position:relative;">
+        <textarea id="input-message" placeholder=" " maxlength="1000"></textarea>
+        <label for="input-message">Your Message</label>
+        <span class="char-counter" id="char-counter">0 / 1000</span>
+      </div>
+
+      <!-- SUBMIT ROW -->
+      <div class="submit-row">
+        <button class="button" type="submit" id="submitBtn">
+          <span class="default">Send</span>
+          <span class="success">Sent</span>
+          <div class="left"></div>
+          <div class="right"></div>
+        </button>
+
+        <div class="cta-space">
+          <div class="wave"></div>
+          <div class="wave wave2"></div>
+          <div class="wave wave3"></div>
+          <i class="fas fa-paper-plane floating-icon icon1"></i>
+          <i class="fas fa-star floating-icon icon2"></i>
+          <i class="fas fa-bolt floating-icon icon3"></i>
+          <div class="cta-text">Building Digital Experiences</div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
   <!-- CONTACT FORM SECTION CLOSE -->
 
         </div>
@@ -1374,16 +1804,61 @@ nav li a:hover .nav-icon {
 
       </section>
 
-      <div class=" container-fluid row footer" >
-        <p>&copy; 2024 Kelvin Ariedi. All rights reserved.</p>
+      <div class="footer-wrap">
+        <footer class="footer">
+          <div class="footer-inner">
+
+            <!-- Top row: identity left, CTA card right -->
+            <div class="footer-top-row">
+              <div class="footer-copy">
+                <div class="footer-name">Kelvin Ariedi</div>
+                <div class="footer-tagline">AWS Cloud Practitioner &middot; UI/UX Designer &middot; Full-Stack Developer</div>
+                <div class="footer-location">📍 Nairobi, Kenya &nbsp;|&nbsp; Available for freelance</div>
+              </div>
+
+              <!-- Creative CTA replacing social icons -->
+              <div class="footer-cta-card">
+                <div class="footer-cta-code">
+                  <span class="fc-line"><span class="fc-kw">const</span> <span class="fc-var">project</span> <span class="fc-op">=</span> <span class="fc-str">"yours"</span><span class="fc-semi">;</span></span>
+                  <span class="fc-line"><span class="fc-kw">await</span> <span class="fc-fn">kelvin</span><span class="fc-op">.</span><span class="fc-fn">build</span><span class="fc-op">(</span><span class="fc-var">project</span><span class="fc-op">)</span><span class="fc-semi">;</span><span class="fc-cursor">|</span></span>
+                </div>
+                <div class="footer-cta-status">
+                  <span class="footer-avail-dot"></span>
+                  <span class="footer-avail-text">Open to work</span>
+                </div>
+                <a href="#contact" class="footer-cta-btn">
+                  Let's build something <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="footer-rule"></div>
+
+            <!-- Bottom row: nav links + copyright -->
+            <div class="footer-bottom-row">
+              <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="#home">Home</a>
+                <a href="#offerings">Services</a>
+                <a href="#process">Process</a>
+                <a href="#experience">Experience</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Contact</a>
+              </nav>
+              <p class="footer-note">&copy; 2024 Kelvin Ariedi. All rights reserved.</p>
+            </div>
+
+          </div>
+        </footer>
       </div>
     </div>
     <div class="col-md-1 navigation-menu">
       <nav>
         <ul>
           <li><a href="#home" class="link active"><i class="fa-solid fa-person-rays nav-icon"></i></a></li>
-          <li><a href="#services" class="link"><i class="fa-solid fa-puzzle-piece nav-icon"></i></a></li>
-          <li><a href="#education" class="link"><i class="fa-solid fa-user-graduate nav-icon"></i></a></li>
+          <li><a href="#offerings" class="link"><i class="fa-solid fa-puzzle-piece nav-icon"></i></a></li>
+          <li><a href="#process" class="link"><i class="fa-solid fa-code nav-icon"></i></a></li>
           <li><a href="#experience" class="link"><i class="fa-solid fa-business-time nav-icon"></i></a></li>
           <li><a href="#portfolio" class="link"><i class="fa-solid fa-microchip nav-icon"></i></a></li>
           <li><a href="#contact" class="link"><i class="fa-solid fa-phone-volume nav-icon"></i></a></li>
@@ -1483,8 +1958,762 @@ document.addEventListener('DOMContentLoaded', function () {
   sections.forEach(section => {
     observer.observe(section);
   });
+
+  const hireMeButton = document.getElementById('hireme-button');
+  const contactSection = document.getElementById('contact');
+  const contactCard = document.querySelector('.contact-card');
+  const nameInput = document.getElementById('input-name');
+  const animationContainer = document.querySelector('.animation-container');
+
+  function pulseCircles() {
+    if (!animationContainer) return;
+    animationContainer.classList.add('pulse-fast');
+    setTimeout(() => {
+      animationContainer.classList.remove('pulse-fast');
+    }, 700);
+  }
+
+  function activateHoverPulse() {
+    if (animationContainer) animationContainer.classList.add('pulse-fast');
+    if (hireMeButton) hireMeButton.classList.add('pulse-hover');
+  }
+
+  function deactivateHoverPulse() {
+    if (animationContainer) animationContainer.classList.remove('pulse-fast');
+    if (hireMeButton) hireMeButton.classList.remove('pulse-hover');
+  }
+
+  function animateContactCard() {
+    if (!contactCard) return;
+    contactCard.classList.remove('fade-slide-in');
+    void contactCard.offsetWidth;
+    contactCard.classList.add('fade-slide-in');
+  }
+
+  function scrollToContact() {
+    if (!contactSection) return;
+    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function focusNameField() {
+    if (!nameInput) return;
+    nameInput.focus({ preventScroll: true });
+  }
+
+  if (hireMeButton) {
+    hireMeButton.addEventListener('mouseover', activateHoverPulse);
+    hireMeButton.addEventListener('mouseout', deactivateHoverPulse);
+    hireMeButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      pulseCircles();
+      animateContactCard();
+      scrollToContact();
+      setTimeout(focusNameField, 650);
+    });
+  }
 });
 
+</script>
+<script>
+/* =============================================
+   COUNTRIES DATA
+============================================= */
+const countries = [
+  { name: 'Afghanistan', code: '+93', iso: 'AF' },
+  { name: 'Albania', code: '+355', iso: 'AL' },
+  { name: 'Algeria', code: '+213', iso: 'DZ' },
+  { name: 'Andorra', code: '+376', iso: 'AD' },
+  { name: 'Angola', code: '+244', iso: 'AO' },
+  { name: 'Anguilla', code: '+1-264', iso: 'AI' },
+  { name: 'Antigua and Barbuda', code: '+1-268', iso: 'AG' },
+  { name: 'Argentina', code: '+54', iso: 'AR' },
+  { name: 'Armenia', code: '+374', iso: 'AM' },
+  { name: 'Aruba', code: '+297', iso: 'AW' },
+  { name: 'Australia', code: '+61', iso: 'AU' },
+  { name: 'Austria', code: '+43', iso: 'AT' },
+  { name: 'Azerbaijan', code: '+994', iso: 'AZ' },
+  { name: 'Bahamas', code: '+1-242', iso: 'BS' },
+  { name: 'Bahrain', code: '+973', iso: 'BH' },
+  { name: 'Bangladesh', code: '+880', iso: 'BD' },
+  { name: 'Barbados', code: '+1-246', iso: 'BB' },
+  { name: 'Belarus', code: '+375', iso: 'BY' },
+  { name: 'Belgium', code: '+32', iso: 'BE' },
+  { name: 'Belize', code: '+501', iso: 'BZ' },
+  { name: 'Benin', code: '+229', iso: 'BJ' },
+  { name: 'Bermuda', code: '+1-441', iso: 'BM' },
+  { name: 'Bhutan', code: '+975', iso: 'BT' },
+  { name: 'Bolivia', code: '+591', iso: 'BO' },
+  { name: 'Bosnia and Herzegovina', code: '+387', iso: 'BA' },
+  { name: 'Botswana', code: '+267', iso: 'BW' },
+  { name: 'Brazil', code: '+55', iso: 'BR' },
+  { name: 'British Indian Ocean Territory', code: '+246', iso: 'IO' },
+  { name: 'Brunei', code: '+673', iso: 'BN' },
+  { name: 'Bulgaria', code: '+359', iso: 'BG' },
+  { name: 'Burkina Faso', code: '+226', iso: 'BF' },
+  { name: 'Burundi', code: '+257', iso: 'BI' },
+  { name: 'Cambodia', code: '+855', iso: 'KH' },
+  { name: 'Cameroon', code: '+237', iso: 'CM' },
+  { name: 'Canada', code: '+1', iso: 'CA' },
+  { name: 'Cape Verde', code: '+238', iso: 'CV' },
+  { name: 'Cayman Islands', code: '+1-345', iso: 'KY' },
+  { name: 'Central African Republic', code: '+236', iso: 'CF' },
+  { name: 'Chad', code: '+235', iso: 'TD' },
+  { name: 'Chile', code: '+56', iso: 'CL' },
+  { name: 'China', code: '+86', iso: 'CN' },
+  { name: 'Colombia', code: '+57', iso: 'CO' },
+  { name: 'Comoros', code: '+269', iso: 'KM' },
+  { name: 'Congo', code: '+242', iso: 'CG' },
+  { name: 'Costa Rica', code: '+506', iso: 'CR' },
+  { name: 'Croatia', code: '+385', iso: 'HR' },
+  { name: 'Cuba', code: '+53', iso: 'CU' },
+  { name: 'Curaçao', code: '+599', iso: 'CW' },
+  { name: 'Cyprus', code: '+357', iso: 'CY' },
+  { name: 'Czech Republic', code: '+420', iso: 'CZ' },
+  { name: 'Denmark', code: '+45', iso: 'DK' },
+  { name: 'Djibouti', code: '+253', iso: 'DJ' },
+  { name: 'Dominica', code: '+1-767', iso: 'DM' },
+  { name: 'Dominican Republic', code: '+1-809', iso: 'DO' },
+  { name: 'Ecuador', code: '+593', iso: 'EC' },
+  { name: 'Egypt', code: '+20', iso: 'EG' },
+  { name: 'El Salvador', code: '+503', iso: 'SV' },
+  { name: 'Equatorial Guinea', code: '+240', iso: 'GQ' },
+  { name: 'Eritrea', code: '+291', iso: 'ER' },
+  { name: 'Estonia', code: '+372', iso: 'EE' },
+  { name: 'Eswatini', code: '+268', iso: 'SZ' },
+  { name: 'Ethiopia', code: '+251', iso: 'ET' },
+  { name: 'Faroe Islands', code: '+298', iso: 'FO' },
+  { name: 'Fiji', code: '+679', iso: 'FJ' },
+  { name: 'Finland', code: '+358', iso: 'FI' },
+  { name: 'France', code: '+33', iso: 'FR' },
+  { name: 'French Guiana', code: '+594', iso: 'GF' },
+  { name: 'French Polynesia', code: '+689', iso: 'PF' },
+  { name: 'Gabon', code: '+241', iso: 'GA' },
+  { name: 'Gambia', code: '+220', iso: 'GM' },
+  { name: 'Georgia', code: '+995', iso: 'GE' },
+  { name: 'Germany', code: '+49', iso: 'DE' },
+  { name: 'Ghana', code: '+233', iso: 'GH' },
+  { name: 'Gibraltar', code: '+350', iso: 'GI' },
+  { name: 'Greece', code: '+30', iso: 'GR' },
+  { name: 'Greenland', code: '+299', iso: 'GL' },
+  { name: 'Grenada', code: '+1-473', iso: 'GD' },
+  { name: 'Guadeloupe', code: '+590', iso: 'GP' },
+  { name: 'Guam', code: '+1-671', iso: 'GU' },
+  { name: 'Guatemala', code: '+502', iso: 'GT' },
+  { name: 'Guernsey', code: '+44', iso: 'GG' },
+  { name: 'Guinea', code: '+224', iso: 'GN' },
+  { name: 'Guinea-Bissau', code: '+245', iso: 'GW' },
+  { name: 'Guyana', code: '+592', iso: 'GY' },
+  { name: 'Haiti', code: '+509', iso: 'HT' },
+  { name: 'Honduras', code: '+504', iso: 'HN' },
+  { name: 'Hong Kong', code: '+852', iso: 'HK' },
+  { name: 'Hungary', code: '+36', iso: 'HU' },
+  { name: 'Iceland', code: '+354', iso: 'IS' },
+  { name: 'India', code: '+91', iso: 'IN' },
+  { name: 'Indonesia', code: '+62', iso: 'ID' },
+  { name: 'Iran', code: '+98', iso: 'IR' },
+  { name: 'Iraq', code: '+964', iso: 'IQ' },
+  { name: 'Ireland', code: '+353', iso: 'IE' },
+  { name: 'Isle of Man', code: '+44', iso: 'IM' },
+  { name: 'Israel', code: '+972', iso: 'IL' },
+  { name: 'Italy', code: '+39', iso: 'IT' },
+  { name: 'Ivory Coast', code: '+225', iso: 'CI' },
+  { name: 'Jamaica', code: '+1-876', iso: 'JM' },
+  { name: 'Japan', code: '+81', iso: 'JP' },
+  { name: 'Jersey', code: '+44', iso: 'JE' },
+  { name: 'Jordan', code: '+962', iso: 'JO' },
+  { name: 'Kazakhstan', code: '+7', iso: 'KZ' },
+  { name: 'Kenya', code: '+254', iso: 'KE' },
+  { name: 'Kiribati', code: '+686', iso: 'KI' },
+  { name: 'Kosovo', code: '+383', iso: 'XK' },
+  { name: 'Kuwait', code: '+965', iso: 'KW' },
+  { name: 'Kyrgyzstan', code: '+996', iso: 'KG' },
+  { name: 'Laos', code: '+856', iso: 'LA' },
+  { name: 'Latvia', code: '+371', iso: 'LV' },
+  { name: 'Lebanon', code: '+961', iso: 'LB' },
+  { name: 'Lesotho', code: '+266', iso: 'LS' },
+  { name: 'Liberia', code: '+231', iso: 'LR' },
+  { name: 'Libya', code: '+218', iso: 'LY' },
+  { name: 'Liechtenstein', code: '+423', iso: 'LI' },
+  { name: 'Lithuania', code: '+370', iso: 'LT' },
+  { name: 'Luxembourg', code: '+352', iso: 'LU' },
+  { name: 'Macao', code: '+853', iso: 'MO' },
+  { name: 'Madagascar', code: '+261', iso: 'MG' },
+  { name: 'Malawi', code: '+265', iso: 'MW' },
+  { name: 'Malaysia', code: '+60', iso: 'MY' },
+  { name: 'Maldives', code: '+960', iso: 'MV' },
+  { name: 'Mali', code: '+223', iso: 'ML' },
+  { name: 'Malta', code: '+356', iso: 'MT' },
+  { name: 'Marshall Islands', code: '+692', iso: 'MH' },
+  { name: 'Martinique', code: '+596', iso: 'MQ' },
+  { name: 'Mauritania', code: '+222', iso: 'MR' },
+  { name: 'Mauritius', code: '+230', iso: 'MU' },
+  { name: 'Mayotte', code: '+262', iso: 'YT' },
+  { name: 'Mexico', code: '+52', iso: 'MX' },
+  { name: 'Micronesia', code: '+691', iso: 'FM' },
+  { name: 'Moldova', code: '+373', iso: 'MD' },
+  { name: 'Monaco', code: '+377', iso: 'MC' },
+  { name: 'Mongolia', code: '+976', iso: 'MN' },
+  { name: 'Montenegro', code: '+382', iso: 'ME' },
+  { name: 'Montserrat', code: '+1-664', iso: 'MS' },
+  { name: 'Morocco', code: '+212', iso: 'MA' },
+  { name: 'Mozambique', code: '+258', iso: 'MZ' },
+  { name: 'Myanmar', code: '+95', iso: 'MM' },
+  { name: 'Namibia', code: '+264', iso: 'NA' },
+  { name: 'Nauru', code: '+674', iso: 'NR' },
+  { name: 'Nepal', code: '+977', iso: 'NP' },
+  { name: 'Netherlands', code: '+31', iso: 'NL' },
+  { name: 'New Caledonia', code: '+687', iso: 'NC' },
+  { name: 'New Zealand', code: '+64', iso: 'NZ' },
+  { name: 'Nicaragua', code: '+505', iso: 'NI' },
+  { name: 'Niger', code: '+227', iso: 'NE' },
+  { name: 'Nigeria', code: '+234', iso: 'NG' },
+  { name: 'Niue', code: '+683', iso: 'NU' },
+  { name: 'Norfolk Island', code: '+672', iso: 'NF' },
+  { name: 'North Korea', code: '+850', iso: 'KP' },
+  { name: 'North Macedonia', code: '+389', iso: 'MK' },
+  { name: 'Northern Mariana Islands', code: '+1-670', iso: 'MP' },
+  { name: 'Norway', code: '+47', iso: 'NO' },
+  { name: 'Oman', code: '+968', iso: 'OM' },
+  { name: 'Pakistan', code: '+92', iso: 'PK' },
+  { name: 'Palau', code: '+680', iso: 'PW' },
+  { name: 'Palestine', code: '+970', iso: 'PS' },
+  { name: 'Panama', code: '+507', iso: 'PA' },
+  { name: 'Papua New Guinea', code: '+675', iso: 'PG' },
+  { name: 'Paraguay', code: '+595', iso: 'PY' },
+  { name: 'Peru', code: '+51', iso: 'PE' },
+  { name: 'Philippines', code: '+63', iso: 'PH' },
+  { name: 'Poland', code: '+48', iso: 'PL' },
+  { name: 'Portugal', code: '+351', iso: 'PT' },
+  { name: 'Puerto Rico', code: '+1-787', iso: 'PR' },
+  { name: 'Qatar', code: '+974', iso: 'QA' },
+  { name: 'Réunion', code: '+262', iso: 'RE' },
+  { name: 'Romania', code: '+40', iso: 'RO' },
+  { name: 'Russia', code: '+7', iso: 'RU' },
+  { name: 'Rwanda', code: '+250', iso: 'RW' },
+  { name: 'Saint Barthélemy', code: '+590', iso: 'BL' },
+  { name: 'Saint Helena', code: '+290', iso: 'SH' },
+  { name: 'Saint Kitts and Nevis', code: '+1-869', iso: 'KN' },
+  { name: 'Saint Lucia', code: '+1-758', iso: 'LC' },
+  { name: 'Saint Martin', code: '+590', iso: 'MF' },
+  { name: 'Saint Pierre and Miquelon', code: '+508', iso: 'PM' },
+  { name: 'Saint Vincent and the Grenadines', code: '+1-784', iso: 'VC' },
+  { name: 'Samoa', code: '+685', iso: 'WS' },
+  { name: 'San Marino', code: '+378', iso: 'SM' },
+  { name: 'Sao Tome and Príncipe', code: '+239', iso: 'ST' },
+  { name: 'Saudi Arabia', code: '+966', iso: 'SA' },
+  { name: 'Senegal', code: '+221', iso: 'SN' },
+  { name: 'Serbia', code: '+381', iso: 'RS' },
+  { name: 'Seychelles', code: '+248', iso: 'SC' },
+  { name: 'Sierra Leone', code: '+232', iso: 'SL' },
+  { name: 'Singapore', code: '+65', iso: 'SG' },
+  { name: 'Sint Maarten', code: '+1-721', iso: 'SX' },
+  { name: 'Slovakia', code: '+421', iso: 'SK' },
+  { name: 'Slovenia', code: '+386', iso: 'SI' },
+  { name: 'Solomon Islands', code: '+677', iso: 'SB' },
+  { name: 'Somalia', code: '+252', iso: 'SO' },
+  { name: 'South Africa', code: '+27', iso: 'ZA' },
+  { name: 'South Georgia and the South Sandwich Islands', code: '+500', iso: 'GS' },
+  { name: 'South Korea', code: '+82', iso: 'KR' },
+  { name: 'South Sudan', code: '+211', iso: 'SS' },
+  { name: 'Spain', code: '+34', iso: 'ES' },
+  { name: 'Sri Lanka', code: '+94', iso: 'LK' },
+  { name: 'Sudan', code: '+249', iso: 'SD' },
+  { name: 'Suriname', code: '+597', iso: 'SR' },
+  { name: 'Svalbard and Jan Mayen', code: '+47', iso: 'SJ' },
+  { name: 'Sweden', code: '+46', iso: 'SE' },
+  { name: 'Switzerland', code: '+41', iso: 'CH' },
+  { name: 'Syria', code: '+963', iso: 'SY' },
+  { name: 'Taiwan', code: '+886', iso: 'TW' },
+  { name: 'Tajikistan', code: '+992', iso: 'TJ' },
+  { name: 'Tanzania', code: '+255', iso: 'TZ' },
+  { name: 'Thailand', code: '+66', iso: 'TH' },
+  { name: 'Timor-Leste', code: '+670', iso: 'TL' },
+  { name: 'Togo', code: '+228', iso: 'TG' },
+  { name: 'Tokelau', code: '+690', iso: 'TK' },
+  { name: 'Tonga', code: '+676', iso: 'TO' },
+  { name: 'Trinidad and Tobago', code: '+1-868', iso: 'TT' },
+  { name: 'Tunisia', code: '+216', iso: 'TN' },
+  { name: 'Turkey', code: '+90', iso: 'TR' },
+  { name: 'Turkmenistan', code: '+993', iso: 'TM' },
+  { name: 'Turks and Caicos Islands', code: '+1-649', iso: 'TC' },
+  { name: 'Tuvalu', code: '+688', iso: 'TV' },
+  { name: 'Uganda', code: '+256', iso: 'UG' },
+  { name: 'Ukraine', code: '+380', iso: 'UA' },
+  { name: 'United Arab Emirates', code: '+971', iso: 'AE' },
+  { name: 'United Kingdom', code: '+44', iso: 'GB' },
+  { name: 'United States', code: '+1', iso: 'US' },
+  { name: 'Uruguay', code: '+598', iso: 'UY' },
+  { name: 'Uzbekistan', code: '+998', iso: 'UZ' },
+  { name: 'Vanuatu', code: '+678', iso: 'VU' },
+  { name: 'Vatican City', code: '+379', iso: 'VA' },
+  { name: 'Venezuela', code: '+58', iso: 'VE' },
+  { name: 'Vietnam', code: '+84', iso: 'VN' },
+  { name: 'Virgin Islands (British)', code: '+1-284', iso: 'VG' },
+  { name: 'Virgin Islands (U.S.)', code: '+1-340', iso: 'VI' },
+  { name: 'Wallis and Futuna', code: '+681', iso: 'WF' },
+  { name: 'Western Sahara', code: '+212', iso: 'EH' },
+  { name: 'Yemen', code: '+967', iso: 'YE' },
+  { name: 'Zambia', code: '+260', iso: 'ZM' },
+  { name: 'Zimbabwe', code: '+263', iso: 'ZW' }
+];
+
+/* =============================================
+   VALIDATION HELPERS
+============================================= */
+
+// Track which fields have been interacted with (for on-input UX)
+const touched = { name: false, email: false, phone: false, message: false };
+
+function showError(wrapId, inputEl, message) {
+  const wrap = document.getElementById(wrapId);
+  inputEl.classList.remove('input-success');
+  inputEl.classList.add('input-error');
+  // Remove old feedback
+  const old = wrap.querySelector('.field-error, .field-success');
+  if (old) old.remove();
+  // Insert new
+  const span = document.createElement('span');
+  span.className = 'field-error';
+  span.textContent = message;
+  wrap.appendChild(span);
+}
+
+function showSuccess(wrapId, inputEl, message) {
+  const wrap = document.getElementById(wrapId);
+  inputEl.classList.remove('input-error');
+  inputEl.classList.add('input-success');
+  const old = wrap.querySelector('.field-error, .field-success');
+  if (old) old.remove();
+  if (message) {
+    const span = document.createElement('span');
+    span.className = 'field-success';
+    span.textContent = message;
+    wrap.appendChild(span);
+  }
+}
+
+function clearFeedback(wrapId, inputEl) {
+  const wrap = document.getElementById(wrapId);
+  inputEl.classList.remove('input-error', 'input-success');
+  const old = wrap.querySelector('.field-error, .field-success');
+  if (old) old.remove();
+}
+
+/* =============================================
+   FIELD VALIDATORS — return true if valid
+============================================= */
+
+function validateName() {
+  const el = document.getElementById('input-name');
+  const val = el.value.trim();
+  if (!val) {
+    showError('wrap-name', el, 'Name is required.');
+    return false;
+  }
+  if (val.length < 2) {
+    showError('wrap-name', el, 'Name must be at least 2 characters.');
+    return false;
+  }
+  if (val.length > 80) {
+    showError('wrap-name', el, 'Name must be under 80 characters.');
+    return false;
+  }
+  if (!/^[a-zA-ZÀ-ÿ\s'\-\.]+$/.test(val)) {
+    showError('wrap-name', el, 'Name can only contain letters, spaces, hyphens, or apostrophes.');
+    return false;
+  }
+  showSuccess('wrap-name', el, '');
+  return true;
+}
+
+function validateEmail() {
+  const el = document.getElementById('input-email');
+  const val = el.value.trim();
+  if (!val) {
+    showError('wrap-email', el, 'Email address is required.');
+    return false;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!emailRegex.test(val)) {
+    showError('wrap-email', el, 'Please enter a valid email address.');
+    return false;
+  }
+  showSuccess('wrap-email', el, '');
+  return true;
+}
+
+function validatePhone() {
+  const el = document.getElementById('input-phone');
+  const val = el.value.trim();
+  const countryCode = document.querySelector('input[name="country-code"]').value;
+
+  if (!val) {
+    showError('wrap-phone', el, 'Phone number is required.');
+    return false;
+  }
+
+  // Try libphonenumber first
+  try {
+    const country = countries.find(c => c.code === countryCode);
+    if (country) {
+      const parsed = libphonenumber.parsePhoneNumber(val, country.iso);
+      if (parsed && parsed.isValid()) {
+        showSuccess('wrap-phone', el, 'Valid number ✓');
+        return true;
+      } else if (parsed && parsed.isPossible()) {
+        showError('wrap-phone', el, 'Number looks incomplete for ' + country.name + '.');
+        return false;
+      } else {
+        showError('wrap-phone', el, 'Invalid number for ' + country.name + '.');
+        return false;
+      }
+    }
+  } catch (e) {
+    // Fallback: digit count check
+  }
+
+  const digits = val.replace(/\D/g, '');
+  if (digits.length < 6) {
+    showError('wrap-phone', el, 'Phone number is too short.');
+    return false;
+  }
+  if (digits.length > 15) {
+    showError('wrap-phone', el, 'Phone number is too long.');
+    return false;
+  }
+  showSuccess('wrap-phone', el, 'Number looks valid ✓');
+  return true;
+}
+
+function validateMessage() {
+  const el = document.getElementById('input-message');
+  const val = el.value.trim();
+  if (!val) {
+    showError('wrap-message', el, 'Message is required.');
+    return false;
+  }
+  if (val.length < 10) {
+    showError('wrap-message', el, `Message is too short — please write at least 10 characters (${val.length} so far).`);
+    return false;
+  }
+  if (val.length > 1000) {
+    showError('wrap-message', el, 'Message cannot exceed 1000 characters.');
+    return false;
+  }
+  showSuccess('wrap-message', el, '');
+  return true;
+}
+
+/* =============================================
+   ON-INPUT LISTENERS (only fire after first touch)
+============================================= */
+
+document.getElementById('input-name').addEventListener('input', () => {
+  touched.name = true;
+  validateName();
+});
+document.getElementById('input-name').addEventListener('blur', () => {
+  touched.name = true;
+  validateName();
+});
+
+document.getElementById('input-email').addEventListener('input', () => {
+  touched.email = true;
+  validateEmail();
+});
+document.getElementById('input-email').addEventListener('blur', () => {
+  touched.email = true;
+  validateEmail();
+});
+
+const phoneInput = document.getElementById('input-phone');
+
+phoneInput.addEventListener('input', (e) => {
+  touched.phone = true;
+  // Format number on input
+  const countryCode = document.querySelector('input[name="country-code"]').value;
+  const formatted = formatPhoneNumber(e.target.value, countryCode);
+  if (formatted !== e.target.value) e.target.value = formatted;
+  // Debounce validation slightly for phone
+  clearTimeout(phoneInput._vTimeout);
+  phoneInput._vTimeout = setTimeout(validatePhone, 400);
+});
+phoneInput.addEventListener('blur', () => {
+  touched.phone = true;
+  validatePhone();
+});
+
+const messageEl = document.getElementById('input-message');
+const charCounter = document.getElementById('char-counter');
+
+messageEl.addEventListener('input', () => {
+  touched.message = true;
+  const len = messageEl.value.length;
+  charCounter.textContent = `${len} / 1000`;
+  charCounter.className = 'char-counter' + (len > 950 ? ' over' : len > 800 ? ' warn' : '');
+  validateMessage();
+});
+messageEl.addEventListener('blur', () => {
+  touched.message = true;
+  validateMessage();
+});
+
+/* =============================================
+   PHONE FORMATTING
+============================================= */
+
+function formatPhoneNumber(value, countryCode) {
+  const digits = value.replace(/\D/g, '');
+  const patterns = {
+    '+1':   d => d.length >= 10 ? `${d.slice(0,3)}-${d.slice(3,6)}-${d.slice(6,10)}` : d,
+    '+44':  d => d.length >= 10 ? `${d.slice(0,2)} ${d.slice(2,6)} ${d.slice(6,10)}` : d,
+    '+254': d => d.length >= 9  ? `${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,9)}` : d,
+    '+91':  d => d.length >= 10 ? `${d.slice(0,5)} ${d.slice(5,10)}` : d,
+    '+33':  d => d.length >= 9  ? `${d.slice(0,1)} ${d.slice(1,3)} ${d.slice(3,5)} ${d.slice(5,7)} ${d.slice(7,9)}` : d,
+    '+49':  d => d.length >= 10 ? `${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6,10)}` : d,
+  };
+  const fn = patterns[countryCode];
+  return fn ? fn(digits) : value;
+}
+
+/* =============================================
+   COUNTRY SELECT
+============================================= */
+
+const countrySelect    = document.querySelector('.country-select');
+const toggle           = document.querySelector('.country-toggle');
+const dropdown         = document.querySelector('.country-dropdown');
+const search           = document.querySelector('.country-search');
+const list             = document.querySelector('.country-list');
+const countryNameDisplay = countrySelect.querySelector('.country-name-display');
+const countryCodeDisplay = countrySelect.querySelector('.country-code-display');
+const countryFlag      = countrySelect.querySelector('.country-toggle img.country-flag');
+const hiddenCountryCode = document.querySelector('input[name="country-code"]');
+
+let selectedIndex = -1;
+let filteredCountries = [];
+
+function selectCountry(country) {
+  const flagPath = `img/country-code-flag-images/${country.iso}.png`;
+  gsap.to(countryFlag, { rotationY: 360, opacity: 0.5, duration: 0.3, onComplete: () => {
+    countryFlag.src = flagPath;
+    countryFlag.alt = `${country.name} flag`;
+    gsap.to(countryFlag, { rotationY: 0, opacity: 1, duration: 0.3 });
+  }});
+  gsap.to(countryNameDisplay, { opacity: 0, duration: 0.15, onComplete: () => {
+    countryNameDisplay.textContent = country.name;
+    gsap.to(countryNameDisplay, { opacity: 1, duration: 0.15 });
+  }});
+  gsap.to(countryCodeDisplay, { opacity: 0, duration: 0.15, onComplete: () => {
+    countryCodeDisplay.textContent = country.code;
+    gsap.to(countryCodeDisplay, { opacity: 1, duration: 0.15 });
+  }});
+  hiddenCountryCode.value = country.code;
+  // Re-validate phone if touched
+  if (touched.phone) setTimeout(validatePhone, 50);
+  gsap.to(dropdown, { opacity: 0, duration: 0.2, onComplete: () => { dropdown.hidden = true; gsap.set(dropdown, { opacity: 1 }); }});
+  search.value = '';
+  selectedIndex = -1;
+}
+
+function highlightMatch(text, query) {
+  if (!query) return text;
+  return text.replace(new RegExp(`(${query})`, 'gi'), '<strong>$1</strong>');
+}
+
+function renderCountries(filter = '') {
+  const query = filter.toLowerCase();
+  selectedIndex = -1;
+  list.innerHTML = '';
+  filteredCountries = countries.filter(c => (c.name + c.code).toLowerCase().includes(query));
+  filteredCountries.forEach((country, index) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span class="country-choice">
+        <img class="country-flag" src="img/country-code-flag-images/${country.iso}.png" alt="${country.name} flag">
+        <span>${highlightMatch(country.name, query)}</span>
+      </span>
+      <span class="country-code">${highlightMatch(country.code, query)}</span>
+    `;
+    li.addEventListener('click', () => selectCountry(country));
+    li.addEventListener('mouseenter', () => { selectedIndex = index; updateSelection(); });
+    list.appendChild(li);
+  });
+}
+
+function updateSelection() {
+  list.querySelectorAll('li').forEach((item, i) => {
+    item.style.background = i === selectedIndex ? '#e8ebff' : '';
+    item.style.fontWeight = i === selectedIndex ? '500' : '';
+  });
+}
+
+renderCountries();
+
+toggle.addEventListener('click', () => {
+  if (dropdown.hidden) {
+    dropdown.hidden = false;
+    gsap.fromTo(dropdown, { opacity: 0, y: -10, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: 'back.out' });
+    search.focus();
+  } else {
+    gsap.to(dropdown, { opacity: 0, y: -10, scale: 0.95, duration: 0.2, ease: 'back.in', onComplete: () => { dropdown.hidden = true; search.value = ''; selectedIndex = -1; }});
+  }
+});
+
+search.addEventListener('input', e => renderCountries(e.target.value));
+
+search.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown') { e.preventDefault(); selectedIndex = Math.min(selectedIndex + 1, filteredCountries.length - 1); updateSelection(); list.querySelectorAll('li')[selectedIndex]?.scrollIntoView({ block: 'nearest' }); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); selectedIndex = Math.max(selectedIndex - 1, -1); updateSelection(); if (selectedIndex >= 0) list.querySelectorAll('li')[selectedIndex]?.scrollIntoView({ block: 'nearest' }); }
+  else if (e.key === 'Enter') { e.preventDefault(); if (selectedIndex >= 0 && filteredCountries[selectedIndex]) selectCountry(filteredCountries[selectedIndex]); }
+  else if (e.key === 'Escape') { gsap.to(dropdown, { opacity: 0, y: -10, scale: 0.95, duration: 0.2, onComplete: () => { dropdown.hidden = true; search.value = ''; selectedIndex = -1; }}); }
+});
+
+document.addEventListener('click', e => {
+  if (!countrySelect.contains(e.target) && !dropdown.hidden) {
+    gsap.to(dropdown, { opacity: 0, y: -10, scale: 0.95, duration: 0.2, onComplete: () => { dropdown.hidden = true; }});
+  }
+});
+
+/* IP GEOLOCATION */
+async function detectUserCountry() {
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    if (data.country_code) {
+      const found = countries.find(c => c.iso === data.country_code);
+      if (found) { selectCountry(found); return; }
+    }
+  } catch(e) {}
+  const ke = countries.find(c => c.iso === 'KE');
+  if (ke) selectCountry(ke);
+}
+
+document.addEventListener('DOMContentLoaded', detectUserCountry);
+
+/* =============================================
+   CTA PARALLAX
+============================================= */
+const cta = document.querySelector('.cta-space');
+cta.addEventListener('mousemove', e => {
+  const rect = cta.getBoundingClientRect();
+  gsap.to('.floating-icon', { x:(e.clientX - rect.left - rect.width/2)/18, y:(e.clientY - rect.top - rect.height/2)/18, duration:1 });
+});
+cta.addEventListener('mouseleave', () => gsap.to('.floating-icon', { x:0, y:0, duration:1 }));
+
+/* =============================================
+   BUTTON SEND ANIMATION
+============================================= */
+function runButtonAnimation(button, form) {
+  if (button.classList.contains('active')) return;
+  button.classList.add('active');
+
+  const getVar = v => getComputedStyle(button).getPropertyValue(v);
+
+  gsap.to(button, {
+    keyframes: [
+      { '--left-wing-first-x':50,'--left-wing-first-y':100,'--right-wing-second-x':50,'--right-wing-second-y':100, duration:.2,
+        onComplete() {
+          gsap.set(button, {'--left-wing-first-y':0,'--left-wing-second-x':40,'--left-wing-second-y':100,'--left-wing-third-x':0,'--left-wing-third-y':100,'--left-body-third-x':40,'--right-wing-first-x':50,'--right-wing-first-y':0,'--right-wing-second-x':60,'--right-wing-second-y':100,'--right-wing-third-x':100,'--right-wing-third-y':100,'--right-body-third-x':60});
+        }
+      },
+      {'--left-wing-third-x':20,'--left-wing-third-y':90,'--left-wing-second-y':90,'--left-body-third-y':90,'--right-wing-third-x':80,'--right-wing-third-y':90,'--right-body-third-y':90,'--right-wing-second-y':90, duration:.2},
+      {'--rotate':50,'--left-wing-third-y':95,'--left-wing-third-x':27,'--right-body-third-x':45,'--right-wing-second-x':45,'--right-wing-third-x':60,'--right-wing-third-y':83, duration:.25},
+      {'--rotate':55,'--plane-x':-8,'--plane-y':24, duration:.2},
+      {'--rotate':40,'--plane-x':45,'--plane-y':-180,'--plane-opacity':0, duration:.3,
+        onComplete() {
+          setTimeout(() => {
+            button.removeAttribute('style');
+            gsap.fromTo(button, { opacity:0, y:-8 }, { opacity:1, y:0, clearProps:true, duration:.3,
+              onComplete() {
+                button.classList.remove('active');
+                form.reset();
+                // Reset all touched states and clear feedback
+                Object.keys(touched).forEach(k => touched[k] = false);
+                ['wrap-name','wrap-email','wrap-phone','wrap-message'].forEach((wid, i) => {
+                  const inputs = [document.getElementById('input-name'), document.getElementById('input-email'), document.getElementById('input-phone'), document.getElementById('input-message')];
+                  clearFeedback(wid, inputs[i]);
+                });
+                charCounter.textContent = '0 / 1000';
+                charCounter.className = 'char-counter';
+              }
+            });
+          }, 1800);
+        }
+      }
+    ]
+  });
+
+  gsap.to(button, {
+    keyframes: [
+      {'--text-opacity':0,'--border-radius':0,'--left-wing-background':getVar('--primary-darkest'),'--right-wing-background':getVar('--primary-darkest'), duration:.1},
+      {'--left-wing-background':getVar('--primary'),'--right-wing-background':getVar('--primary'), duration:.1},
+      {'--left-body-background':getVar('--primary-dark'),'--right-body-background':getVar('--primary-darkest'), duration:.4},
+      {'--success-opacity':1,'--success-scale':1, duration:.25, delay:.25}
+    ]
+  });
+}
+
+/* =============================================
+   FORM SUBMIT — Web3Forms (no account/config needed)
+============================================= */
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+
+  // Force-touch all fields and validate
+  touched.name = true; touched.email = true; touched.phone = true; touched.message = true;
+
+  const nameOk    = validateName();
+  const emailOk   = validateEmail();
+  const phoneOk   = validatePhone();
+  const messageOk = validateMessage();
+
+  if (!nameOk || !emailOk || !phoneOk || !messageOk) {
+    const btn = document.getElementById('submitBtn');
+    btn.classList.remove('shake');
+    void btn.offsetWidth;
+    btn.classList.add('shake');
+    btn.addEventListener('animationend', () => btn.classList.remove('shake'), { once: true });
+    const firstError = document.querySelector('.field-error');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // Collect form data
+  const name    = document.getElementById('input-name').value.trim();
+  const email   = document.getElementById('input-email').value.trim();
+  const phone   = (document.querySelector('input[name="country-code"]').value || '') +
+                  document.getElementById('input-phone').value.trim();
+  const message = document.getElementById('input-message').value.trim();
+
+  const payload = {
+    access_key   : '9e4a3617-5a8b-44e5-bd3c-2fa3a9a3adb3',  
+    name         : name,
+    email        : email,
+    phone        : phone,
+    message      : message,
+    subject      : 'New Contact Form Message from ' + name,
+    from_name    : 'Kelvin Ariedi Portfolio'
+  };
+
+  fetch('https://api.web3forms.com/submit', {
+    method  : 'POST',
+    headers : { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body    : JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      console.log('Email sent successfully to johnsonkelvin022@gmail.com');
+    } else {
+      console.error('Web3Forms error:', data);
+    }
+  })
+  .catch(err => console.error('Network error:', err));
+
+  // Run the send button animation (optimistic UX)
+  runButtonAnimation(document.getElementById('submitBtn'), document.getElementById('contactForm'));
+});
 </script>
 
 </body>
