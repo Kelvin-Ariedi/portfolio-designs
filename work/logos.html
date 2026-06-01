@@ -184,6 +184,69 @@
       padding-top: 14px;
       border-top: 1px solid var(--border);
     }
+
+    /* Circular logo image for Corium (6th card) */
+    .logo-card:nth-child(6) .logo-display img {
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  
+    /* ── Category navigation strip ── */
+    .cat-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 12px 24px;
+      background: rgba(240,240,246,.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,9,219,.08);
+      position: sticky;
+      top: 60px;
+      z-index: 99;
+    }
+    .cat-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: #5a6a7a;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(0,9,219,.15);
+      background: transparent;
+      transition: all .2s ease;
+      white-space: nowrap;
+    }
+    .cat-nav-btn svg {
+      width: 13px; height: 13px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .cat-nav-btn:hover {
+      color: #0009DB;
+      border-color: #0009DB;
+      background: rgba(0,9,219,.05);
+    }
+    .cat-nav-btn.active {
+      color: #fff;
+      background: #0009DB;
+      border-color: #0009DB;
+      box-shadow: 0 4px 14px rgba(0,9,219,.25);
+    }
+    @media (max-width: 600px) {
+      .cat-nav { gap: 6px; padding: 10px 12px; top: 60px; }
+      .cat-nav-btn { font-size: .72rem; padding: 5px 11px; }
+    }
+
   </style>
 </head>
 <body>
@@ -328,5 +391,15 @@
       if (dots[variantIndex]) dots[variantIndex].classList.add('active');
     }
   </script>
+  <script>
+    /* Highlight current category in nav strip */
+    (function() {
+      var page = 'logos';
+      document.querySelectorAll('.cat-nav-btn').forEach(function(btn) {
+        if (btn.dataset.page === page) btn.classList.add('active');
+      });
+    })();
+  </script>
+
 </body>
 </html>

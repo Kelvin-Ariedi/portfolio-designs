@@ -138,6 +138,10 @@ body{
  #downloadcv-button {
   margin: 20px auto;
   display: flex;
+  justify-content: center;
+  width: 100%;
+  transform: scale(0.85);
+  transform-origin: center;
 }
 
 /* ---- Animated Download CV Button ---- */
@@ -269,6 +273,62 @@ body{
   75%, 100%{ transform: scaleY(1); }
 }
 /* ---- End Animated Download CV Button ---- */
+
+/* Download CV Button - Mobile Responsive */
+@media (max-width: 768px) {
+  .button ul {
+    padding: 12px 24px;
+    font-size: 13px;
+    line-height: 22px;
+  }
+  .button ul li:nth-child(2) { top: 60px; }
+  .button ul li:nth-child(3) { top: 110px; }
+  .button > div {
+    width: 48px;
+    height: 48px;
+  }
+  .button > div:after {
+    width: 48px;
+    height: 48px;
+  }
+  .button > div:before {
+    height: 14px;
+    margin: -7px 0 0 -1px;
+  }
+  .button > div svg {
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button ul {
+    padding: 10px 16px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .button ul li:nth-child(2) { top: 50px; }
+  .button ul li:nth-child(3) { top: 90px; }
+  .button > div {
+    width: 40px;
+    height: 40px;
+  }
+  .button > div:after {
+    width: 40px;
+    height: 40px;
+  }
+  .button > div:before {
+    height: 12px;
+    margin: -6px 0 0 -1px;
+  }
+  .button > div svg {
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+  }
+}
+
   .btn:hover{
    background:#0009DB;
    transition: all 300ms ease-in-out;
@@ -822,12 +882,17 @@ body{
         .port-filter-btn.active { background: var(--port-blue); border-color: var(--port-blue); color: #fff; box-shadow: 0 4px 16px var(--port-blue-glow); }
         /* grid */
         .port-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
           gap: 26px;
           max-width: 1140px;
           margin: 0 auto;
           position: relative;
+        }
+        .port-card {
+          width: 268px;
+          flex: 0 1 268px;
         }
         /* card */
         .port-card {
@@ -865,6 +930,12 @@ body{
         .img-websites { background-color: #e0f0ff; background-image: url('img/websites.png'), linear-gradient(135deg,#e0f0ff,#c8e4ff); }
         .img-mobile   { background-color: #e8fff4; background-image: url('img/mobile-apps.png'), linear-gradient(135deg,#e8fff4,#c0f0e0); }
         .img-bizcard  { background-color: #fff8e0; background-image: url('img/bussiness-card.png'), linear-gradient(135deg,#fff8e0,#ffe8b0); }
+        .img-ui       { background-color: #ede8ff; background-image: linear-gradient(135deg,#ede8ff 0%,#d4caff 100%); display:flex; align-items:center; justify-content:center; }
+        .img-ui-icon  { display:flex; gap:10px; align-items:flex-end; }
+        .img-ui-icon span { display:block; background:rgba(0,9,219,.18); border-radius:6px; }
+        .img-ui-icon span:nth-child(1){ width:38px; height:52px; }
+        .img-ui-icon span:nth-child(2){ width:38px; height:70px; background:rgba(0,9,219,.28); }
+        .img-ui-icon span:nth-child(3){ width:38px; height:44px; }
         /* category pill */
         .port-card-cat {
           position: absolute;
@@ -921,9 +992,135 @@ body{
         .port-cta-btn svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
         @media (max-width: 600px) {
           .portfolio-section { padding: 60px 16px 80px; }
-          .port-grid { grid-template-columns: 1fr; gap: 18px; }
+          .port-grid { gap: 18px; }
+          .port-card { width: 100%; flex: 0 1 100%; }
           .port-header { margin-bottom: 36px; }
         }
+
+/* ── Desktop: hide nav labels ── */
+.nav-label { display: none; }
+
+/* ── Mobile Bottom Navigation Bar ── */
+@media (max-width: 768px) {
+
+  /* Collapse the Bootstrap column wrapper */
+  .navigation-menu {
+    width: 100% !important;
+    padding: 0 !important;
+    position: static !important;
+  }
+
+  /* The nav bar itself */
+  nav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    min-height: unset !important;
+    height: 64px !important;
+    width: 100% !important;
+    padding: 0 8px !important;
+    border-radius: 20px 20px 0 0 !important;
+    background: #ffffff !important;
+    box-shadow: 0 -2px 16px rgba(0, 9, 219, 0.10) !important;
+    z-index: 9999 !important;
+    overflow: hidden !important;
+    text-align: left !important;
+  }
+
+  nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    height: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  nav li {
+    flex: 1 !important;
+    margin: 0 !important;
+    list-style: none !important;
+  }
+
+  nav li a {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    padding: 6px 0 !important;
+    text-decoration: none !important;
+  }
+
+  /* Icon pill highlight for active */
+  nav li a.active .nav-icon-wrap {
+    background: rgba(0, 9, 219, 0.10) !important;
+  }
+
+  .nav-icon-wrap {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  nav li a:hover .nav-icon-wrap,
+  nav li a.active .nav-icon-wrap {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .nav-svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Show text labels */
+  .nav-label {
+    display: block !important;
+    font-size: 0.58rem !important;
+    font-weight: 600 !important;
+    color: #9a9ab0 !important;
+    letter-spacing: 0.02em !important;
+    text-align: center !important;
+    transition: color 0.2s ease !important;
+    line-height: 1 !important;
+  }
+
+  nav li a.active .nav-label {
+    color: #0009DB !important;
+  }
+
+  /* Active icon colours */
+  nav li a.active .icon-stroke      { stroke: #0009DB !important; }
+  nav li a.active .icon-fill        { fill:  #0009DB !important; }
+  nav li a.active .icon-fill-none   { stroke: #0009DB !important; }
+  nav li a.active .icon-stroke-draw { stroke: #0009DB !important; }
+
+  /* Default (inactive) icon colours */
+  nav li a .icon-stroke      { stroke: #9a9ab0 !important; }
+  nav li a .icon-fill        { fill:  #9a9ab0 !important; }
+  nav li a .icon-fill-none   { stroke: #9a9ab0 !important; }
+  nav li a .icon-stroke-draw { stroke: #9a9ab0 !important; }
+
+  /* Push page content above the bar */
+  body {
+    padding-bottom: 72px !important;
+  }
+
+  /* Hide the nav-ring bubble on mobile */
+  .nav-ring { display: none !important; }
+}
 
 
 
@@ -935,16 +1132,17 @@ body{
    margin-top: 20px ;
    width: 100%;
 }
-nav{
+@media (min-width: 769px) {
+nav {
    min-height: 100vh;
    background: #FFFFFF;
    padding: 20px;
    text-align: center;
    position: fixed;
-  z-index: 1;
-  overflow-x: hidden;
+   z-index: 1;
+   overflow-x: hidden;
 }
-nav ul{
+nav ul {
    list-style: none;
    text-align: center;
    display: flex;
@@ -953,10 +1151,8 @@ nav ul{
    align-items: center;
    height: calc(100vh - 40px);
 }
-nav li{
-   margin: 0;
-}
-nav li a{
+nav li { margin: 0; }
+nav li a {
    text-decoration: none;
    display: flex;
    justify-content: center;
@@ -964,9 +1160,7 @@ nav li a{
    outline: none;
    border: none;
 }
-
-nav li a:focus {
-   outline: none;
+nav li a:focus { outline: none; }
 }
 
 /* ---- Animated SVG Nav Icons ---- */
@@ -2115,6 +2309,7 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
           <button class="port-filter-btn" data-filter="web">Web</button>
           <button class="port-filter-btn" data-filter="mobile">Mobile</button>
           <button class="port-filter-btn" data-filter="print">Print</button>
+          <button class="port-filter-btn" data-filter="ui">UI Components</button>
         </div>
 
         <!-- Grid -->
@@ -2208,6 +2403,31 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
               <div class="port-card-footer">
                 <a href="work/print.html" class="port-card-link">View Projects <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
                 <span class="port-card-count">20+ projects</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Card 5: UI Components -->
+          <article class="port-card" data-category="ui">
+            <div class="port-card-img img-ui">
+              <span class="port-card-cat">UI Components</span>
+              <div class="img-ui-icon"><span></span><span></span><span></span></div>
+              <div class="port-card-hover-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+            </div>
+            <div class="port-card-body">
+              <h3 class="port-card-title">UI Components</h3>
+              <p class="port-card-desc">Precision-crafted HTML &amp; CSS components built from real design specs &mdash; live and interactive previews.</p>
+              <div class="port-card-tags">
+                <span class="port-tag">HTML</span>
+                <span class="port-tag">CSS</span>
+                <span class="port-tag">Frontend Mentor</span>
+              </div>
+              <div class="port-card-footer">
+                <a href="work/ui.html" class="port-card-link">View Components <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                <span class="port-card-count">4+ components</span>
               </div>
             </div>
           </article>

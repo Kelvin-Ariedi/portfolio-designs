@@ -58,71 +58,71 @@ const portfolioData = {
       name: "Air Housing",
       industry: "Real Estate",
       description: "A clean, modern identity for a property listing and landlord management platform — confident lines, calm palette, built to scale.",
-      bg: "#0D1B2A",
+      bg: "#3d3a3a",
       image: "../work/img/logos/air-black.png",
       variants: [
-        { image: "../work/img/logos/air-black.png",  bg: "#0D1B2A", label: "Dark"  },
-        { image: "../work/img/logos/air-white.png",  bg: "#F0F4F8", label: "Light" },
-        { image: "../work/img/logos/air-yellow.png", bg: "#1A1A2E", label: "Brand" }
+        { image: "../work/img/logos/air-black.png",  bg: "#faf9f7", label: "Dark"  },
+        { image: "../work/img/logos/air-white.png",  bg: "#3d3a3a", label: "Light" },
+        { image: "../work/img/logos/air-yellow.png", bg: "#2a2622", label: "Warm"  }
       ]
     },
     {
       name: "CultiCulture",
       industry: "AgriTech",
       description: "A fresh, grounded identity for a farming app connecting modern agriculture with technology, resources, and community.",
-      bg: "#0F2318",
+      bg: "#2a4a3a",
       image: "../work/img/logos/culture_green_logo.png",
       variants: [
-        { image: "../work/img/logos/culture_green_logo.png",  bg: "#0F2318", label: "Dark"  },
-        { image: "../work/img/logos/culture_black_logo.png",  bg: "#E8F5E9", label: "Light" },
-        { image: "../work/img/logos/culture_green_white.png", bg: "#1B4332", label: "Brand" }
+        { image: "../work/img/logos/culture_green_logo.png",  bg: "#f1f8f4", label: "Dark"  },
+        { image: "../work/img/logos/culture_black_logo.png",  bg: "#f1f8f4", label: "Light" },
+        { image: "../work/img/logos/culture_green_white.png", bg: "#1a3a2e", label: "Brand" }
       ]
     },
     {
       name: "Dronlytics",
       industry: "Drone & AgriTech",
       description: "A bold, technical identity for a drone-first company using aerial systems, AI, and big data to transform crop and irrigation management across Africa.",
-      bg: "#0A1628",
+      bg: "#1f3f52",
       image: "../work/img/logos/dronlytics_blue.png",
       variants: [
-        { image: "../work/img/logos/dronlytics_blue.png",   bg: "#0A1628", label: "Dark"  },
-        { image: "../work/img/logos/dronlytics_green.png",  bg: "#0F2318", label: "Brand" },
-        { image: "../work/img/logos/dronlytics_yellow.png", bg: "#1A1A2E", label: "Alt"   }
+        { image: "../work/img/logos/dronlytics_blue.png",   bg: "#f5f7fa", label: "Dark"  },
+        { image: "../work/img/logos/dronlytics_green.png",  bg: "#f5f7fa", label: "Brand" },
+        { image: "../work/img/logos/dronlytics_yellow.png", bg: "#1a3a4a", label: "Alt"   }
       ]
     },
     {
       name: "Pawsitive",
       industry: "Pet Care",
       description: "A warm, playful identity for an all-in-one pet app — covering the pet store, care blog, and everything a pet owner needs.",
-      bg: "#2D0A0A",
+      bg: "#5a3a32",
       image: "../work/img/logos/pawsitive_red.png",
       variants: [
-        { image: "../work/img/logos/pawsitive_red.png",    bg: "#2D0A0A", label: "Dark"  },
-        { image: "../work/img/logos/pawsitive_orange.png", bg: "#1C1208", label: "Brand" },
-        { image: "../work/img/logos/pawsitive_white.png",  bg: "#F9F5F0", label: "Light" }
+        { image: "../work/img/logos/pawsitive_red.png",    bg: "#faf8f5", label: "Dark"  },
+        { image: "../work/img/logos/pawsitive_orange.png", bg: "#2a2622", label: "Brand" },
+        { image: "../work/img/logos/pawsitive_white.png",  bg: "#4a3a32", label: "Light" }
       ]
     },
     {
       name: "Tasty",
       industry: "Food & Health",
       description: "A fresh, appetising identity for a restaurant and health blog — inviting, modern, and built for both print and digital.",
-      bg: "#0F1F0A",
+      bg: "#2f4a3a",
       image: "../work/img/logos/tasty_logo_green.png",
       variants: [
-        { image: "../work/img/logos/tasty_logo_green.png", bg: "#0F1F0A", label: "Dark"  },
-        { image: "../work/img/logos/tasty_logo_black.png", bg: "#F5F5F0", label: "Light" },
-        { image: "../work/img/logos/tasty_logo_white.png", bg: "#1B4332", label: "Brand" }
+        { image: "../work/img/logos/tasty_logo_green.png", bg: "#f9f8f5", label: "Dark"  },
+        { image: "../work/img/logos/tasty_logo_black.png", bg: "#f9f8f5", label: "Light" },
+        { image: "../work/img/logos/tasty_logo_white.png", bg: "#1a3a2e", label: "Brand" }
       ]
     },
     {
       name: "Corium Connect",
       industry: "IT & Tech",
       description: "A sharp, professional identity for an IT company — clean geometry, confident typography, engineered for trust.",
-      bg: "#050D1A",
-      image: "../work/img/logos/corium_logo_blue.png",
+      bg: "#1f3f52",
+      image: "../work/img/logos/corium_logo_blue.jpg",
       variants: [
-        { image: "../work/img/logos/corium_logo_blue.png",  bg: "#050D1A", label: "Dark"  },
-        { image: "../work/img/logos/corium_logo_white.png", bg: "#F0F4F8", label: "Light" }
+        { image: "../work/img/logos/corium_logo_blue.jpg",  bg: "#f5f7fa", label: "Dark"  },
+        { image: "../work/img/logos/corium_logo_white.jpg", bg: "#1a3a52", label: "Light" }
       ]
     }
   ],
@@ -142,6 +142,46 @@ const portfolioData = {
       mockup: "../work/img/mobile/culticulture_mockup.png",
       platform: ["Android", "iOS"],
       link: "#"
+    }
+  ],
+
+  /* ── UI COMPONENTS ───────────────────────────────── */
+  ui: [
+    {
+      name: "QR Code Component",
+      description: "A clean, minimal card component built with pure HTML & CSS — centred layout, soft shadows, and crisp typography.",
+      url: "https://qr-code-component-sigma-bay.vercel.app/",
+      innerW: 500, innerH: 420,
+      tags: ["HTML", "CSS", "Component"],
+      difficulty: "Newbie",
+      source: "Frontend Mentor"
+    },
+    {
+      name: "Blog Preview Card",
+      description: "A polished blog card with category tag, publication date, title, excerpt, and author avatar — pixel-perfect from a design spec.",
+      url: "https://blog-preview-card-main-zeta-flax.vercel.app/",
+      innerW: 500, innerH: 440,
+      tags: ["HTML", "CSS", "Card UI"],
+      difficulty: "Newbie",
+      source: "Frontend Mentor"
+    },
+    {
+      name: "Recipe Page",
+      description: "A full recipe page layout with prep-time callout box, ingredient list, step-by-step instructions, and a nutrition table.",
+      url: "https://recipe-page-main-one-ashy.vercel.app/",
+      innerW: 900, innerH: 580,
+      tags: ["HTML", "CSS", "Layout"],
+      difficulty: "Newbie",
+      source: "Frontend Mentor"
+    },
+    {
+      name: "Social Links Profile",
+      description: "A dark-themed profile card featuring an avatar, name, location, bio, and a stack of interactive social link buttons with hover states.",
+      url: "https://social-links-profile-main-opal.vercel.app/",
+      innerW: 500, innerH: 520,
+      tags: ["HTML", "CSS", "Profile Card"],
+      difficulty: "Newbie",
+      source: "Frontend Mentor"
     }
   ],
 

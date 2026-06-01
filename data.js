@@ -5,12 +5,13 @@
  *
  *  WEBSITES
  *  - thumbnail : path to screenshot image (relative to work/ folder)
- *  - url       : live Vercel/hosted URL
+ *  - url       : live Vercel/hosted URL (use "#" if not yet live)
  *  - tags      : tech stack or keywords
  *
  *  LOGOS
- *  - image     : path to primary logo file
- *  - bg        : card background colour (hex) — pick something that suits the logo
+ *  - image     : path to primary logo file (shown by default)
+ *  - variants  : array of { image, bg, label } — wired to the colour toggle dots
+ *  - bg        : fallback card background colour (hex)
  *  - industry  : short label e.g. "Tech", "Food & Bev", "Fashion"
  *
  *  MOBILE
@@ -29,99 +30,178 @@ const portfolioData = {
   /* ── WEBSITES ─────────────────────────────────────── */
   websites: [
     {
-      name: "Project One",
-      description: "A sleek landing page for a tech startup — built with React and deployed on Vercel.",
-      thumbnail: "../img/work/websites/site1.jpg",
-      url: "https://your-project-1.vercel.app",
-      tags: ["React", "Tailwind CSS", "Vercel"]
+      name: "Air Housing",
+      description: "An online real estate platform with curated property listings and a dedicated landlord dashboard for managing properties end-to-end.",
+      thumbnail: "../work/img/websites/air_housing.png",
+      url: "#",
+      tags: ["React", "CSS", "JavaScript"]
     },
     {
-      name: "Project Two",
-      description: "Full e-commerce storefront with cart, checkout, and Stripe integration.",
-      thumbnail: "../img/work/websites/site2.jpg",
-      url: "https://your-project-2.vercel.app",
-      tags: ["Next.js", "Stripe", "PostgreSQL"]
+      name: "Corium Connect",
+      description: "A polished portfolio website for a forward-thinking IT company — showcasing their services, capabilities, and sample projects.",
+      thumbnail: "../work/img/websites/corium_connect.png",
+      url: "#",
+      tags: ["React", "CSS", "JavaScript"]
     },
     {
-      name: "Project Three",
-      description: "Portfolio site for a photographer — optimised for image-heavy layouts and fast load.",
-      thumbnail: "../img/work/websites/site3.jpg",
-      url: "https://your-project-3.vercel.app",
-      tags: ["HTML", "CSS", "JavaScript"]
+      name: "Tasty",
+      description: "A vibrant restaurant, food, and health blog built for discovery — covering recipes, dining guides, and wellness content.",
+      thumbnail: "../work/img/websites/tasty_landing_page.png",
+      url: "#",
+      tags: ["React", "CSS", "JavaScript"]
     }
   ],
 
   /* ── LOGOS ────────────────────────────────────────── */
   logos: [
     {
-      name: "Brand One",
-      image: "../img/work/logos/logo1.png",
-      bg: "#0009DB",
-      industry: "Technology",
-      description: "Wordmark identity for a B2B SaaS platform — clean, confident, scalable."
+      name: "Air Housing",
+      industry: "Real Estate",
+      description: "A clean, modern identity for a property listing and landlord management platform — confident lines, calm palette, built to scale.",
+      bg: "#3d3a3a",
+      image: "../work/img/logos/air-black.png",
+      variants: [
+        { image: "../work/img/logos/air-black.png",  bg: "#faf9f7", label: "Dark"  },
+        { image: "../work/img/logos/air-white.png",  bg: "#3d3a3a", label: "Light" },
+        { image: "../work/img/logos/air-yellow.png", bg: "#2a2622", label: "Warm"  }
+      ]
     },
     {
-      name: "Brand Two",
-      image: "../img/work/logos/logo2.png",
-      bg: "#00192D",
-      industry: "Food & Beverage",
-      description: "Playful logomark for a specialty coffee brand with a focus on community."
+      name: "CultiCulture",
+      industry: "AgriTech",
+      description: "A fresh, grounded identity for a farming app connecting modern agriculture with technology, resources, and community.",
+      bg: "#2a4a3a",
+      image: "../work/img/logos/culture_green_logo.png",
+      variants: [
+        { image: "../work/img/logos/culture_green_logo.png",  bg: "#f1f8f4", label: "Dark"  },
+        { image: "../work/img/logos/culture_black_logo.png",  bg: "#f1f8f4", label: "Light" },
+        { image: "../work/img/logos/culture_green_white.png", bg: "#1a3a2e", label: "Brand" }
+      ]
     },
     {
-      name: "Brand Three",
-      image: "../img/work/logos/logo3.png",
-      bg: "#1a1a2e",
-      industry: "Fashion",
-      description: "Minimal typographic logo for a boutique clothing label — timeless and versatile."
+      name: "Dronlytics",
+      industry: "Drone & AgriTech",
+      description: "A bold, technical identity for a drone-first company using aerial systems, AI, and big data to transform crop and irrigation management across Africa.",
+      bg: "#1f3f52",
+      image: "../work/img/logos/dronlytics_blue.png",
+      variants: [
+        { image: "../work/img/logos/dronlytics_blue.png",   bg: "#f5f7fa", label: "Dark"  },
+        { image: "../work/img/logos/dronlytics_green.png",  bg: "#f5f7fa", label: "Brand" },
+        { image: "../work/img/logos/dronlytics_yellow.png", bg: "#1a3a4a", label: "Alt"   }
+      ]
+    },
+    {
+      name: "Pawsitive",
+      industry: "Pet Care",
+      description: "A warm, playful identity for an all-in-one pet app — covering the pet store, care blog, and everything a pet owner needs.",
+      bg: "#5a3a32",
+      image: "../work/img/logos/pawsitive_red.png",
+      variants: [
+        { image: "../work/img/logos/pawsitive_red.png",    bg: "#faf8f5", label: "Dark"  },
+        { image: "../work/img/logos/pawsitive_orange.png", bg: "#2a2622", label: "Brand" },
+        { image: "../work/img/logos/pawsitive_white.png",  bg: "#4a3a32", label: "Light" }
+      ]
+    },
+    {
+      name: "Tasty",
+      industry: "Food & Health",
+      description: "A fresh, appetising identity for a restaurant and health blog — inviting, modern, and built for both print and digital.",
+      bg: "#2f4a3a",
+      image: "../work/img/logos/tasty_logo_green.png",
+      variants: [
+        { image: "../work/img/logos/tasty_logo_green.png", bg: "#f9f8f5", label: "Dark"  },
+        { image: "../work/img/logos/tasty_logo_black.png", bg: "#f9f8f5", label: "Light" },
+        { image: "../work/img/logos/tasty_logo_white.png", bg: "#1a3a2e", label: "Brand" }
+      ]
+    },
+    {
+      name: "Corium Connect",
+      industry: "IT & Tech",
+      description: "A sharp, professional identity for an IT company — clean geometry, confident typography, engineered for trust.",
+      bg: "#1f3f52",
+      image: "../work/img/logos/corium_logo_blue.jpg",
+      variants: [
+        { image: "../work/img/logos/corium_logo_blue.jpg",  bg: "#f5f7fa", label: "Dark"  },
+        { image: "../work/img/logos/corium_logo_white.jpg", bg: "#1a3a52", label: "Light" }
+      ]
     }
   ],
 
   /* ── MOBILE APPS ──────────────────────────────────── */
   mobile: [
     {
-      name: "App One",
-      description: "A productivity app for task management with a clean, distraction-free UI.",
-      mockup: "../img/work/mobile/app1.png",
+      name: "Pawsitive",
+      description: "An all-in-one pet companion app — browse the pet store, read care guides, track vet appointments, and connect with other pet owners.",
+      mockup: "../work/img/mobile/pawsitive_mockup.png",
       platform: ["Android", "iOS"],
       link: "#"
     },
     {
-      name: "App Two",
-      description: "Fitness tracking app with real-time data visualisation and streak rewards.",
-      mockup: "../img/work/mobile/app2.png",
-      platform: ["Android"],
+      name: "CultiCulture",
+      description: "A smart farming app giving African farmers access to agri-tech tools, crop guides, weather insights, and a thriving farming community.",
+      mockup: "../work/img/mobile/culticulture_mockup.png",
+      platform: ["Android", "iOS"],
       link: "#"
+    }
+  ],
+
+  /* ── UI COMPONENTS ───────────────────────────────── */
+  ui: [
+    {
+      name: "QR Code Component",
+      description: "A clean, minimal card component built with pure HTML & CSS — centred layout, soft shadows, and crisp typography.",
+      url: "https://qr-code-component-sigma-bay.vercel.app/",
+      tags: ["HTML", "CSS", "Component"],
+      difficulty: "Newbie",
+      source: "Frontend Mentor"
     },
     {
-      name: "App Three",
-      description: "Local marketplace app connecting buyers and sellers within a 10km radius.",
-      mockup: "../img/work/mobile/app3.png",
-      platform: ["iOS"],
-      link: "#"
+      name: "Blog Preview Card",
+      description: "A polished blog card with category tag, publication date, title, excerpt, and author avatar — pixel-perfect from a design spec.",
+      url: "https://blog-preview-card-main-zeta-flax.vercel.app/",
+      tags: ["HTML", "CSS", "Card UI"],
+      difficulty: "Newbie",
+      source: "Frontend Mentor"
+    },
+    {
+      name: "Recipe Page",
+      description: "A full recipe page layout with prep-time callout box, ingredient list, step-by-step instructions, and a nutrition table.",
+      url: "https://recipe-page-main-one-ashy.vercel.app/",
+      tags: ["HTML", "CSS", "Layout"],
+      difficulty: "Newbie",
+      source: "Frontend Mentor"
+    },
+    {
+      name: "Social Links Profile",
+      description: "A dark-themed profile card featuring an avatar, name, location, bio, and a stack of interactive social link buttons with hover states.",
+      url: "https://social-links-profile-main-opal.vercel.app/",
+      tags: ["HTML", "CSS", "Profile Card"],
+      difficulty: "Newbie",
+      source: "Frontend Mentor"
     }
   ],
 
   /* ── PRINT / BUSINESS CARDS ───────────────────────── */
   print: [
     {
-      name: "Studio Cards",
-      description: "Minimalist double-sided business cards for a design studio — letterpress finish.",
-      mockup: "../img/work/print/print1.jpg",
-      spec: "85×55mm · 400gsm · Letterpress",
+      name: "Air Housing Cards",
+      description: "Refined double-sided business cards for the Air Housing brand — minimal layout, deep navy stock, with a subtle spot UV finish on the logo.",
+      mockup: "../work/img/print/air_housing_cards.jpg",
+      spec: "85×55mm · 400gsm · Spot UV",
       link: "#"
     },
     {
-      name: "Startup Kit",
-      description: "Full print collateral set — cards, letterhead, and envelope for a fintech startup.",
-      mockup: "../img/work/print/print2.jpg",
-      spec: "85×55mm · 350gsm · Spot UV",
+      name: "Corium Connect Kit",
+      description: "Full print collateral set for Corium Connect — business cards, letterhead, and branded envelope in a clean monochromatic system.",
+      mockup: "../work/img/print/corium_print_kit.jpg",
+      spec: "85×55mm · 350gsm · Gloss Laminate",
       link: "#"
     },
     {
-      name: "Personal Brand",
-      description: "Bold personal branding cards with a die-cut corner and foil stamp detail.",
-      mockup: "../img/work/print/print3.jpg",
-      spec: "90×50mm · 600gsm · Foil",
+      name: "Pawsitive Brand Cards",
+      description: "Bold, tactile personal branding cards for the Pawsitive identity — warm tones, rounded corners, and a soft-touch matte finish.",
+      mockup: "../work/img/print/pawsitive_cards.jpg",
+      spec: "90×50mm · 600gsm · Soft-Touch Matte",
       link: "#"
     }
   ]
