@@ -11,7 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/4c88285b12.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://unpkg.com/libphonenumber-js@1.11.17/bundle/libphonenumber-max.js"></script>
@@ -61,7 +61,7 @@ body{
     display: inline-block; /* Make the image an inline block element */
     margin: 20px auto; /* Center align block elements if necessary */
     border-radius: 50%; /* Make the image circular */ 
-    width: 140px; /* Set a fixed width for the profile image */
+    width: 133px; /* Set a fixed width for the profile image */
 }
 .sidenav-headline{
    margin: auto;
@@ -111,6 +111,9 @@ body{
     .badge-info {
       font-size: 1em;
       margin-bottom: 0.8em;
+      background-color: transparent !important;
+      color: #00192D !important;
+      padding: 0;
     }
     
     .extra-skills .flex{
@@ -132,9 +135,140 @@ body{
    cursor:pointer;
    box-shadow: 2px 2px 6px  #00192D;
     }
- #downloadcv-button{ 
-   margin: auto;
+ #downloadcv-button {
+  margin: 20px auto;
+  display: flex;
 }
+
+/* ---- Animated Download CV Button ---- */
+.button {
+  --background: #0009DB;
+  --rectangle: #0009DB;
+  --success: #F5F9FF;
+  --text: #fff;
+  --arrow: #fff;
+  --checkmark: #0009DB;
+  --shadow: rgba(10, 22, 50, .24);
+  display: flex;
+  overflow: hidden;
+  text-decoration: none;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  background: var(--background);
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 4px 15px -2px rgba(0, 9, 219, 0.45), 0 2px 8px -1px var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.button:focus,
+.button:focus-visible {
+  outline: none;
+}
+.button:active {
+  transform: scale(0.95);
+  outline: none;
+  box-shadow: 0 2px 8px -2px rgba(0, 9, 219, 0.35), 0 1px 4px -1px var(--shadow);
+}
+.button ul {
+  margin: 0;
+  padding: 16px 40px;
+  list-style: none;
+  text-align: center;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 28px;
+  color: var(--text);
+}
+.button ul li:not(:first-child) {
+  top: 16px;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+.button ul li:nth-child(2) { top: 76px; }
+.button ul li:nth-child(3) { top: 136px; }
+.button > div {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: var(--rectangle);
+}
+.button > div:before, .button > div:after { content: ""; display: block; position: absolute; }
+.button > div:before {
+  border-radius: 1px;
+  width: 2px;
+  top: 50%;
+  left: 50%;
+  height: 17px;
+  margin: -9px 0 0 -1px;
+  background: var(--arrow);
+}
+.button > div:after {
+  width: 60px;
+  height: 60px;
+  transform-origin: 50% 0;
+  border-radius: 0 0 80% 80%;
+  background: var(--success);
+  top: 0;
+  left: 0;
+  transform: scaleY(0);
+}
+.button > div svg {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  top: 50%;
+  margin: -9px 0 0 -10px;
+  fill: none;
+  z-index: 1;
+  stroke-width: 2px;
+  stroke: var(--arrow);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.button.loading ul {
+  animation: cv-text calc(var(--duration) * 1ms) linear forwards calc(var(--duration) * .065ms);
+}
+.button.loading > div:before {
+  animation: cv-line calc(var(--duration) * 1ms) linear forwards calc(var(--duration) * .065ms);
+}
+.button.loading > div:after {
+  animation: cv-background calc(var(--duration) * 1ms) linear forwards calc(var(--duration) * .065ms);
+}
+.button.loading > div svg {
+  animation: cv-svg calc(var(--duration) * 1ms) linear forwards calc(var(--duration) * .065ms);
+}
+@keyframes cv-text {
+  10%, 85% { transform: translateY(-100%); }
+  95%, 100% { transform: translateY(-200%); }
+}
+@keyframes cv-line {
+  5%, 10%  { transform: translateY(-30px); }
+  40%      { transform: translateY(-20px); }
+  65%      { transform: translateY(0); }
+  75%, 100%{ transform: translateY(30px); }
+}
+@keyframes cv-svg {
+  0%, 20%  { stroke-dasharray: 0; stroke-dashoffset: 0; }
+  21%, 89% { stroke-dasharray: 26px; stroke-dashoffset: 26px; stroke-width: 3px; margin: -10px 0 0 -10px; stroke: var(--checkmark); }
+  100%     { stroke-dasharray: 26px; stroke-dashoffset: 0; margin: -10px 0 0 -10px; stroke: var(--checkmark); }
+  12%      { opacity: 1; }
+  20%, 89% { opacity: 0; }
+  90%, 100%{ opacity: 1; }
+}
+@keyframes cv-background {
+  10%      { transform: scaleY(0); }
+  40%      { transform: scaleY(0.15); }
+  65%      { transform: scaleY(0.5); border-radius: 0 0 50% 50%; }
+  75%      { border-radius: 0 0 50% 50%; }
+  90%, 100%{ border-radius: 0; }
+  75%, 100%{ transform: scaleY(1); }
+}
+/* ---- End Animated Download CV Button ---- */
   .btn:hover{
    background:#0009DB;
    transition: all 300ms ease-in-out;
@@ -152,16 +286,40 @@ body{
 }
  .main-section{
    padding: 30px;
+   padding-bottom: 0;
    background-color: #fff;
    color:#00192D;
    width: 100%;
    border-radius: 10px;
    display: block;
+   overflow: hidden;
+ }
+ .main-section h1 {
+   font-size: clamp(1.6rem, 3vw, 2.2rem);
+   line-height: 1.2;
+   margin-bottom: 0.6em;
+ }
+ .main-section p {
+   font-size: 1.05rem;
+   line-height: 1.75;
  }
  .main-section-img{
-   min-height: 80%;
-   margin-bottom: -30px;
+   width: 95%;
+   display: block;
+   margin: 0 auto;
    padding: 0;
+ }
+ @media (max-width: 768px) {
+   .main-section-img {
+     width: 70%;
+     margin: 16px auto 0;
+   }
+   .main-section h1 {
+     font-size: 1.5rem;
+   }
+   .main-section p {
+     font-size: 0.97rem;
+   }
  }
 .circles-body {
     display: flex;
@@ -209,11 +367,79 @@ body{
 }
 
 
+  /* ── HIRE ME: magnetic particle-burst button ── */
   #hireme-button {
     position: absolute;
-    z-index: 10; /* Ensures button is on top of the circles */
-    padding: 10px 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 10;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #0009DB 0%, #2435ff 60%, #5568ff 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 0 0 rgba(0,9,219,0), 0 4px 20px rgba(0,9,219,0.35);
+    transition: box-shadow 0.25s ease, transform 0.15s ease;
+    overflow: visible;
+    will-change: transform;
+  }
+  #hireme-button::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #5568ff, #0009DB, #2435ff, #5568ff);
+    background-size: 300% 300%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: hireGradientSpin 3s linear infinite;
+  }
+  #hireme-button:hover::before { opacity: 1; }
+  @keyframes hireGradientSpin {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  #hireme-button .hire-label {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+  #hireme-button .hire-icon {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #hireme-button:hover .hire-icon {
+    transform: rotate(20deg) scale(1.2);
+  }
+  /* Particle canvas sits behind everything in the animation-container */
+  #hire-particle-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+  }
+  /* Ripple ring on click */
+  .hire-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(85,104,255,0.45);
+    transform: scale(0);
+    animation: hireRippleOut 0.7s ease-out forwards;
+    pointer-events: none;
+    z-index: 20;
+  }
+  @keyframes hireRippleOut {
+    to { transform: scale(3.5); opacity: 0; }
   }
  /* main home section ends her */
  
@@ -507,137 +733,196 @@ body{
     text-align: center;
     background: #FFFFFF;
     border-radius: 8px;
+    font-size: 1.08em;
  }
  .experience-card h2 {
     background: transparent;
     padding: 0;
+    font-size: 1.25rem;
  }
-       .portfolio-card {
-            cursor: pointer;
-            border: none;
-            background: none; /* Remove background color */
-            border-radius: 10px; /* Add border-radius to the entire card */
-            overflow: hidden; /* Ensure the border-radius is applied to child elements */
+ .experience-card p {
+    font-size: 0.97rem;
+    line-height: 1.7;
+ }
+ .experience-card h3 {
+    font-size: 1.15rem;
+ }
+       /* ── Portfolio Section (redesigned) ── */
+        .portfolio-section {
+          --port-blue: #0009DB;
+          --port-blue-dark: #0007b0;
+          --port-blue-glow: rgba(0,9,219,.18);
+          padding: 80px 24px 100px;
+          position: relative;
+          overflow: hidden;
         }
-
-        .portfolio-card .face {
-            width: 100%;
-            height: 200px;
-            transition: 0.5s;
-            background: none; /* Ensure no background color is applied */
+        .portfolio-section::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(circle, rgba(0,9,219,.07) 1px, transparent 1px);
+          background-size: 28px 28px;
+          pointer-events: none;
         }
-
-        .portfolio-card .face.face1 {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
-            transform: translateY(100px);
-            background-size: cover;
-            background-repeat: no-repeat;
-            border-radius: 10px 10px 0 0; /* Rounded top corners */
+        /* header */
+        .port-header {
+          text-align: center;
+          max-width: 540px;
+          margin: 0 auto 56px;
+          position: relative;
         }
-
-        .first .face.face1 {
-            background: url(img/logos.png);
-            background-size: cover;
-            background-repeat: no-repeat;
+        .port-eyebrow {
+          font-size: .72rem;
+          font-weight: 700;
+          letter-spacing: .2em;
+          text-transform: uppercase;
+          color: var(--port-blue);
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 12px;
         }
-
-        .second .face.face1 {
-            background: url(img/websites.png);
-            background-size: cover;
-            background-repeat: no-repeat;
+        .port-eyebrow::before, .port-eyebrow::after {
+          content: '';
+          display: block;
+          width: 26px;
+          height: 1px;
+          background: var(--port-blue);
+          opacity: .45;
         }
-
-        .third .face.face1 {
-            background: url(img/mobile-apps.png);
-            background-size: cover;
-            background-repeat: no-repeat;
+        .port-header h1 {
+          font-size: clamp(1.9rem, 4vw, 2.8rem);
+          font-weight: 800;
+          line-height: 1.1;
+          color: #00192D;
+          margin-bottom: 14px;
         }
-
-        .fourth .face.face1 {
-            background: url(img/bussiness-card.png);
-            background-size: cover;
-            background-repeat: no-repeat;
+        .port-header p { font-size: .95rem; line-height: 1.7; color: #556; }
+        /* filter tabs */
+        .port-filters {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-bottom: 44px;
+          position: relative;
         }
-
-        .portfolio-card:hover .face.face1 {
-            background: #0009DB; /* Adjust hover background color as needed */
-            transform: translateY(0);
-            border-radius: 10px 10px 0 0; /* Maintain rounded top corners on hover */
-        } 
-
-        .portfolio-card .face.face1 .content img {
-            opacity: 0;
-            transition: 0.5s;
+        .port-filter-btn {
+          font-size: .84rem;
+          font-weight: 500;
+          border: 1.5px solid rgba(0,9,219,.22);
+          background: transparent;
+          color: #556;
+          padding: 7px 18px;
+          border-radius: 100px;
+          cursor: pointer;
+          transition: all .22s ease;
         }
-
-       .portfolio-card:hover .face.face1 .content img {
-            opacity: 1;
+        .port-filter-btn:hover { border-color: var(--port-blue); color: var(--port-blue); background: rgba(0,9,219,.05); }
+        .port-filter-btn.active { background: var(--port-blue); border-color: var(--port-blue); color: #fff; box-shadow: 0 4px 16px var(--port-blue-glow); }
+        /* grid */
+        .port-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+          gap: 26px;
+          max-width: 1140px;
+          margin: 0 auto;
+          position: relative;
         }
-
-        .portfolio-card .face.face1 .content img {
-            max-width: 100px;
+        /* card */
+        .port-card {
+          background: #fff;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 2px 12px rgba(0,9,219,.07), 0 1px 3px rgba(0,0,0,.05);
+          transition: transform .28s ease, box-shadow .28s ease;
+          display: flex;
+          flex-direction: column;
+          animation: portCardIn .4s ease both;
         }
-
-         .portfolio-card .face.face1 .content h3 {
-            margin: 10px auto;
-            padding: 0;
-            color: #333;
-            text-align: center;
-            -webkit-text-stroke: 0.4px #F0F0F6;
-            font-size: 3em;
-            font-weight: 500;
-            z-index: 1;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
-            transition: 0.5s;
+        @keyframes portCardIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+        .port-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,9,219,.13), 0 4px 12px rgba(0,0,0,.07); }
+        .port-card[data-hidden] { display: none; }
+        /* image */
+        .port-card-img {
+          width: 100%;
+          height: 198px;
+          background-size: cover;
+          background-position: center;
+          position: relative;
+          overflow: hidden;
         }
-        .portfolio-card:hover .face.face1 .content h3 {
-           font-size: 1.4em;
-           color: #fff;
-           -webkit-text-stroke: 0;
+        .port-card-img::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(155deg, #0009DB 0%, #2435ff 100%);
+          opacity: 0;
+          transition: opacity .32s ease;
         }
-
-        .portfolio-card .face.face2 {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Reduced box-shadow */
-            transform: translateY(-100px);
-            background: #fff; /* Ensure background color is applied */
-            border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+        .port-card:hover .port-card-img::after { opacity: .86; }
+        .img-logos    { background-color: #e8e9ff; background-image: url('img/logos.png'), linear-gradient(135deg,#e8e9ff,#d0d2ff); }
+        .img-websites { background-color: #e0f0ff; background-image: url('img/websites.png'), linear-gradient(135deg,#e0f0ff,#c8e4ff); }
+        .img-mobile   { background-color: #e8fff4; background-image: url('img/mobile-apps.png'), linear-gradient(135deg,#e8fff4,#c0f0e0); }
+        .img-bizcard  { background-color: #fff8e0; background-image: url('img/bussiness-card.png'), linear-gradient(135deg,#fff8e0,#ffe8b0); }
+        /* category pill */
+        .port-card-cat {
+          position: absolute;
+          top: 13px; left: 13px;
+          z-index: 2;
+          font-size: .67rem;
+          font-weight: 700;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          background: rgba(255,255,255,.18);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba(255,255,255,.3);
+          color: #fff;
+          padding: 4px 11px;
+          border-radius: 100px;
         }
-
-        .portfolio-card:hover .face.face2 {
-            transform: translateY(0);
-            border-radius: 0 0 10px 10px; /* Maintain rounded bottom corners on hover */
+        /* hover icon */
+        .port-card-hover-icon {
+          position: absolute;
+          inset: 0; z-index: 3;
+          display: flex; align-items: center; justify-content: center;
+          opacity: 0; transform: scale(.6);
+          transition: opacity .28s ease, transform .28s ease;
+          pointer-events: none;
         }
-
-       .portfolio-card .face.face2 .content p {
-            margin: 0;
-            padding: 0;
-            color: #333; /* Adjust text color as needed */
+        .port-card:hover .port-card-hover-icon { opacity: 1; transform: scale(1); }
+        .port-card-hover-icon svg { width:42px; height:42px; stroke:#fff; fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+        /* body */
+        .port-card-body { padding: 22px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+        .port-card-title { font-size: 1.05rem; font-weight: 700; color: #00192D; margin-bottom: 8px; }
+        .port-card-desc  { font-size: .875rem; line-height: 1.65; color: #556; flex: 1; }
+        /* tags */
+        .port-card-tags  { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 15px; }
+        .port-tag { font-size: .7rem; font-weight: 500; background: rgba(0,9,219,.07); color: var(--port-blue); padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(0,9,219,.11); }
+        /* footer */
+        .port-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; padding-top: 15px; border-top: 1px solid rgba(0,9,219,.08); }
+        .port-card-link { font-size: .84rem; font-weight: 600; color: var(--port-blue); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: gap .18s ease; }
+        .port-card-link:hover { gap: 9px; }
+        .port-card-link svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+        .port-card-count { font-size: .73rem; color: #aab; }
+        /* cta */
+        .port-cta { text-align: center; margin-top: 58px; }
+        .port-cta p { font-size: .92rem; color: #778; margin-bottom: 18px; }
+        .port-cta-btn {
+          display: inline-flex; align-items: center; gap: 8px;
+          background: var(--port-blue); color: #fff;
+          font-weight: 700; font-size: .9rem; letter-spacing: .04em;
+          padding: 13px 30px; border-radius: 100px;
+          text-decoration: none; border: none; cursor: pointer;
+          box-shadow: 0 6px 22px var(--port-blue-glow);
+          transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
         }
-
-       .portfolio-card .face.face2 .content a {
-            margin: 15px 0 0;
-            display: inline-block;
-            text-decoration: none;
-            font-weight: 900;
-            color: #333;
-            padding: 5px;
-            border: 1px solid #333;
-            border-radius: 5px; /* Add border-radius to the link */
-        }
-
-       .portfolio-card .face.face2 .content a:hover {
-            background: #333;
-            color: #fff;
+        .port-cta-btn:hover { transform: translateY(-2px); background: var(--port-blue-dark); box-shadow: 0 10px 30px rgba(0,9,219,.26); color:#fff; }
+        .port-cta-btn svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+        @media (max-width: 600px) {
+          .portfolio-section { padding: 60px 16px 80px; }
+          .port-grid { grid-template-columns: 1fr; gap: 18px; }
+          .port-header { margin-bottom: 36px; }
         }
 
 
@@ -684,22 +969,173 @@ nav li a:focus {
    outline: none;
 }
 
-.nav-icon {
-  font-size: 1.8em;
-  color: #d7d8ff;
-  transition: color 0.5s ease, transform 0.3s ease;
-  margin: 0;
-  padding: 10px;
+/* ---- Animated SVG Nav Icons ---- */
+.nav-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: transparent;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
 }
 
-nav li a:hover .nav-icon {
-  color: #0009DB;
-  transform: scale(1.3);
+nav li a:hover .nav-icon-wrap,
+.active .nav-icon-wrap {
+  background: rgba(0, 9, 219, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 9, 219, 0.18);
+  transform: scale(1.15);
 }
 
-.active .nav-icon {
-  color: #0009DB;
-  transform: scale(1.3);
+.nav-svg {
+  width: 22px;
+  height: 22px;
+  overflow: visible;
+}
+
+/* Base stroke/fill state */
+.nav-svg .icon-stroke {
+  stroke: #b0b3f0;
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.35s ease;
+}
+.nav-svg .icon-fill {
+  fill: #b0b3f0;
+  transition: fill 0.35s ease;
+}
+.nav-svg .icon-fill-none {
+  fill: none;
+  stroke: #b0b3f0;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.35s ease, fill 0.35s ease;
+}
+
+/* Active + hover states */
+nav li a:hover .icon-stroke,
+.active .icon-stroke {
+  stroke: #0009DB;
+}
+nav li a:hover .icon-fill,
+.active .icon-fill {
+  fill: #0009DB;
+}
+nav li a:hover .icon-fill-none,
+.active .icon-fill-none {
+  stroke: #0009DB;
+}
+
+/* Draw-on animation for stroked paths */
+.nav-svg .icon-stroke-draw {
+  stroke: #b0b3f0;
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  transition: stroke 0.35s ease, stroke-dashoffset 0.45s ease;
+}
+nav li a:hover .icon-stroke-draw,
+.active .icon-stroke-draw {
+  stroke: #0009DB;
+  stroke-dashoffset: 0;
+}
+nav li a .icon-stroke-draw {
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0s; /* hidden by default */
+}
+nav li a:hover .icon-stroke-draw {
+  stroke-dashoffset: 0;
+  transition: stroke 0.35s ease, stroke-dashoffset 0.5s ease;
+}
+.active .icon-stroke-draw {
+  stroke-dashoffset: 0 !important;
+  stroke: #0009DB !important;
+  transition: none;
+}
+
+/* Bounce on hover for the whole icon wrap */
+@keyframes nav-bounce {
+  0%   { transform: scale(1.15) translateY(0); }
+  35%  { transform: scale(1.15) translateY(-5px); }
+  55%  { transform: scale(1.15) translateY(2px); }
+  75%  { transform: scale(1.15) translateY(-2px); }
+  100% { transform: scale(1.15) translateY(0); }
+}
+nav li a:hover .nav-icon-wrap {
+  animation: nav-bounce 0.45s ease forwards;
+}
+
+/* Spin on hover for specific icons */
+@keyframes nav-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.nav-spin-on-hover {
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+nav li a:hover .nav-spin-on-hover {
+  animation: nav-spin 0.5s ease forwards;
+}
+
+/* Pulse ring */
+.nav-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 2px solid #0009DB;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+nav li a:hover .nav-ring,
+.active .nav-ring {
+  opacity: 0.35;
+  transform: scale(1);
+}
+
+/* Tooltip labels */
+nav li a {
+  position: relative;
+}
+nav li a .nav-label {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: #0009DB;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+nav li a .nav-label::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 5px 0 5px 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #0009DB;
+}
+nav li a:hover .nav-label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
   </style>
@@ -727,15 +1163,7 @@ nav li a:hover .nav-icon {
 .animation-container.pulse-fast .animation-circle {
   animation: pulseFast 0.22s ease-in-out infinite alternate;
 }
-#hireme-button.pulse-hover {
-  animation: buttonPulse 0.5s ease-in-out infinite alternate;
-  box-shadow: 0 0 22px rgba(0, 137, 255, 0.45);
-  transform: scale(1.02);
-}
-@keyframes buttonPulse {
-  from { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 137, 255, 0.35); }
-  to { transform: scale(1.08); box-shadow: 0 0 30px rgba(0, 137, 255, 0.55); }
-}
+/* pulse-hover removed — replaced by magnetic effect */
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 @keyframes contactIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulseFast{from{transform:scale(1);}to{transform:scale(1.08);}}
@@ -894,7 +1322,7 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
 @keyframes floatIcons{0%{transform:translateY(0px) rotate(0deg);}50%{transform:translateY(-8px) rotate(8deg);}100%{transform:translateY(0px) rotate(0deg);}}
 
 /* BUTTON */
-.form-side .button{
+.form-side .send-btn{
   --primary:#0009DB;--primary-dark:#2435ff;--primary-darkest:#0007b3;
   --text:#FFFFFF;--text-opacity:1;--success:#2B3044;--success-scale:.2;--success-opacity:0;
   --border-radius:7;--rotate:0;--plane-x:0;--plane-y:0;--plane-opacity:1;
@@ -902,18 +1330,23 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
   --left-body-background:var(--primary);--left-body-first-x:50;--left-body-first-y:0;--left-body-second-x:50;--left-body-second-y:100;--left-body-third-x:0;--left-body-third-y:100;
   --right-wing-background:var(--primary);--right-wing-first-x:50;--right-wing-first-y:0;--right-wing-second-x:100;--right-wing-second-y:0;--right-wing-third-x:100;--right-wing-third-y:100;
   --right-body-background:var(--primary);--right-body-first-x:50;--right-body-first-y:0;--right-body-second-x:50;--right-body-second-y:100;--right-body-third-x:100;--right-body-third-y:100;
-  display:block;cursor:pointer;position:relative;border:0;padding:8px 0;width:105px;
+  /* Reset global .button rule */
+  display:block;cursor:pointer;position:relative;border:0;
+  padding:8px 0;width:130px;flex-shrink:0;
   text-align:center;line-height:24px;font-family:inherit;font-weight:500;font-size:14px;
   background:none;outline:none;color:var(--text);
+  overflow:visible;-webkit-mask-image:none;
+  border-radius:0;box-shadow:none;
+  transition:none;
   transform:rotate(calc(var(--rotate) * 1deg)) translateZ(0);appearance:none;
 }
-.form-side .button .left,.form-side .button .right{position:absolute;left:0;top:0;right:0;bottom:0;opacity:var(--plane-opacity);transform:translate(calc(var(--plane-x) * 1px),calc(var(--plane-y) * 1px)) translateZ(0);}
-.form-side .button .left:before,.form-side .button .left:after,.form-side .button .right:before,.form-side .button .right:after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;border-radius:calc(var(--border-radius) * 1px);transform:translate(var(--x,0.4%),var(--y,0)) translateZ(0);z-index:var(--z-index,2);background:var(--background,var(--left-wing-background));clip-path:polygon(calc(var(--first-x,var(--left-wing-first-x)) * 1%) calc(var(--first-y,var(--left-wing-first-y)) * 1%),calc(var(--second-x,var(--left-wing-second-x)) * 1%) calc(var(--second-y,var(--left-wing-second-y)) * 1%),calc(var(--third-x,var(--left-wing-third-x)) * 1%) calc(var(--third-y,var(--left-wing-third-y)) * 1%));}
-.form-side .button .left:after{--x:0;--z-index:1;--background:var(--left-body-background);--first-x:var(--left-body-first-x);--first-y:var(--left-body-first-y);--second-x:var(--left-body-second-x);--second-y:var(--left-body-second-y);--third-x:var(--left-body-third-x);--third-y:var(--left-body-third-y);}
-.form-side .button .right:before{--x:-.4%;--z-index:2;--background:var(--right-wing-background);--first-x:var(--right-wing-first-x);--first-y:var(--right-wing-first-y);--second-x:var(--right-wing-second-x);--second-y:var(--right-wing-second-y);--third-x:var(--right-wing-third-x);--third-y:var(--right-wing-third-y);}
-.form-side .button .right:after{--x:0;--z-index:1;--background:var(--right-body-background);--first-x:var(--right-body-first-x);--first-y:var(--right-body-first-y);--second-x:var(--right-body-second-x);--second-y:var(--right-body-second-y);--third-x:var(--right-body-third-x);--third-y:var(--right-body-third-y);}
-.form-side .button span{display:block;position:relative;z-index:4;opacity:var(--text-opacity);}
-.form-side .button span.success{z-index:0;position:absolute;left:0;right:0;top:8px;transform:rotate(calc(var(--rotate) * -1deg)) scale(var(--success-scale)) translateZ(0);opacity:var(--success-opacity);color:var(--success);}
+.form-side .send-btn .left,.form-side .send-btn .right{position:absolute;left:0;top:0;right:0;bottom:0;opacity:var(--plane-opacity);transform:translate(calc(var(--plane-x) * 1px),calc(var(--plane-y) * 1px)) translateZ(0);}
+.form-side .send-btn .left:before,.form-side .send-btn .left:after,.form-side .send-btn .right:before,.form-side .send-btn .right:after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;border-radius:calc(var(--border-radius) * 1px);transform:translate(var(--x,0.4%),var(--y,0)) translateZ(0);z-index:var(--z-index,2);background:var(--background,var(--left-wing-background));clip-path:polygon(calc(var(--first-x,var(--left-wing-first-x)) * 1%) calc(var(--first-y,var(--left-wing-first-y)) * 1%),calc(var(--second-x,var(--left-wing-second-x)) * 1%) calc(var(--second-y,var(--left-wing-second-y)) * 1%),calc(var(--third-x,var(--left-wing-third-x)) * 1%) calc(var(--third-y,var(--left-wing-third-y)) * 1%));}
+.form-side .send-btn .left:after{--x:0;--z-index:1;--background:var(--left-body-background);--first-x:var(--left-body-first-x);--first-y:var(--left-body-first-y);--second-x:var(--left-body-second-x);--second-y:var(--left-body-second-y);--third-x:var(--left-body-third-x);--third-y:var(--left-body-third-y);}
+.form-side .send-btn .right:before{--x:-.4%;--z-index:2;--background:var(--right-wing-background);--first-x:var(--right-wing-first-x);--first-y:var(--right-wing-first-y);--second-x:var(--right-wing-second-x);--second-y:var(--right-wing-second-y);--third-x:var(--right-wing-third-x);--third-y:var(--right-wing-third-y);}
+.form-side .send-btn .right:after{--x:0;--z-index:1;--background:var(--right-body-background);--first-x:var(--right-body-first-x);--first-y:var(--right-body-first-y);--second-x:var(--right-body-second-x);--second-y:var(--right-body-second-y);--third-x:var(--right-body-third-x);--third-y:var(--right-body-third-y);}
+.form-side .send-btn span{display:block;position:relative;z-index:4;opacity:var(--text-opacity);}
+.form-side .send-btn span.success{z-index:0;position:absolute;left:0;right:0;top:8px;transform:rotate(calc(var(--rotate) * -1deg)) scale(var(--success-scale)) translateZ(0);opacity:var(--success-opacity);color:var(--success);}
 
 /* SHAKE ANIMATION */
 @keyframes shake{0%,100%{transform:translateX(0);}15%{transform:translateX(-6px);}30%{transform:translateX(6px);}45%{transform:translateX(-5px);}60%{transform:translateX(5px);}75%{transform:translateX(-3px);}90%{transform:translateX(3px);}}
@@ -1238,19 +1671,58 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
        <h4>Extra Skills</h4>
           <div class="extra-skills">
 
-              <div class="flex"> <img src="Icons.png" alt="icon"><div>Bootstrap, Tailwind</div></div>
+              <div class="flex"> 
+                <svg width="22" height="22" viewBox="0 0 22 22" style="margin-right:10px;flex-shrink:0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="22" height="22" rx="6" fill="#0009DB" fill-opacity="0.1"/>
+                  <path d="M5 9 L9.5 13.5 L17 6" stroke="#0009DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>Bootstrap, Tailwind</div>
+              </div>
 
-              <div class="flex"> <img src="Icons.png" alt="icon"><div>Firebase, Digital Marketing</div></div>
+              <div class="flex"> 
+                <svg width="22" height="22" viewBox="0 0 22 22" style="margin-right:10px;flex-shrink:0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="22" height="22" rx="6" fill="#0009DB" fill-opacity="0.1"/>
+                  <path d="M5 9 L9.5 13.5 L17 6" stroke="#0009DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>Firebase, Digital Marketing</div>
+              </div>
 
-              <div class="flex"> <img src="Icons.png" alt="icon"><div>React, React native</div></div>
+              <div class="flex"> 
+                <svg width="22" height="22" viewBox="0 0 22 22" style="margin-right:10px;flex-shrink:0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="22" height="22" rx="6" fill="#0009DB" fill-opacity="0.1"/>
+                  <path d="M5 9 L9.5 13.5 L17 6" stroke="#0009DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>React, React native</div>
+              </div>
 
-              <div class="flex"> <img src="Icons.png" alt="icon"><div>Logo Design, Ui/Ux Design</div></div>
+              <div class="flex"> 
+                <svg width="22" height="22" viewBox="0 0 22 22" style="margin-right:10px;flex-shrink:0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="22" height="22" rx="6" fill="#0009DB" fill-opacity="0.1"/>
+                  <path d="M5 9 L9.5 13.5 L17 6" stroke="#0009DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>Logo Design, Ui/Ux Design</div>
+              </div>
 
-              <div class="flex"> <img src="Icons.png" alt="icon"><div>GIT Version control Knowledge</div></div>
+              <div class="flex"> 
+                <svg width="22" height="22" viewBox="0 0 22 22" style="margin-right:10px;flex-shrink:0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="22" height="22" rx="6" fill="#0009DB" fill-opacity="0.1"/>
+                  <path d="M5 9 L9.5 13.5 L17 6" stroke="#0009DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>GIT Version control Knowledge</div>
+              </div>
 
           </div>
 
-          <div class="btn" id="downloadcv-button" > Download cv <i class="fa-solid fa-download"></i></div>
+          <a href="Kelvin_Ariedi_CV.pdf" download class="button" id="downloadcv-button">
+            <ul>
+              <li>Download CV</li>
+              <li>Downloading</li>
+              <li>Downloaded</li>
+            </ul>
+            <div>
+              <svg viewBox="0 0 24 24"></svg>
+            </div>
+          </a>
     </div>
       
     <div class="col-md-8 scroll" data-bs-spy="scroll" data-bs-target=".navigation-menu" data-bs-offset="50">
@@ -1258,8 +1730,6 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
       <section class="main-section" id="home">
         <div class="row">
           <div class="col-md-6">
-            <br>
-            <br>
             <h1>Hi, I’m Kelvin Ariedi</h1>
             <p>Hi, I'm Kelvin Otieno, an AWS Cloud Practitioner and UI/UX Designer with a passion for innovation and excellence in web development. With extensive experience in front-end development, I have honed my skills in HTML, CSS, JavaScript, PHP, and MySQL. My journey has taken me from leading frontend design projects at Corium Connect to teaching programming and UI/UX design at Corium Code Academy. I thrive in collaborative environments and am dedicated to delivering high-quality, responsive websites that provide seamless user experiences. Let's create something amazing together!</p>
             <div class="circle-body">
@@ -1274,12 +1744,13 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
                 <div class="animation-circle"></div>
                 <div class="animation-circle"></div>
                 <div class="animation-circle"></div>
-                <div class="btn" id="hireme-button" > hire me <i class="fa-solid fa-handshake-angle"></i></div>
+                <button class="btn" id="hireme-button"><span class="hire-label">hire me <i class="fa-solid fa-handshake-angle hire-icon"></i></span></button>
+                <canvas id="hire-particle-canvas"></canvas>
               </div>
             </div>
             
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" style="display:flex; align-items:flex-end; padding:0;">
             <img class="main-section-img" src="Your Image 1.png" alt="my photo">
           </div>
         </div>
@@ -1628,83 +2099,136 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
         </div>
       </section>
 
-      <section class="portfolio-section" id="portfolio" >
-        <div class="section-headline">
-          <h1>Portfolio</h1>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+      <section class="portfolio-section" id="portfolio">
+
+        <!-- Header -->
+        <div class="port-header">
+          <div class="port-eyebrow">Selected Work</div>
+          <h1>My Portfolio</h1>
+          <p>A collection of branding, web, mobile, and print work — built with attention to detail and a focus on impact.</p>
         </div>
-        <div class="container row">
-          <div class="owl-carousel slider_carousel container">
-                        
-            <div class="portfolio-card first">
-                <div class="face face1">
-                    <div class="content">
-                        <img src="img/logos.png">
-                        <h3>Logos</h3>
-                    </div>
-                </div>
-                <div class="face face2">
-                    <div class="content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
-                            <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="portfolio-card second">
-                <div class="face face1">
-                    <div class="content">
-                      <img src="img/websites.png">
-                      <h3>Websites</h3>
-                    </div>
-                </div>
-                <div class="face face2">
-                    <div class="content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
-                            <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
+        <!-- Filter tabs -->
+        <div class="port-filters">
+          <button class="port-filter-btn active" data-filter="all">All Work</button>
+          <button class="port-filter-btn" data-filter="branding">Branding</button>
+          <button class="port-filter-btn" data-filter="web">Web</button>
+          <button class="port-filter-btn" data-filter="mobile">Mobile</button>
+          <button class="port-filter-btn" data-filter="print">Print</button>
+        </div>
 
-            <div class="portfolio-card third">
-                <div class="face face1">
-                    <div class="content">
-                        <img src="img/mobile-apps.png">
-                        <h3>Mobile Apps</h3>
-                    </div>
-                </div>
-                <div class="face face2">
-                    <div class="content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
-                            <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
+        <!-- Grid -->
+        <div class="port-grid" id="portGrid">
 
-            <div class="portfolio-card fourth">
-              <div class="face face1">
-                  <div class="content">
-                      <img src="img/bussiness-card.png">
-                      <h3>Bussinedd Cards</h3>
-                  </div>
+          <!-- Card 1: Logos -->
+          <article class="port-card" data-category="branding">
+            <div class="port-card-img img-logos">
+              <span class="port-card-cat">Branding</span>
+              <div class="port-card-hover-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
               </div>
-              <div class="face face2">
-                  <div class="content">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
-                          <a href="#">Read More</a>
-                  </div>
+            </div>
+            <div class="port-card-body">
+              <h3 class="port-card-title">Logo & Brand Identity</h3>
+              <p class="port-card-desc">Custom logos and visual identity systems for startups and SMEs — from initial concepts to final brand guidelines with consistent colour, type, and tone.</p>
+              <div class="port-card-tags">
+                <span class="port-tag">Logo Design</span>
+                <span class="port-tag">Brand Guidelines</span>
+                <span class="port-tag">Figma</span>
               </div>
-          </div>
+              <div class="port-card-footer">
+                <a href="work/logos.html" class="port-card-link">View Projects <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                <span class="port-card-count">12+ projects</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Websites -->
+          <article class="port-card" data-category="web">
+            <div class="port-card-img img-websites">
+              <span class="port-card-cat">Web</span>
+              <div class="port-card-hover-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+            </div>
+            <div class="port-card-body">
+              <h3 class="port-card-title">Websites & Web Apps</h3>
+              <p class="port-card-desc">Responsive, performant websites and full-stack web applications — from portfolio sites and landing pages to customer-facing dashboards and SaaS platforms.</p>
+              <div class="port-card-tags">
+                <span class="port-tag">HTML / CSS / JS</span>
+                <span class="port-tag">React</span>
+                <span class="port-tag">AWS</span>
+              </div>
+              <div class="port-card-footer">
+                <a href="work/websites.html" class="port-card-link">View Projects <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                <span class="port-card-count">8+ projects</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Mobile Apps -->
+          <article class="port-card" data-category="mobile">
+            <div class="port-card-img img-mobile">
+              <span class="port-card-cat">Mobile</span>
+              <div class="port-card-hover-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+            </div>
+            <div class="port-card-body">
+              <h3 class="port-card-title">Mobile App Design & Dev</h3>
+              <p class="port-card-desc">End-to-end mobile experiences — UI/UX design through to deployment on Android and iOS. Built with usability at the core and designed for real users in real contexts.</p>
+              <div class="port-card-tags">
+                <span class="port-tag">UI/UX</span>
+                <span class="port-tag">Android</span>
+                <span class="port-tag">iOS</span>
+              </div>
+              <div class="port-card-footer">
+                <a href="work/mobile.html" class="port-card-link">View Projects <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                <span class="port-card-count">5+ projects</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Business Cards -->
+          <article class="port-card" data-category="print">
+            <div class="port-card-img img-bizcard">
+              <span class="port-card-cat">Print</span>
+              <div class="port-card-hover-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+            </div>
+            <div class="port-card-body">
+              <h3 class="port-card-title">Business Cards & Print</h3>
+              <p class="port-card-desc">Print-ready business cards, brochures, and marketing collateral that carry a brand's identity off-screen — crafted for both digital printing and offset production.</p>
+              <div class="port-card-tags">
+                <span class="port-tag">Print Design</span>
+                <span class="port-tag">Illustrator</span>
+                <span class="port-tag">Photoshop</span>
+              </div>
+              <div class="port-card-footer">
+                <a href="work/print.html" class="port-card-link">View Projects <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+                <span class="port-card-count">20+ projects</span>
+              </div>
+            </div>
+          </article>
 
         </div>
+
+        <!-- CTA -->
+        <div class="port-cta">
+          <p>Want to see more, or have a project in mind?</p>
+          <a href="#contact" class="port-cta-btn">
+            Let's Work Together
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
-        
+
       </section>
 
       <section class="contact-section" id="contact" >
         <div class="section-headline">
           <h1>Contact Me</h1>
-          <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. lorem ipsum</p>
+          <p>Have a project, idea, or opportunity? Fill in the form below and I'll get back to you shortly.</p>
         </div>
         <div class="row">
               <!-- CONTACT FORM SECTION START -->
@@ -1775,7 +2299,7 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
 
       <!-- SUBMIT ROW -->
       <div class="submit-row">
-        <button class="button" type="submit" id="submitBtn">
+        <button class="send-btn" type="submit" id="submitBtn">
           <span class="default">Send</span>
           <span class="success">Sent</span>
           <div class="left"></div>
@@ -1856,12 +2380,110 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
     <div class="col-md-1 navigation-menu">
       <nav>
         <ul>
-          <li><a href="#home" class="link active"><i class="fa-solid fa-person-rays nav-icon"></i></a></li>
-          <li><a href="#offerings" class="link"><i class="fa-solid fa-puzzle-piece nav-icon"></i></a></li>
-          <li><a href="#process" class="link"><i class="fa-solid fa-code nav-icon"></i></a></li>
-          <li><a href="#experience" class="link"><i class="fa-solid fa-business-time nav-icon"></i></a></li>
-          <li><a href="#portfolio" class="link"><i class="fa-solid fa-microchip nav-icon"></i></a></li>
-          <li><a href="#contact" class="link"><i class="fa-solid fa-phone-volume nav-icon"></i></a></li>
+          <!-- Home: animated house with chimney smoke -->
+          <li><a href="#home" class="link active">
+            <span class="nav-label">Home</span>
+            <div class="nav-icon-wrap">
+              <div class="nav-ring"></div>
+              <svg class="nav-svg" viewBox="0 0 24 24">
+                <!-- roof -->
+                <polyline class="icon-stroke" points="3,10 12,3 21,10"/>
+                <!-- walls -->
+                <rect class="icon-fill-none" x="5" y="10" width="14" height="11" rx="1"/>
+                <!-- door -->
+                <rect class="icon-fill" x="9.5" y="15" width="5" height="6" rx="0.5" style="fill:#b0b3f0; transition: fill 0.35s;"/>
+                <!-- window -->
+                <rect class="icon-stroke-draw" x="14" y="12" width="3" height="3" rx="0.5" style="stroke-dasharray:14; stroke-dashoffset:14;"/>
+              </svg>
+            </div>
+          </a></li>
+
+          <!-- Offerings/Services: sparkle star with rays drawing in -->
+          <li><a href="#offerings" class="link">
+            <span class="nav-label">Services</span>
+            <div class="nav-icon-wrap">
+              <div class="nav-ring"></div>
+              <svg class="nav-svg" viewBox="0 0 24 24">
+                <!-- 4-point star body -->
+                <path class="icon-fill-none" d="M12 2 L13.5 9 L20 9 L14.5 13 L16.5 20 L12 16 L7.5 20 L9.5 13 L4 9 L10.5 9 Z"/>
+                <!-- sparkle rays drawing in on hover -->
+                <line class="icon-stroke-draw" x1="12" y1="0.5" x2="12" y2="2" style="stroke-dasharray:4;stroke-dashoffset:4;"/>
+                <line class="icon-stroke-draw" x1="22" y1="12" x2="20" y2="12" style="stroke-dasharray:4;stroke-dashoffset:4;stroke-dashoffset:4;"/>
+                <line class="icon-stroke-draw" x1="2" y1="12" x2="4" y2="12" style="stroke-dasharray:4;stroke-dashoffset:4;"/>
+                <line class="icon-stroke-draw" x1="12" y1="23.5" x2="12" y2="22" style="stroke-dasharray:4;stroke-dashoffset:4;"/>
+              </svg>
+            </div>
+          </a></li>
+
+          <!-- Process/Code: terminal prompt with blinking cursor -->
+          <li><a href="#process" class="link">
+            <span class="nav-label">Process</span>
+            <div class="nav-icon-wrap">
+              <div class="nav-ring"></div>
+              <svg class="nav-svg" viewBox="0 0 24 24">
+                <!-- terminal frame -->
+                <rect class="icon-fill-none" x="2" y="3" width="20" height="18" rx="2"/>
+                <!-- top bar dots -->
+                <circle class="icon-fill" cx="6" cy="7.5" r="1"/>
+                <circle class="icon-fill" cx="9.5" cy="7.5" r="1"/>
+                <!-- prompt arrow drawing in -->
+                <polyline class="icon-stroke-draw" points="6,12 9,14.5 6,17" style="stroke-dasharray:12;stroke-dashoffset:12;"/>
+                <!-- cursor line drawing in -->
+                <line class="icon-stroke-draw" x1="11" y1="17" x2="17" y2="17" style="stroke-dasharray:8;stroke-dashoffset:8;"/>
+              </svg>
+            </div>
+          </a></li>
+
+          <!-- Experience: briefcase with clasp animation -->
+          <li><a href="#experience" class="link">
+            <span class="nav-label">Experience</span>
+            <div class="nav-icon-wrap">
+              <div class="nav-ring"></div>
+              <svg class="nav-svg" viewBox="0 0 24 24">
+                <!-- bag body -->
+                <rect class="icon-fill-none" x="2" y="8" width="20" height="13" rx="2"/>
+                <!-- handle -->
+                <path class="icon-stroke" d="M8,8 L8,6 a4,4 0 0 1 8,0 L16,8"/>
+                <!-- middle bar drawing in on hover -->
+                <line class="icon-stroke-draw" x1="2" y1="14" x2="22" y2="14" style="stroke-dasharray:22;stroke-dashoffset:22;"/>
+                <!-- clasp -->
+                <rect class="icon-fill" x="10.5" y="12.5" width="3" height="3" rx="1" style="fill:#b0b3f0; transition: fill 0.35s;"/>
+              </svg>
+            </div>
+          </a></li>
+
+          <!-- Portfolio: grid of cards with one popping up -->
+          <li><a href="#portfolio" class="link">
+            <span class="nav-label">Portfolio</span>
+            <div class="nav-icon-wrap">
+              <div class="nav-ring"></div>
+              <svg class="nav-svg" viewBox="0 0 24 24">
+                <!-- 4 grid cells -->
+                <rect class="icon-fill-none" x="2"  y="2"  width="9" height="9" rx="1.5"/>
+                <rect class="icon-fill-none" x="13" y="2"  width="9" height="9" rx="1.5"/>
+                <rect class="icon-fill-none" x="2"  y="13" width="9" height="9" rx="1.5"/>
+                <!-- bottom-right cell draws in on hover -->
+                <rect class="icon-stroke-draw" x="13" y="13" width="9" height="9" rx="1.5" style="stroke-dasharray:36;stroke-dashoffset:36;"/>
+              </svg>
+            </div>
+          </a></li>
+
+          <!-- Contact: envelope with flying line -->
+          <li><a href="#contact" class="link">
+            <span class="nav-label">Contact</span>
+            <div class="nav-icon-wrap">
+              <div class="nav-ring"></div>
+              <svg class="nav-svg" viewBox="0 0 24 24">
+                <!-- envelope body -->
+                <rect class="icon-fill-none" x="2" y="5" width="20" height="14" rx="2"/>
+                <!-- flap V drawing in on hover -->
+                <polyline class="icon-stroke-draw" points="2,5 12,13 22,5" style="stroke-dasharray:26;stroke-dashoffset:26;"/>
+                <!-- send arrow drawing in -->
+                <line class="icon-stroke-draw" x1="16" y1="12" x2="22" y2="6" style="stroke-dasharray:10;stroke-dashoffset:10;"/>
+                <polyline class="icon-stroke-draw" points="18,6 22,6 22,10" style="stroke-dasharray:10;stroke-dashoffset:10;"/>
+              </svg>
+            </div>
+          </a></li>
         </ul>
       </nav>
       
@@ -1887,33 +2509,8 @@ form{display:flex;flex-direction:column;gap:13px;position:relative;z-index:2;}
     startAnimation(); // Initial start
   </script>
 
-  <script>
-    // portfolio carousel.js
-      $(document).ready(function(){
-          $('.owl-carousel.slider_carousel').owlCarousel({
-              dots: false,
-              loop: true,
-              margin: 30,
-              stagePadding: 2,
-              autoplay: true,
-              nav: true,
-              navText: ["<i class='far fa-arrow-alt-circle-left'></i>","<i class='far fa-arrow-alt-circle-right'></i>"],
-              autoplayTimeout: 3500,
-              autoplayHoverPause: true,
-              responsive: {
-                  0: {
-                      items: 1
-                  },
-                  768: {
-                      items: 2,
-                  },
-                  992: {
-                      items: 3
-                  }
-              }
-          });
-      });
-  </script>
+
+
 
 <script>
 // side navigation.js
@@ -1964,47 +2561,168 @@ document.addEventListener('DOMContentLoaded', function () {
   const contactCard = document.querySelector('.contact-card');
   const nameInput = document.getElementById('input-name');
   const animationContainer = document.querySelector('.animation-container');
+  const hireCanvas = document.getElementById('hire-particle-canvas');
+  let hireCtx = hireCanvas ? hireCanvas.getContext('2d') : null;
+  let hireParticles = [];
+  let hireRaf = null;
+
+  /* ── Resize canvas to match container ── */
+  function resizeHireCanvas() {
+    if (!hireCanvas || !animationContainer) return;
+    const r = animationContainer.getBoundingClientRect();
+    hireCanvas.width  = r.width;
+    hireCanvas.height = r.height;
+  }
+  resizeHireCanvas();
+  window.addEventListener('resize', resizeHireCanvas);
+
+  /* ── Particle class ── */
+  class HireParticle {
+    constructor(x, y, burst) {
+      this.x = x; this.y = y;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = burst ? (3 + Math.random() * 7) : (0.4 + Math.random() * 1.2);
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed - (burst ? 2 : 0);
+      this.alpha = 1;
+      this.size = burst ? (3 + Math.random() * 5) : (1 + Math.random() * 2);
+      this.decay = burst ? (0.018 + Math.random() * 0.018) : (0.008 + Math.random() * 0.006);
+      const hues = [220, 230, 240, 260, 200, 210];
+      this.color = `hsl(${hues[Math.floor(Math.random()*hues.length)]},90%,${burst?65:75}%)`;
+      this.gravity = burst ? 0.12 : 0;
+      this.shape = burst && Math.random() > 0.55 ? 'star' : 'circle';
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += this.gravity;
+      this.vx *= 0.98;
+      this.alpha -= this.decay;
+    }
+    draw(ctx) {
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, this.alpha);
+      ctx.fillStyle = this.color;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 6;
+      if (this.shape === 'star') {
+        ctx.translate(this.x, this.y);
+        ctx.beginPath();
+        for (let i = 0; i < 5; i++) {
+          const a = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+          const r = i % 2 === 0 ? this.size : this.size * 0.45;
+          i === 0 ? ctx.moveTo(Math.cos(a)*r, Math.sin(a)*r) : ctx.lineTo(Math.cos(a)*r, Math.sin(a)*r);
+        }
+        ctx.closePath();
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+
+  function hireLoop() {
+    if (!hireCtx) return;
+    hireCtx.clearRect(0, 0, hireCanvas.width, hireCanvas.height);
+    hireParticles = hireParticles.filter(p => p.alpha > 0);
+    hireParticles.forEach(p => { p.update(); p.draw(hireCtx); });
+    if (hireParticles.length > 0) {
+      hireRaf = requestAnimationFrame(hireLoop);
+    } else {
+      hireRaf = null;
+    }
+  }
+
+  function startHireLoop() {
+    if (!hireRaf) hireRaf = requestAnimationFrame(hireLoop);
+  }
+
+  /* ── Ambient shimmer on hover ── */
+  let hireHoverInterval = null;
+  function spawnAmbient() {
+    if (!hireCanvas || !hireMeButton) return;
+    const br = hireMeButton.getBoundingClientRect();
+    const cr = hireCanvas.getBoundingClientRect();
+    for (let i = 0; i < 3; i++) {
+      const x = (br.left - cr.left) + Math.random() * br.width;
+      const y = (br.top  - cr.top)  + Math.random() * br.height;
+      hireParticles.push(new HireParticle(x, y, false));
+    }
+    startHireLoop();
+  }
+
+  /* ── Magnetic follow on hover ── */
+  let isMagActive = false;
+  function onHireMagMove(e) {
+    if (!hireMeButton) return;
+    const r = hireMeButton.getBoundingClientRect();
+    const cx = r.left + r.width  / 2;
+    const cy = r.top  + r.height / 2;
+    const dx = (e.clientX - cx) * 0.28;
+    const dy = (e.clientY - cy) * 0.28;
+    hireMeButton.style.transform = `translate(${dx}px, ${dy}px) scale(1.07)`;
+    hireMeButton.style.boxShadow = `${dx*0.5}px ${dy*0.5}px 30px rgba(0,9,219,0.55), 0 0 0 2px rgba(85,104,255,0.4)`;
+  }
+  function resetMag() {
+    if (!hireMeButton) return;
+    hireMeButton.style.transform = '';
+    hireMeButton.style.boxShadow = '';
+  }
+
+  /* ── Burst on click ── */
+  function burstParticles(e) {
+    if (!hireCanvas) return;
+    const cr = hireCanvas.getBoundingClientRect();
+    const x  = e.clientX - cr.left;
+    const y  = e.clientY - cr.top;
+    for (let i = 0; i < 55; i++) hireParticles.push(new HireParticle(x, y, true));
+    startHireLoop();
+    /* ripple ring */
+    const ripple = document.createElement('div');
+    ripple.className = 'hire-ripple';
+    ripple.style.cssText = `width:60px;height:60px;left:${x-30}px;top:${y-30}px;`;
+    hireCanvas.parentElement.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 750);
+  }
 
   function pulseCircles() {
     if (!animationContainer) return;
     animationContainer.classList.add('pulse-fast');
-    setTimeout(() => {
-      animationContainer.classList.remove('pulse-fast');
-    }, 700);
+    setTimeout(() => animationContainer.classList.remove('pulse-fast'), 700);
   }
-
-  function activateHoverPulse() {
-    if (animationContainer) animationContainer.classList.add('pulse-fast');
-    if (hireMeButton) hireMeButton.classList.add('pulse-hover');
-  }
-
-  function deactivateHoverPulse() {
-    if (animationContainer) animationContainer.classList.remove('pulse-fast');
-    if (hireMeButton) hireMeButton.classList.remove('pulse-hover');
-  }
-
   function animateContactCard() {
     if (!contactCard) return;
     contactCard.classList.remove('fade-slide-in');
     void contactCard.offsetWidth;
     contactCard.classList.add('fade-slide-in');
   }
-
   function scrollToContact() {
     if (!contactSection) return;
     contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-
   function focusNameField() {
     if (!nameInput) return;
     nameInput.focus({ preventScroll: true });
   }
 
   if (hireMeButton) {
-    hireMeButton.addEventListener('mouseover', activateHoverPulse);
-    hireMeButton.addEventListener('mouseout', deactivateHoverPulse);
+    hireMeButton.addEventListener('mouseenter', () => {
+      isMagActive = true;
+      document.addEventListener('mousemove', onHireMagMove);
+      hireHoverInterval = setInterval(spawnAmbient, 80);
+    });
+    hireMeButton.addEventListener('mouseleave', () => {
+      isMagActive = false;
+      document.removeEventListener('mousemove', onHireMagMove);
+      clearInterval(hireHoverInterval);
+      resetMag();
+    });
     hireMeButton.addEventListener('click', (event) => {
       event.preventDefault();
+      burstParticles(event);
       pulseCircles();
       animateContactCard();
       scrollToContact();
@@ -2657,6 +3375,79 @@ function runButtonAnimation(button, form) {
 /* =============================================
    FORM SUBMIT — Web3Forms (no account/config needed)
 ============================================= */
+/* =============================================
+   ANIMATED DOWNLOAD CV BUTTON
+============================================= */
+(function() {
+  const button = document.getElementById('downloadcv-button');
+  if (!button) return;
+  const duration = 3000;
+  const svg = button.querySelector('svg');
+  button.style.setProperty('--duration', duration);
+
+  const svgPath = new Proxy({ y: null, smoothing: null }, {
+    set(target, key, value) {
+      target[key] = value;
+      if (target.y !== null && target.smoothing !== null) {
+        svg.innerHTML = getCVPath(target.y, target.smoothing, null);
+      }
+      return true;
+    },
+    get(target, key) { return target[key]; }
+  });
+
+  svgPath.y = 20;
+  svgPath.smoothing = 0;
+
+  button.addEventListener('click', e => {
+    e.preventDefault();
+    if (button.classList.contains('loading')) return;
+    button.classList.add('loading');
+    gsap.to(svgPath, { smoothing: .3, duration: duration * .065 / 1000 });
+    gsap.to(svgPath, { y: 12, duration: duration * .265 / 1000, delay: duration * .065 / 1000, ease: Elastic.easeOut.config(1.12, .4) });
+    setTimeout(() => {
+      svg.innerHTML = getCVPath(0, 0, [[3,14],[8,19],[21,6]]);
+    }, duration / 2);
+    // Trigger download 1s after animation completes so user sees the checkmark
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.href = button.getAttribute('href') || 'cv.pdf';
+      a.download = a.href.split('/').pop();
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }, duration + 1000);
+    // Reset after download fires
+    setTimeout(() => {
+      button.classList.remove('loading');
+      svgPath.y = 20;
+      svgPath.smoothing = 0;
+    }, duration + 1600);
+  });
+
+  function getCVPoint(point, i, a, smoothing) {
+    const cp = (current, previous, next, reverse) => {
+      const p = previous || current, n = next || current;
+      const o = { length: Math.sqrt(Math.pow(n[0]-p[0],2)+Math.pow(n[1]-p[1],2)), angle: Math.atan2(n[1]-p[1],n[0]-p[0]) };
+      const angle = o.angle + (reverse ? Math.PI : 0), length = o.length * smoothing;
+      return [current[0]+Math.cos(angle)*length, current[1]+Math.sin(angle)*length];
+    };
+    const cps = cp(a[i-1], a[i-2], point, false);
+    const cpe = cp(point, a[i-1], a[i+1], true);
+    return `C ${cps[0]},${cps[1]} ${cpe[0]},${cpe[1]} ${point[0]},${point[1]}`;
+  }
+
+  function getCVPath(update, smoothing, pointsNew) {
+    const points = pointsNew || [[4,12],[12,update],[20,12]];
+    const d = points.reduce((acc, point, i, a) => i === 0 ? `M ${point[0]},${point[1]}` : `${acc} ${getCVPoint(point, i, a, smoothing)}`, '');
+    return `<path d="${d}" />`;
+  }
+})();
+
+/* =============================================
+   END ANIMATED DOWNLOAD CV BUTTON
+============================================= */
+
 document.getElementById('contactForm').addEventListener('submit', e => {
   e.preventDefault();
 
@@ -2714,6 +3505,33 @@ document.getElementById('contactForm').addEventListener('submit', e => {
   // Run the send button animation (optimistic UX)
   runButtonAnimation(document.getElementById('submitBtn'), document.getElementById('contactForm'));
 });
+
+/* ── Portfolio filter tabs ── */
+(function() {
+  const filterBtns = document.querySelectorAll('.port-filter-btn');
+  const cards      = document.querySelectorAll('.port-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      let delay = 0;
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        if (match) {
+          card.removeAttribute('data-hidden');
+          card.style.animationDelay = delay + 'ms';
+          card.style.animation = 'none';
+          void card.offsetWidth;
+          card.style.animation = '';
+          delay += 60;
+        } else {
+          card.setAttribute('data-hidden', '');
+        }
+      });
+    });
+  });
+})();
 </script>
 
 </body>
